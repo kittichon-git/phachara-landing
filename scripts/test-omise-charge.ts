@@ -13,6 +13,12 @@ const env = readFileSync('.env.local', 'utf-8')
 
 const omise = Omise({ secretKey: env.OMISE_SECRET_KEY, publicKey: env.OMISE_PUBLIC_KEY })
 
+const orderId = process.argv[2]
+if (!orderId) {
+  console.error('Usage: npx tsx scripts/test-omise-charge.ts <order_uuid>')
+  process.exit(1)
+}
+
 async function main() {
   // 1. สร้าง PromptPay source
   console.log('🔵 Creating PromptPay source...')
@@ -31,6 +37,7 @@ async function main() {
     source: source.id,
     return_uri: 'https://phachara.com/success',
     description: 'Test charge for webhook',
+    metadata: { order_id: orderId },
   })
   console.log('Charge ID:', charge.id)
   console.log('Status:', charge.status)
