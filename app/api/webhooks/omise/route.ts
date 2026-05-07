@@ -12,6 +12,16 @@ import {
 } from '@/lib/db/store-client'
 
 export async function POST(request: Request) {
+  console.log('[webhook/omise] env check:', {
+    hasUrl:           !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+    urlPrefix:        process.env.NEXT_PUBLIC_SUPABASE_URL?.slice(0, 30),
+    hasServiceKey:    !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+    serviceKeyPrefix: process.env.SUPABASE_SERVICE_ROLE_KEY?.slice(0, 12),
+    hasAnonKey:       !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    hasOmiseSecret:   !!process.env.OMISE_SECRET_KEY,
+    nodeEnv:          process.env.NODE_ENV,
+  })
+
   try {
     const event = JSON.parse(await request.text())
 

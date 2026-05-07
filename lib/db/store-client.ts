@@ -52,7 +52,12 @@ export interface StoreCoupon {
 function getServiceClient(): SupabaseClient {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!url || !key) throw new Error('Missing Supabase env vars')
+  if (!url || !key) {
+    const missing = []
+    if (!url) missing.push('NEXT_PUBLIC_SUPABASE_URL')
+    if (!key) missing.push('SUPABASE_SERVICE_ROLE_KEY')
+    throw new Error(`Missing Supabase env vars: ${missing.join(', ')}`)
+  }
   return createClient(url, key, { auth: { persistSession: false } })
 }
 
