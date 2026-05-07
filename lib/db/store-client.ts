@@ -172,25 +172,65 @@ export async function getOrderByChargeId(chargeId: string): Promise<StoreOrder |
 
 // ── Payment Events ────────────────────────────────────────────
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+export async function checkPaymentEvent(omise_event_id: string): Promise<boolean> {
+  const sb = getServiceClient()
+  const { data } = await sb
+    .from('store_payment_events')
+    .select('id')
+    .eq('omise_event_id', omise_event_id)
+    .maybeSingle()
+  return !!data
+}
+
+export async function recordPaymentEvent(args: {
+  omise_event_id: string
+  event_type: string
+  order_id?: string | null
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  raw_payload: any
+}): Promise<{ id: string | null; duplicate: boolean }> {
+  const sb = getServiceClient()
+  const validOrderId =
+    args.order_id && UUID_RE.test(args.order_id) ? args.order_id : null
+
+  const { data, error } = await sb
+    .from('store_payment_events')
+    .insert({
+      omise_event_id: args.omise_event_id,
+      event_type:     args.event_type,
+      order_id:       validOrderId,
+      raw_payload:    args.raw_payload,
+    })
+    .select('id')
+    .single()
+
+  if (error) {
+    if (error.code === '23505') {
+      console.log('[recordPaymentEvent] duplicate (idempotent):', args.omise_event_id)
+      return { id: null, duplicate: true }
+    }
+    console.error('[recordPaymentEvent] error:', error)
+    throw error
+  }
+  return { id: (data as { id: string }).id, duplicate: false }
+}
+
+/** @deprecated use recordPaymentEvent */
 export async function insertPaymentEvent(input: {
   order_id: string
   event_type: string
   omise_event_id: string
   raw_payload: Record<string, unknown>
 }): Promise<boolean> {
-  const sb = getServiceClient()
-  const { error } = await sb
-    .from('store_payment_events')
-    .insert({
-      order_id:       input.order_id,
-      event_type:     input.event_type,
-      omise_event_id: input.omise_event_id,
-      raw_payload:    input.raw_payload,
-    })
-  // duplicate omise_event_id = UNIQUE constraint error → dedupe
-  if (error?.code === '23505') return false
-  if (error) throw new Error(`insertPaymentEvent: ${error.message}`)
-  return true
+  const result = await recordPaymentEvent({
+    omise_event_id: input.omise_event_id,
+    event_type:     input.event_type,
+    order_id:       input.order_id,
+    raw_payload:    input.raw_payload,
+  })
+  return !result.duplicate
 }
 
 // ── Enrollments ───────────────────────────────────────────────
