@@ -3,7 +3,6 @@
  * Server-side only — ใช้ OMISE_SECRET_KEY
  */
 
-import { createHmac, timingSafeEqual } from 'crypto'
 
 // ── Types ─────────────────────────────────────────────────────
 
@@ -95,41 +94,4 @@ export async function retrieveCharge(chargeId: string): Promise<OmiseCharge> {
     omise.charges.retrieve.bind(omise.charges),
     chargeId
   )
-}
-
-// ── Webhook Signature Verification ───────────────────────────
-
-/**
- * Omise ใช้ JWS Detached Signature (RFC 7515)
- * Header: Omise-Signature
- * Format: <protectedHeader_base64url>..<signature_base64url>
- *
- * Signing input = `${protectedHeader}.${base64url(rawBody)}`
- * Expected      = HMAC-SHA256(signingInput, secret).digest('base64url')
- */
-
-function base64url(input: string | Buffer): string {
-  return Buffer.from(input).toString('base64url')
-}
-
-export function verifyWebhookSignature(rawBody: string, signatureHeader: string): boolean {
-  const secret = process.env.OMISE_WEBHOOK_SECRET
-  if (!secret) throw new Error('Missing OMISE_WEBHOOK_SECRET')
-
-  const parts = signatureHeader.split('.')
-  if (parts.length !== 3) return false
-
-  const [protectedHeader, , signature] = parts
-  const signingInput = `${protectedHeader}.${base64url(rawBody)}`
-
-  const expected = createHmac('sha256', secret)
-    .update(signingInput)
-    .digest('base64url')
-
-  try {
-    if (expected.length !== signature.length) return false
-    return timingSafeEqual(Buffer.from(expected), Buffer.from(signature))
-  } catch {
-    return false
-  }
 }

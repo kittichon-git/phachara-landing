@@ -209,6 +209,38 @@ export async function createEnrollment(input: {
   return data as StoreEnrollment
 }
 
+// ── Save Order Paid (update + enroll + outbox) ────────────────
+
+export async function saveOrderPaid(
+  order: StoreOrder,
+  chargeId: string,
+): Promise<void> {
+  const sb = getServiceClient()
+
+  // 1. mark paid
+  const { error: e1 } = await sb
+    .from('store_orders')
+    .update({ status: 'paid', paid_at: new Date().toISOString() })
+    .eq('id', order.id)
+  if (e1) throw new Error(`saveOrderPaid/update: ${e1.message}`)
+
+  // 2. enroll (ignore duplicate)
+  const { error: e2 } = await sb
+    .from('store_enrollments')
+    .insert({ profile_id: order.profile_id, book_id: order.book_id, order_id: order.id })
+  if (e2 && e2.code !== '23505') throw new Error(`saveOrderPaid/enroll: ${e2.message}`)
+
+  // 3. outbox
+  const { error: e3 } = await sb
+    .from('store_outbox')
+    .insert({
+      order_id:   order.id,
+      event_type: 'order.paid',
+      payload: { profile_id: order.profile_id, book_id: order.book_id, charge_id: chargeId },
+    })
+  if (e3) throw new Error(`saveOrderPaid/outbox: ${e3.message}`)
+}
+
 // ── Outbox ────────────────────────────────────────────────────
 
 export async function addOutboxEvent(input: {
