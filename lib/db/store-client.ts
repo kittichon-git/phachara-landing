@@ -131,6 +131,17 @@ export async function createOrder(input: {
   return data as StoreOrder
 }
 
+export async function getOrderById(orderId: string): Promise<StoreOrder | null> {
+  const sb = getServiceClient()
+  const { data, error } = await sb
+    .from('store_orders')
+    .select('*')
+    .eq('id', orderId)
+    .maybeSingle()
+  if (error) throw new Error(`getOrderById: ${error.message}`)
+  return data as StoreOrder | null
+}
+
 export async function getOrderByIdempotencyKey(key: string): Promise<StoreOrder | null> {
   const sb = getServiceClient()
   const { data, error } = await sb

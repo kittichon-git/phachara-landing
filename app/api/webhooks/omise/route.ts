@@ -7,6 +7,7 @@
 import { retrieveCharge } from '@/lib/payments/omise'
 import {
   getOrderByChargeId,
+  getOrderById,
   recordPaymentEvent,
   saveOrderPaid,
 } from '@/lib/db/store-client'
@@ -35,8 +36,16 @@ export async function POST(request: Request) {
     const realCharge = await retrieveCharge(chargeId)
     console.log('[webhook/omise] realCharge.status:', realCharge.status)
 
-    // หา order
-    const order = await getOrderByChargeId(chargeId)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const metadata = (realCharge as any).metadata as Record<string, unknown> | null
+    console.log('[webhook/omise] charge metadata:', JSON.stringify(metadata))
+    console.log('[webhook/omise] full charge keys:', Object.keys(realCharge))
+
+    // หา order: ลองจาก omise_charge_id ก่อน → fallback metadata.order_id
+    let order = await getOrderByChargeId(chargeId)
+    if (!order && metadata?.order_id) {
+      order = await getOrderById(String(metadata.order_id))
+    }
     console.log('[webhook/omise] order found:', !!order, '| order.id:', order?.id)
 
     // บันทึก event (idempotency via UNIQUE omise_event_id)
@@ -52,8 +61,8 @@ export async function POST(request: Request) {
       return new Response('already processed', { status: 200 })
     }
 
-    // Process: paid → enroll
-    if (order && event.key === 'charge.complete' && realCharge.status === 'successful') {
+    // Process: successful → enroll (ทั้ง card 1-step และ PromptPay 2-step)
+    if (order && realCharge.status === 'successful') {
       await saveOrderPaid(order, chargeId)
       console.log('[webhook/omise] saveOrderPaid done')
     }
