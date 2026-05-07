@@ -1,123 +1,64 @@
 /**
  * POST /api/webhooks/omise
- * รับ webhook จาก Omise — verify signature → process event
+ * DEBUG MODE — log ทุกอย่างเพื่อหา verify method ที่ถูก
  */
 
-import { NextRequest, NextResponse } from 'next/server'
-import { verifyWebhookSignature } from '@/lib/payments/omise'
-import {
-  getOrderByChargeId, updateOrderStatus,
-  insertPaymentEvent, createEnrollment, addOutboxEvent,
-} from '@/lib/db/store-client'
+import crypto from 'crypto'
 
-// ── Omise Event Shape ─────────────────────────────────────────
+export async function POST(request: Request) {
+  const rawBody = await request.text()
+  const sigHeader = request.headers.get('omise-signature') || ''
+  const secret = process.env.OMISE_WEBHOOK_SECRET || ''
 
-interface OmiseEvent {
-  id: string
-  object: 'event'
-  key: string
-  data: {
-    id: string
-    object: string
-    status?: string
-    amount?: number
-    metadata?: Record<string, unknown>
+  console.log('=== WEBHOOK DEBUG ===')
+  console.log('Header (Omise-Signature):', sigHeader)
+  console.log('Header length:', sigHeader.length)
+  console.log('Raw body length:', rawBody.length)
+  console.log('Raw body first 200:', rawBody.slice(0, 200))
+  console.log('Secret length:', secret.length)
+  console.log('Secret first 4:', secret.slice(0, 4))
+  console.log('Secret last 4:', secret.slice(-4))
+
+  // วิธี 1: JWS detached (header..signature)
+  const jwsParts = sigHeader.split('.')
+  console.log('JWS parts count:', jwsParts.length)
+  if (jwsParts.length === 3) {
+    const [protectedHeader, , signature] = jwsParts
+    const bodyB64 = Buffer.from(rawBody).toString('base64url')
+    const signingInput = `${protectedHeader}.${bodyB64}`
+    const expected1 = crypto.createHmac('sha256', secret).update(signingInput).digest('base64url')
+    console.log('JWS expected (base64url):', expected1)
+    console.log('JWS received signature:', signature)
+    console.log('JWS match:', expected1 === signature)
   }
-}
 
-// ── Handler ───────────────────────────────────────────────────
+  // วิธี 2: HMAC SHA256 hex ตรง ๆ บน raw body
+  const expected2 = crypto.createHmac('sha256', secret).update(rawBody).digest('hex')
+  console.log('Plain HMAC hex:', expected2)
 
-export async function POST(req: NextRequest) {
-  // 1. อ่าน raw body ครั้งเดียว
-  const rawBody = await req.text()
+  // วิธี 3: HMAC SHA256 base64 ตรง ๆ
+  const expected3 = crypto.createHmac('sha256', secret).update(rawBody).digest('base64')
+  console.log('Plain HMAC base64:', expected3)
 
-  // 2. Verify JWS detached signature (Omise-Signature header)
-  const signatureHeader = req.headers.get('omise-signature') ?? ''
+  // วิธี 4: decode secret จาก base64 ก่อนใช้ (secret มี = ลงท้าย → น่าจะเป็น base64)
   try {
-    const valid = verifyWebhookSignature(rawBody, signatureHeader)
-    if (!valid) {
-      console.warn('[webhook/omise] Invalid signature', signatureHeader.slice(0, 60))
-      return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
+    const secretBytes = Buffer.from(secret, 'base64')
+    const expected4 = crypto.createHmac('sha256', secretBytes).update(rawBody).digest('hex')
+    console.log('Decoded secret HMAC hex:', expected4)
+
+    if (jwsParts.length === 3) {
+      const [protectedHeader, , signature] = jwsParts
+      const bodyB64 = Buffer.from(rawBody).toString('base64url')
+      const signingInput = `${protectedHeader}.${bodyB64}`
+      const expected5 = crypto.createHmac('sha256', secretBytes).update(signingInput).digest('base64url')
+      console.log('JWS+decoded secret expected:', expected5)
+      console.log('JWS+decoded match:', expected5 === signature)
     }
-  } catch (err) {
-    console.error('[webhook/omise] Signature error:', err)
-    return NextResponse.json({ error: 'Signature check failed' }, { status: 500 })
+  } catch (e) {
+    console.log('Decode secret failed:', e)
   }
 
-  // 3. Parse event
-  let event: OmiseEvent
-  try {
-    event = JSON.parse(rawBody) as OmiseEvent
-  } catch {
-    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 })
-  }
+  console.log('=== END DEBUG ===')
 
-  // 4. หา order จาก charge id
-  const chargeId = event.data?.id
-  if (!chargeId) {
-    return NextResponse.json({ ok: true, skipped: 'no charge id' })
-  }
-
-  const order = await getOrderByChargeId(chargeId).catch(() => null)
-  if (!order) {
-    // charge นี้ไม่ใช่ของเรา — return 200 ทันที
-    return NextResponse.json({ ok: true, skipped: 'order not found' })
-  }
-
-  // 5. Dedupe: INSERT payment_event (ถ้า duplicate → ข้าม)
-  const inserted = await insertPaymentEvent({
-    order_id:       order.id,
-    event_type:     event.key,
-    omise_event_id: event.id,
-    raw_payload:    event as unknown as Record<string, unknown>,
-  }).catch(() => false)
-
-  if (!inserted) {
-    // duplicate event — idempotent response
-    return NextResponse.json({ ok: true, skipped: 'duplicate event' })
-  }
-
-  // 6. Process event
-  try {
-    if (event.key === 'charge.complete' && event.data.status === 'successful') {
-      // 6a. อัปเดต order → paid
-      await updateOrderStatus(order.id, 'paid', {
-        paid_at: new Date().toISOString(),
-      })
-
-      // 6b. สร้าง enrollment
-      await createEnrollment({
-        profile_id: order.profile_id,
-        book_id:    order.book_id,
-        order_id:   order.id,
-      }).catch(err => {
-        // UNIQUE constraint — enrolled แล้ว ไม่ error
-        if ((err as Error).message.includes('23505')) return
-        throw err
-      })
-
-      // 6c. เพิ่ม outbox event สำหรับ downstream (LINE notify, email ฯลฯ)
-      await addOutboxEvent({
-        order_id:   order.id,
-        event_type: 'order.paid',
-        payload:    {
-          profile_id: order.profile_id,
-          book_id:    order.book_id,
-          amount:     order.amount_satang,
-          charge_id:  chargeId,
-        },
-      })
-    } else if (event.key === 'charge.complete' && event.data.status === 'failed') {
-      await updateOrderStatus(order.id, 'failed')
-    } else if (event.key === 'charge.expire') {
-      await updateOrderStatus(order.id, 'expired')
-    }
-  } catch (err) {
-    console.error('[webhook/omise] Processing error:', err)
-    // ยัง return 200 เพื่อไม่ให้ Omise retry ซ้ำ
-    // error log ไว้ใน payment_events แล้ว
-  }
-
-  // 7. Return 200 ทันที
-  return NextResponse.json({ ok: true })
+  return new Response('debug mode - all events accepted', { status: 200 })
 }
