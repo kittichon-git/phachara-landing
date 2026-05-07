@@ -1,6 +1,6 @@
 /**
  * POST /api/webhooks/omise
- * DEBUG MODE — log ทุกอย่างเพื่อหา verify method ที่ถูก
+ * DEBUG MODE — enumerate 12 HMAC variants to find correct verify method
  */
 
 import crypto from 'crypto'
@@ -8,54 +8,75 @@ import crypto from 'crypto'
 export async function POST(request: Request) {
   const rawBody = await request.text()
   const sigHeader = request.headers.get('omise-signature') || ''
-  const secret = process.env.OMISE_WEBHOOK_SECRET || ''
+  const secret = process.env.OMISE_WEBHOOK_SECRET!
+  const secretKey = process.env.OMISE_SECRET_KEY!
+  const secretBytes = Buffer.from(secret, 'base64')
 
-  console.log('=== WEBHOOK DEBUG ===')
-  console.log('Header (Omise-Signature):', sigHeader)
-  console.log('Header length:', sigHeader.length)
-  console.log('Raw body length:', rawBody.length)
-  console.log('Raw body first 200:', rawBody.slice(0, 200))
-  console.log('Secret length:', secret.length)
-  console.log('Secret first 4:', secret.slice(0, 4))
-  console.log('Secret last 4:', secret.slice(-4))
+  const sigs = sigHeader.split(',').map(s => s.trim())
 
-  // วิธี 1: JWS detached (header..signature)
-  const jwsParts = sigHeader.split('.')
-  console.log('JWS parts count:', jwsParts.length)
-  if (jwsParts.length === 3) {
-    const [protectedHeader, , signature] = jwsParts
-    const bodyB64 = Buffer.from(rawBody).toString('base64url')
-    const signingInput = `${protectedHeader}.${bodyB64}`
-    const expected1 = crypto.createHmac('sha256', secret).update(signingInput).digest('base64url')
-    console.log('JWS expected (base64url):', expected1)
-    console.log('JWS received signature:', signature)
-    console.log('JWS match:', expected1 === signature)
+  const variants: Record<string, string> = {
+    // === SECRET formats ===
+    'A1: webhook_secret str + body':
+      crypto.createHmac('sha256', secret).update(rawBody).digest('hex'),
+    'A2: webhook_secret base64-decoded + body':
+      crypto.createHmac('sha256', secretBytes).update(rawBody).digest('hex'),
+
+    // === SECRET_KEY (skey_test_xxx) ===
+    'B1: SECRET_KEY + body':
+      crypto.createHmac('sha256', secretKey).update(rawBody).digest('hex'),
+
+    // === BODY transforms with webhook_secret string ===
+    'C1: secret + body.trim()':
+      crypto.createHmac('sha256', secret).update(rawBody.trim()).digest('hex'),
+    'C2: secret + body+\\n':
+      crypto.createHmac('sha256', secret).update(rawBody + '\n').digest('hex'),
+    'C3: secret + compact JSON':
+      crypto.createHmac('sha256', secret).update(JSON.stringify(JSON.parse(rawBody))).digest('hex'),
+    'C4: secret + body Buffer utf8':
+      crypto.createHmac('sha256', secret).update(Buffer.from(rawBody, 'utf8')).digest('hex'),
+
+    // === BODY transforms with decoded secret ===
+    'D1: decoded + body.trim()':
+      crypto.createHmac('sha256', secretBytes).update(rawBody.trim()).digest('hex'),
+    'D2: decoded + body+\\n':
+      crypto.createHmac('sha256', secretBytes).update(rawBody + '\n').digest('hex'),
+    'D3: decoded + compact JSON':
+      crypto.createHmac('sha256', secretBytes).update(JSON.stringify(JSON.parse(rawBody))).digest('hex'),
+
+    // === Combination with event id ===
+    'E1: secret + eventId.body': (() => {
+      const eventId = JSON.parse(rawBody).id
+      return crypto.createHmac('sha256', secret).update(`${eventId}.${rawBody}`).digest('hex')
+    })(),
+
+    // === SHA256 only (no HMAC) ===
+    'F1: sha256(secret + body)':
+      crypto.createHash('sha256').update(secret + rawBody).digest('hex'),
   }
 
-  // วิธี 2: HMAC SHA256 hex ตรง ๆ บน raw body
-  const expected2 = crypto.createHmac('sha256', secret).update(rawBody).digest('hex')
-  console.log('Plain HMAC hex:', expected2)
+  console.log('=== SIGNATURE COMPARISON ===')
+  console.log('Sig #1:', sigs[0])
+  console.log('Sig #2:', sigs[1])
+  console.log()
+  console.log('Body bytes (hex first 40):', Buffer.from(rawBody).toString('hex').slice(0, 40))
+  console.log('Body bytes (hex last 40):', Buffer.from(rawBody).toString('hex').slice(-40))
+  console.log('Body length:', rawBody.length)
+  console.log()
 
-  // วิธี 3: HMAC SHA256 base64 ตรง ๆ
-  const expected3 = crypto.createHmac('sha256', secret).update(rawBody).digest('base64')
-  console.log('Plain HMAC base64:', expected3)
+  let matched = false
+  for (const [label, computed] of Object.entries(variants)) {
+    const isMatch1 = computed === sigs[0]
+    const isMatch2 = computed === sigs[1]
+    const mark = isMatch1 || isMatch2 ? '✅' : '❌'
+    const which = isMatch1 ? ' (=Sig#1)' : isMatch2 ? ' (=Sig#2)' : ''
+    console.log(`${mark} ${label}${which}`)
+    console.log(`     ${computed}`)
+    if (isMatch1 || isMatch2) matched = true
+  }
 
-  // วิธี 4: decode secret จาก base64 ก่อนใช้ (secret มี = ลงท้าย → น่าจะเป็น base64)
-  try {
-    const secretBytes = Buffer.from(secret, 'base64')
-    const expected4 = crypto.createHmac('sha256', secretBytes).update(rawBody).digest('hex')
-    console.log('Decoded secret HMAC hex:', expected4)
-
-    if (jwsParts.length === 3) {
-      const [protectedHeader, , signature] = jwsParts
-      const bodyB64 = Buffer.from(rawBody).toString('base64url')
-      const signingInput = `${protectedHeader}.${bodyB64}`
-      const expected5 = crypto.createHmac('sha256', secretBytes).update(signingInput).digest('base64url')
-      console.log('JWS+decoded secret expected:', expected5)
-      console.log('JWS+decoded match:', expected5 === signature)
-    }
-  } catch (e) {
-    console.log('Decode secret failed:', e)
+  if (!matched) {
+    console.log('❌ NO VARIANT MATCHED — likely body byte mismatch')
+    console.log('All headers:', Object.fromEntries(request.headers))
   }
 
   console.log('=== END DEBUG ===')
