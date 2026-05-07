@@ -1,72 +1,70 @@
 /**
  * POST /api/webhooks/omise
- * DEBUG MODE — inspect secret bytes + test clean variants
+ * DEBUG MODE — arrayBuffer vs text, node crypto vs subtle
  */
 
 import crypto from 'crypto'
 
+declare const EdgeRuntime: string | undefined
+
 export async function POST(request: Request) {
+  // ใช้ arrayBuffer แทน text — ได้ raw bytes ตรงจาก wire
+  const arrayBuf = await request.arrayBuffer()
+  const bodyBuffer = Buffer.from(arrayBuf)
+
   const sigHeader = request.headers.get('omise-signature') || ''
   const timestamp = request.headers.get('omise-signature-timestamp') || ''
-  const rawBody = await request.text()
   const sigs = sigHeader.split(',').map(s => s.trim())
 
-  const rawSecret = process.env.OMISE_WEBHOOK_SECRET || ''
-  const trimmedSecret = rawSecret.trim()
-  const cleanSecret = rawSecret.replace(/\s+/g, '')
+  const secretBytes = Buffer.from(process.env.OMISE_WEBHOOK_SECRET!, 'base64')
 
-  console.log('Timestamp:', timestamp)
-  console.log('Sig #1:', sigs[0])
-  console.log('Sig #2:', sigs[1])
+  // วิธี 1: text() แบบเดิม (เพื่อเทียบ)
+  const bodyString = bodyBuffer.toString('utf8')
+  const sig_text = crypto.createHmac('sha256', secretBytes)
+    .update(`${timestamp}.${bodyString}`)
+    .digest('hex')
 
-  console.log('Raw secret length:', rawSecret.length)
-  console.log('Raw secret hex:', Buffer.from(rawSecret).toString('hex'))
-  console.log('Trimmed length:', trimmedSecret.length)
-  console.log('Has newline:', rawSecret.includes('\n'))
-  console.log('Has carriage return:', rawSecret.includes('\r'))
-  console.log('Has tab:', rawSecret.includes('\t'))
-  console.log('Has space:', rawSecret.includes(' '))
+  // วิธี 2: ใช้ Buffer concat ทั้งหมด — ไม่มี string conversion เลย
+  const prefix = Buffer.from(`${timestamp}.`, 'utf8')
+  const signedPayloadBuffer = Buffer.concat([prefix, bodyBuffer])
+  const sig_buffer = crypto.createHmac('sha256', secretBytes)
+    .update(signedPayloadBuffer)
+    .digest('hex')
 
-  const sBytes_raw = Buffer.from(rawSecret, 'base64')
-  const sBytes_trim = Buffer.from(trimmedSecret, 'base64')
-  const sBytes_clean = Buffer.from(cleanSecret, 'base64')
+  // วิธี 3: เปรียบเทียบ body string vs buffer
+  const stringBytes = Buffer.from(bodyString, 'utf8')
+  const bytesMatch = stringBytes.equals(bodyBuffer)
 
-  console.log('Decoded raw bytes length:', sBytes_raw.length)
-  console.log('Decoded trim bytes length:', sBytes_trim.length)
-  console.log('Decoded clean bytes length:', sBytes_clean.length)
-  console.log('Decoded raw hex:', sBytes_raw.toString('hex'))
-  console.log('Decoded trim hex:', sBytes_trim.toString('hex'))
-  console.log('Decoded clean hex:', sBytes_clean.toString('hex'))
+  console.log('=== ARRAYBUFFER DEBUG ===')
+  console.log('arrayBuffer length:', bodyBuffer.length)
+  console.log('toString utf8 → re-encode length:', stringBytes.length)
+  console.log('Body bytes identical after roundtrip?:', bytesMatch)
+  console.log('Body first 60 hex (raw):', bodyBuffer.slice(0, 60).toString('hex'))
+  console.log('Body last 60 hex (raw):', bodyBuffer.slice(-60).toString('hex'))
+  console.log()
+  console.log('Sig#1:', sigs[0])
+  console.log('Sig#2:', sigs[1])
+  console.log()
+  console.log('Method 1 (text):  ', sig_text, sig_text === sigs[0] ? '=Sig#1' : sig_text === sigs[1] ? '=Sig#2' : '❌')
+  console.log('Method 2 (buffer):', sig_buffer, sig_buffer === sigs[0] ? '=Sig#1' : sig_buffer === sigs[1] ? '=Sig#2' : '❌')
 
-  const signedPayload = `${timestamp}.${rawBody}`
-
-  const variants: Record<string, string> = {
-    'X1: official with raw':
-      crypto.createHmac('sha256', sBytes_raw).update(signedPayload).digest('hex'),
-    'X2: official with trimmed':
-      crypto.createHmac('sha256', sBytes_trim).update(signedPayload).digest('hex'),
-    'X3: official with clean (no whitespace)':
-      crypto.createHmac('sha256', sBytes_clean).update(signedPayload).digest('hex'),
-    'X4: official with trimmed timestamp':
-      crypto.createHmac('sha256', sBytes_trim).update(`${timestamp.trim()}.${rawBody}`).digest('hex'),
+  // วิธี 4: Web Crypto API (ถ้า runtime เป็น edge)
+  try {
+    const cryptoSubtle = globalThis.crypto.subtle
+    const key = await cryptoSubtle.importKey(
+      'raw', secretBytes,
+      { name: 'HMAC', hash: 'SHA-256' },
+      false, ['sign']
+    )
+    const signature = await cryptoSubtle.sign('HMAC', key, signedPayloadBuffer)
+    const sig_subtle = Buffer.from(signature).toString('hex')
+    console.log('Method 3 (subtle):', sig_subtle, sig_subtle === sigs[0] ? '=Sig#1' : sig_subtle === sigs[1] ? '=Sig#2' : '❌')
+  } catch (e) {
+    console.log('Subtle error:', e)
   }
 
-  for (const [label, computed] of Object.entries(variants)) {
-    const m1 = computed === sigs[0]
-    const m2 = computed === sigs[1]
-    console.log(`${m1 || m2 ? '✅' : '❌'} ${label}${m1 ? ' =Sig#1' : m2 ? ' =Sig#2' : ''}`)
-    console.log(`     ${computed}`)
-  }
+  console.log('Runtime:', typeof EdgeRuntime !== 'undefined' ? 'edge' : 'nodejs')
+  console.log('=== END ===')
 
-  // Bonus: hardcode exact secret to eliminate env issue
-  const HARDCODED = 'mKBMc+b6zCp6IVHRem+8iuMm6gdgj3iiidJClgxCv20='
-  const hardBytes = Buffer.from(HARDCODED, 'base64')
-  const hardSig = crypto.createHmac('sha256', hardBytes).update(signedPayload).digest('hex')
-  console.log('Y1: HARDCODED secret:', hardSig)
-  console.log('Y1 match Sig#1:', hardSig === sigs[0])
-  console.log('Y1 match Sig#2:', hardSig === sigs[1])
-
-  console.log('=== END DEBUG ===')
-
-  return new Response('debug mode - all events accepted', { status: 200 })
+  return new Response('ok', { status: 200 })
 }
