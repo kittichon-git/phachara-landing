@@ -45,8 +45,10 @@ const OmiseLib = require('omise')
 
 function createOmiseClient() {
   const secretKey = process.env.OMISE_SECRET_KEY
+  const publicKey = process.env.OMISE_PUBLIC_KEY
   if (!secretKey) throw new Error('Missing OMISE_SECRET_KEY')
-  return OmiseLib({ secretKey, omiseVersion: '2019-05-29' }) as Record<string, Record<string, (...args: unknown[]) => unknown>>
+  // publicKey จำเป็นสำหรับ sources.create (Source resource ใช้ publicKey)
+  return OmiseLib({ secretKey, publicKey, omiseVersion: '2019-05-29' }) as Record<string, Record<string, (...args: unknown[]) => unknown>>
 }
 
 // ── Promisify helper ──────────────────────────────────────────
