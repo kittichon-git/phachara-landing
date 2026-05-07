@@ -28,15 +28,15 @@ interface OmiseEvent {
 // ── Handler ───────────────────────────────────────────────────
 
 export async function POST(req: NextRequest) {
-  // 1. อ่าน raw body ก่อน (ต้องใช้ก่อน parse JSON)
+  // 1. อ่าน raw body ครั้งเดียว
   const rawBody = await req.text()
-  const signature = req.headers.get('x-omise-signature') ?? ''
 
-  // 2. Verify HMAC signature
+  // 2. Verify JWS detached signature (Omise-Signature header)
+  const signatureHeader = req.headers.get('omise-signature') ?? ''
   try {
-    const valid = verifyWebhookSignature(rawBody, signature)
+    const valid = verifyWebhookSignature(rawBody, signatureHeader)
     if (!valid) {
-      console.warn('[webhook/omise] Invalid signature')
+      console.warn('[webhook/omise] Invalid signature', signatureHeader.slice(0, 60))
       return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
     }
   } catch (err) {
