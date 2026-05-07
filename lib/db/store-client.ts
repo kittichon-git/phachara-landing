@@ -270,14 +270,21 @@ export async function createEnrollment(input: {
 export async function saveOrderPaid(
   order: StoreOrder,
   chargeId: string,
+  paymentMethod?: string,
 ): Promise<void> {
   const sb = getServiceClient()
 
   // 1. mark paid
   const { error: e1 } = await sb
     .from('store_orders')
-    .update({ status: 'paid', paid_at: new Date().toISOString() })
+    .update({
+      status:          'paid',
+      paid_at:         new Date().toISOString(),
+      omise_charge_id: chargeId,
+      ...(paymentMethod ? { payment_method: paymentMethod } : {}),
+    })
     .eq('id', order.id)
+    .eq('status', 'pending')
   if (e1) throw new Error(`saveOrderPaid/update: ${e1.message}`)
 
   // 2. enroll (ignore duplicate)

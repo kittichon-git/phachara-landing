@@ -63,8 +63,13 @@ export async function POST(request: Request) {
 
     // Process: successful → enroll (ทั้ง card 1-step และ PromptPay 2-step)
     if (order && realCharge.status === 'successful') {
-      await saveOrderPaid(order, chargeId)
-      console.log('[webhook/omise] saveOrderPaid done')
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const ch = realCharge as any
+      const paymentMethod: string =
+        ch.payment_method ??
+        (ch.card ? 'card' : ch.source?.type ?? 'unknown')
+      await saveOrderPaid(order, chargeId, paymentMethod)
+      console.log('[webhook/omise] saveOrderPaid done, method:', paymentMethod)
     }
 
     return new Response('ok', { status: 200 })
