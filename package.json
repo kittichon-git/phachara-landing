@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.105.3",
+    "framer-motion": "^12",
     "next": "latest",
-    "omise": "^1.1.0",
+    "posthog-js": "^1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -20,6 +20,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "puppeteer": "^24.43.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

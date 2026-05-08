@@ -25,3 +25,12 @@ export const INSTRUCTOR = {
   title: "นักเขียนคำขายของออนไลน์",
   bio: "ผู้เชี่ยวชาญด้านการเขียนคำขายของออนไลน์ มีประสบการณ์ช่วยให้ธุรกิจออนไลน์เพิ่ม conversion ด้วยพลังของคำพูดที่ถูกต้อง",
 } as const
+
+/** LINE OA deep link — append UTM per call-to-action position */
+const LINE_BASE = "https://lin.ee/049vlbwy"
+
+export type LinePosition = "hero" | "s4" | "s9" | "sticky" | "curriculum"
+
+export function lineUrl(position: LinePosition): string {
+  return `${LINE_BASE}?utm_source=sp&utm_medium=sp_${position}`
+}
