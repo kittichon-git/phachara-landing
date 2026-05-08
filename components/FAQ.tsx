@@ -1,85 +1,72 @@
-import { BUSINESS } from '@/lib/constants'
-import NotifyButton from './NotifyButton'
-
 const faqs = [
   {
-    q: 'คอร์สนี้เหมาะกับใคร?',
-    a: 'เหมาะกับคนขายของออนไลน์ทุกประเภท ไม่ว่าจะเป็นแม่ค้า ดรอปชิป freelancer หรือนักการตลาด ไม่ต้องมีประสบการณ์ด้านการเขียนหรือการตลาดมาก่อน เรียนรู้และนำไปใช้ได้ตั้งแต่โพสแรก',
+    q: 'เป็นไฟล์ PDF หรือมีแอป?',
+    a: 'เป็น Web LIFF (อ่านใน LINE) + ดาวน์โหลด PDF ได้',
+  },
+  {
+    q: 'ราคา 990 รวมอะไรบ้าง?',
+    a: '24 บท + Swipe File + Template ทุกหมวด + อัปเดต lifetime',
+  },
+  {
+    q: 'คืนเงินได้ไหม?',
+    a: 'ได้ภายใน 7 วัน ถ้าอ่านไม่ถึง 3 บท',
+  },
+  {
+    q: 'ต้องเขียนเป็นมาก่อนไหม?',
+    a: 'ไม่ต้อง คอร์สออกแบบให้คนทำธุรกิจที่ไม่ใช่นักเขียนเรียนได้',
   },
   {
     q: 'ใช้เวลาเรียนนานแค่ไหน?',
-    a: 'เนื้อหาทั้งหมดใช้เวลาประมาณ 3–5 ชั่วโมง สามารถเรียนได้ตามสะดวก ไม่มีเวลากำหนดตายตัว เข้าถึงได้ตลอด 24 ชั่วโมง ไม่มีวันหมดอายุ',
+    a: '24 บท ~10-15 นาที/บท + เริ่มลองใช้กับงานจริงได้ทันทีจากบท 9',
   },
   {
-    q: 'มีนโยบายคืนเงินไหม?',
-    a: 'มีครับ คืนเงิน 100% ภายใน 7 วันหลังซื้อ โดยมีเงื่อนไขว่าเปิดบทเรียนไม่เกิน 20% ดูรายละเอียดเพิ่มเติมได้ที่หน้านโยบายการคืนเงิน',
-    link: { href: '/refund', label: 'ดูนโยบายการคืนเงิน' },
+    q: 'ใช้กับธุรกิจอะไรได้บ้าง?',
+    a: 'สินค้า, บริการ, คอร์ส, e-commerce, B2B — ทุกอย่างที่ต้องเขียนขาย',
   },
   {
-    q: 'เนื้อหาเป็น video หรือ ebook?',
-    a: 'เป็น digital content ที่อ่านและใช้งานได้ทุกอุปกรณ์ ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์ ไม่มีวันหมดอายุ เข้าถึงได้ตลอดชีพ',
+    q: 'จ่ายผ่านอะไรได้บ้าง?',
+    a: 'PromptPay (QR) หรือ บัตรเครดิต/เดบิต ผ่าน Stripe (ในอนาคต ผ่านจ่ายใน LINE)',
   },
   {
-    q: 'ติดต่อสอบถามได้ทางไหน?',
-    a: `สามารถติดต่อได้ผ่านอีเมล ${BUSINESS.email} หรือผ่านช่องทาง LINE ทีมงานจะตอบกลับภายใน 1 วันทำการ`,
+    q: 'ข้อมูลส่วนตัวเก็บอะไรบ้าง?',
+    a: 'เก็บแค่ LINE userId (ไม่มี email/เบอร์)',
   },
 ]
 
 export default function FAQ() {
   return (
-    <section className="py-20 sm:py-24 bg-white" aria-labelledby="faq-heading">
-      <div className="max-w-3xl mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <p className="text-yellow-500 font-semibold text-sm uppercase tracking-widest mb-3">คำถามที่พบบ่อย</p>
-          <h2 id="faq-heading" className="text-3xl sm:text-4xl font-bold text-gray-900">
-            FAQ
-          </h2>
-          <p className="mt-4 text-gray-500 text-lg">มีคำถามเพิ่มเติม? ติดต่อเราได้เลยครับ</p>
-        </div>
+    <section className="bg-white py-16 px-4" aria-labelledby="faq-headline">
+      <div className="max-w-2xl mx-auto">
+        <h2
+          id="faq-headline"
+          className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-10"
+        >
+          คำถามที่พบบ่อย
+        </h2>
 
-        {/* FAQ items */}
         <div className="space-y-3">
-          {faqs.map((faq, i) => (
+          {faqs.map(({ q, a }) => (
             <details
-              key={i}
-              className="group border border-gray-200 rounded-2xl overflow-hidden bg-white hover:border-yellow-300 transition-colors"
+              key={q}
+              className="group bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden"
             >
-              <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer list-none font-semibold text-gray-900 text-lg select-none">
-                <span>{faq.q}</span>
-                <span
-                  className="flex-shrink-0 w-7 h-7 rounded-full bg-gray-100 group-open:bg-yellow-400 flex items-center justify-center transition-colors"
+              <summary className="flex items-center justify-between gap-3 px-5 py-4 cursor-pointer list-none select-none font-semibold text-gray-900">
+                <span>{q}</span>
+                <svg
+                  className="w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200 group-open:rotate-180"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                   aria-hidden="true"
                 >
-                  <svg
-                    className="w-4 h-4 text-gray-600 group-open:text-gray-900 group-open:rotate-45 transition-transform duration-200"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
-                </span>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </summary>
-              <div className="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
-                <p>{faq.a}</p>
-                {faq.link && (
-                  <a
-                    href={faq.link.href}
-                    className="inline-block mt-3 text-yellow-600 font-semibold hover:text-yellow-700 underline underline-offset-2"
-                  >
-                    {faq.link.label} →
-                  </a>
-                )}
-              </div>
+              <p className="px-5 pb-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                {a}
+              </p>
             </details>
           ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-14 text-center">
-          <p className="text-gray-600 text-lg mb-6">พร้อมแล้ว? รับการแจ้งเตือนเมื่อเปิดขาย</p>
-          <NotifyButton />
         </div>
       </div>
     </section>
