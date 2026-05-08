@@ -4,7 +4,7 @@ import { BUSINESS } from '@/lib/constants'
 export const metadata: Metadata = {
   title: 'นโยบายความเป็นส่วนตัว | phachara.com',
   description: 'นโยบายความเป็นส่วนตัว (PDPA) ของ phachara.com การเก็บรวบรวมและใช้งานข้อมูลส่วนบุคคล',
-  alternates: { canonical: 'https://phachara.com/privacy' },
+  alternates: { canonical: 'https://phachara.com/legal/privacy' },
 }
 
 export default function PrivacyPage() {
@@ -168,8 +168,8 @@ export default function PrivacyPage() {
         <div className="max-w-3xl mx-auto flex gap-4 text-sm">
           <a href="/" className="text-yellow-600 hover:text-yellow-700 font-medium">← หน้าหลัก</a>
           <span className="text-gray-300">|</span>
-          <a href="/refund" className="text-gray-500 hover:text-gray-700">คืนเงิน</a>
-          <a href="/terms" className="text-gray-500 hover:text-gray-700">ข้อกำหนด</a>
+          <a href="/legal/refund" className="text-gray-500 hover:text-gray-700">คืนเงิน</a>
+          <a href="/legal/terms" className="text-gray-500 hover:text-gray-700">ข้อกำหนด</a>
           <a href="/contact" className="text-gray-500 hover:text-gray-700">ติดต่อ</a>
         </div>
       </div>

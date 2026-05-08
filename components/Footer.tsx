@@ -1,10 +1,11 @@
 import { BUSINESS } from '@/lib/constants'
 
 const legalLinks = [
-  { href: '/refund', label: 'นโยบายการคืนเงิน' },
-  { href: '/terms', label: 'ข้อกำหนดการใช้งาน' },
-  { href: '/privacy', label: 'นโยบายความเป็นส่วนตัว' },
-  { href: '/contact', label: 'ติดต่อเรา' },
+  { href: '/legal/refund',  label: 'นโยบายการคืนเงิน' },
+  { href: '/legal/terms',   label: 'ข้อกำหนดการใช้งาน' },
+  { href: '/legal/privacy', label: 'นโยบายความเป็นส่วนตัว' },
+  { href: '/legal/cookie',  label: 'นโยบายคุกกี้' },
+  { href: '/contact',       label: 'ติดต่อเรา' },
 ]
 
 export default function Footer() {

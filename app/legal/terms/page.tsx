@@ -4,7 +4,7 @@ import { BUSINESS } from '@/lib/constants'
 export const metadata: Metadata = {
   title: 'ข้อกำหนดการใช้งาน | phachara.com',
   description: 'ข้อกำหนดและเงื่อนไขการใช้งานบริการของ phachara.com โปรดอ่านก่อนใช้บริการ',
-  alternates: { canonical: 'https://phachara.com/terms' },
+  alternates: { canonical: 'https://phachara.com/legal/terms' },
 }
 
 export default function TermsPage() {
@@ -105,7 +105,7 @@ export default function TermsPage() {
           <p className="text-gray-600 leading-relaxed">
             นโยบายการคืนเงินของเรากำหนดให้ท่านสามารถขอคืนเงินได้ภายใน 7 วันนับจากวันซื้อ
             ตามเงื่อนไขที่กำหนด ดูรายละเอียดเพิ่มเติมได้ที่{' '}
-            <a href="/refund" className="text-yellow-600 font-semibold hover:underline">
+            <a href="/legal/refund" className="text-yellow-600 font-semibold hover:underline">
               นโยบายการคืนเงิน →
             </a>
           </p>
@@ -150,8 +150,8 @@ export default function TermsPage() {
         <div className="max-w-3xl mx-auto flex gap-4 text-sm">
           <a href="/" className="text-yellow-600 hover:text-yellow-700 font-medium">← หน้าหลัก</a>
           <span className="text-gray-300">|</span>
-          <a href="/refund" className="text-gray-500 hover:text-gray-700">คืนเงิน</a>
-          <a href="/privacy" className="text-gray-500 hover:text-gray-700">ความเป็นส่วนตัว</a>
+          <a href="/legal/refund" className="text-gray-500 hover:text-gray-700">คืนเงิน</a>
+          <a href="/legal/privacy" className="text-gray-500 hover:text-gray-700">ความเป็นส่วนตัว</a>
           <a href="/contact" className="text-gray-500 hover:text-gray-700">ติดต่อ</a>
         </div>
       </div>
