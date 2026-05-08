@@ -1,5 +1,4 @@
 import LineCTAButton from '@/components/LineCTAButton'
-import { track } from '@/lib/analytics'
 
 export default function S9FinalCTA() {
   return (
@@ -29,10 +28,7 @@ export default function S9FinalCTA() {
         </ul>
 
         {/* Big CTA */}
-        <div
-          className="flex justify-center mb-8"
-          onClick={() => track('sp_cta_click', { position: 's9' })}
-        >
+        <div className="flex justify-center mb-8">
           <LineCTAButton
             position="s9"
             label="🟢 แอด LINE รับ 3 บทฟรี"

@@ -1,4 +1,7 @@
+'use client'
+
 import { lineUrl, type LinePosition } from '@/lib/constants'
+import { track } from '@/lib/analytics'
 
 interface Props {
   position: LinePosition
@@ -27,6 +30,7 @@ export default function LineCTAButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => track('sp_cta_click', { position })}
       className={`
         inline-flex flex-col items-center justify-center gap-0.5
         rounded-2xl font-bold text-white

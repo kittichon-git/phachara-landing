@@ -1,5 +1,4 @@
 import LineCTAButton from '@/components/LineCTAButton'
-import { track } from '@/lib/analytics'
 
 export default function S4Preview() {
   return (
@@ -24,14 +23,12 @@ export default function S4Preview() {
             อ่านแล้วลองนำไปปรับงานคุณก่อน — ถ้าเห็นผล ค่อยมาเรียนต่อ
           </p>
 
-          <div onClick={() => track('sp_cta_click', { position: 's4' })}>
-            <LineCTAButton
-              position="s4"
-              label="🎁 แอด LINE รับ 3 บทฟรี (PDF)"
-              size="lg"
-              className="w-full sm:w-auto"
-            />
-          </div>
+          <LineCTAButton
+            position="s4"
+            label="🎁 แอด LINE รับ 3 บทฟรี (PDF)"
+            size="lg"
+            className="w-full sm:w-auto"
+          />
 
           <p className="text-gray-500 text-sm mt-4 leading-relaxed">
             บท 1 "ทำไมคำเดิมขายไม่ได้" · บท 2 "Hook 30 แบบ ที่หยุดคนเลื่อน"

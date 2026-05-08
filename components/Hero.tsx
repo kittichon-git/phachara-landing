@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import LineCTAButton from './LineCTAButton'
-import { track } from '@/lib/analytics'
 
 export default function Hero() {
   return (
@@ -37,14 +36,12 @@ export default function Hero() {
             </p>
 
             {/* Primary CTA */}
-            <div onClick={() => track('sp_cta_click', { position: 'hero' })}>
-              <LineCTAButton
-                position="hero"
-                label="แอด LINE รับ 3 บทแรกฟรี"
-                sublabel="ไม่ต้องสมัครสมาชิก · ไม่ขอ email · อ่านได้เลย"
-                size="lg"
-              />
-            </div>
+            <LineCTAButton
+              position="hero"
+              label="แอด LINE รับ 3 บทแรกฟรี"
+              sublabel="ไม่ต้องสมัครสมาชิก · ไม่ขอ email · อ่านได้เลย"
+              size="lg"
+            />
 
             {/* Trust strip */}
             <p className="mt-5 text-sm text-gray-500 flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-1">
