@@ -35,39 +35,61 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section className="bg-white py-16 px-4" aria-labelledby="faq-headline">
-      <div className="max-w-2xl mx-auto">
-        <h2
-          id="faq-headline"
-          className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-10"
-        >
-          คำถามที่พบบ่อย
-        </h2>
+    <section className="py-16 sm:py-24 px-5" aria-labelledby="faq-headline">
+      <div className="max-w-5xl mx-auto">
 
-        <div className="space-y-3">
+        {/* Section head */}
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="eyebrow mb-4 block">คำถามที่พบบ่อย</span>
+          <h2
+            id="faq-headline"
+            className="text-[clamp(28px,4.5vw,42px)] font-bold leading-snug mb-3"
+            style={{ fontFamily: 'var(--font-serif)', color: 'var(--ink)' }}
+          >
+            มีคำถามอยู่ในใจ?
+          </h2>
+          <p className="text-[17px]" style={{ color: 'var(--ink-soft)' }}>
+            รวม 8 คำถามที่คนถามบ่อยที่สุด — ถ้าไม่เจอที่อยากถาม ทักไลน์ได้เลย
+          </p>
+        </div>
+
+        <div className="max-w-[800px] mx-auto" style={{ borderTop: '1px solid var(--rule)' }}>
           {faqs.map(({ q, a }) => (
             <details
               key={q}
-              className="group bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden"
+              className="group"
+              style={{ borderBottom: '1px solid var(--rule)' }}
             >
-              <summary className="flex items-center justify-between gap-3 px-5 py-4 cursor-pointer list-none select-none font-semibold text-gray-900">
+              <summary
+                className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none select-none font-semibold text-[17.5px] leading-[1.5]"
+                style={{
+                  color: 'var(--ink)',
+                  fontFamily: 'var(--font-serif)',
+                }}
+              >
                 <span>{q}</span>
-                <svg
-                  className="w-5 h-5 text-gray-400 shrink-0 transition-transform duration-200 group-open:rotate-180"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                {/* +/× toggle */}
+                <span
+                  className="shrink-0 w-7 h-7 rounded-full border grid place-items-center text-[16px] transition-all duration-200 group-open:rotate-45 group-open:text-white"
+                  style={{
+                    borderColor: 'var(--rule)',
+                    color: 'var(--ink-soft)',
+                  }}
                   aria-hidden="true"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                  +
+                </span>
               </summary>
-              <p className="px-5 pb-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+              <p
+                className="pb-5 text-[15.5px] leading-[1.75] pr-3"
+                style={{ color: 'var(--ink-soft)' }}
+              >
                 {a}
               </p>
             </details>
           ))}
         </div>
+
       </div>
     </section>
   )

@@ -12,7 +12,7 @@ const notoSans = Noto_Sans_Thai_Looped({
 
 const notoSerif = Noto_Serif_Thai({
   subsets: ['thai', 'latin'],
-  weight: ['900'],
+  weight: ['700'],
   variable: '--font-serif',
   // optional = don't block LCP — fallback font paints immediately, webfont loads silently
   display: 'optional',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="th" className={`${notoSans.variable} ${notoSerif.variable}`}>
-      <body className="font-[family-name:var(--font-sans)] bg-white text-gray-900 antialiased text-base">
+      <body className="font-[family-name:var(--font-sans)] text-[var(--ink)] antialiased text-base relative z-[2]">
         {children}
       </body>
     </html>

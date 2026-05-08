@@ -16,11 +16,9 @@ export default function StickyLineCTA() {
       { threshold: 0 },
     )
 
-    // sentinel placed at bottom of hero (100vh)
     const sentinel = document.getElementById('hero-sentinel')
     if (sentinel) observer.observe(sentinel)
 
-    // fallback: scroll listener
     const onScroll = () => setVisible(window.scrollY > threshold)
     if (!sentinel) window.addEventListener('scroll', onScroll, { passive: true })
 
@@ -52,17 +50,32 @@ export default function StickyLineCTA() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track('sp_cta_click', { position: 'sticky' })}
-            className="
-              flex flex-col items-center gap-0.5
-              bg-[var(--line-green)] hover:bg-[var(--line-green-dark)]
-              text-white font-bold rounded-2xl shadow-2xl
-              px-6 py-3 text-base
-              active:scale-[.97] transition-all duration-150
-              whitespace-nowrap
-            "
+            className="flex items-center gap-3 rounded-[16px] px-4 py-3 transition-opacity hover:opacity-95"
+            style={{
+              background: 'var(--ink)',
+              boxShadow: '0 8px 30px rgba(42,33,24,0.35)',
+              color: 'var(--paper)',
+            }}
           >
-            <span>🟢 แอด LINE รับ 3 บทฟรี →</span>
-            <span className="text-xs font-normal opacity-85">ไม่ต้องลงทะเบียน · อ่านได้เลย</span>
+            {/* LINE icon box */}
+            <span
+              className="grid place-items-center rounded-[8px] font-black text-[11px] shrink-0"
+              style={{
+                width: 36, height: 36,
+                background: 'var(--line-green)',
+                color: 'white',
+              }}
+              aria-hidden="true"
+            >
+              LINE
+            </span>
+            <div>
+              <div className="font-semibold text-[14px] leading-none mb-0.5">แอด LINE รับ 3 บทฟรี</div>
+              <div className="text-[11px]" style={{ color: 'rgba(246,239,227,0.65)' }}>
+                ไม่ต้องสมัคร · อ่านได้เลย
+              </div>
+            </div>
+            <span className="ml-1 font-semibold" style={{ color: 'rgba(246,239,227,0.65)' }} aria-hidden="true">→</span>
           </a>
         </motion.div>
       )}
