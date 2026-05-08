@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --gold: #c8a96e;
-  --gold-light: #e8c98e;
+  --line-green: #06C755;
+  --line-green-dark: #05a547;
   --dark: #1a1a1a;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  font-size: 16px;
 }
