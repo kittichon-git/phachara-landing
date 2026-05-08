@@ -80,7 +80,7 @@ import { Noto_Sans_Thai_Looped, Noto_Serif_Thai } from 'next/font/google'
 **`lib/constants.ts`** — add LINE OA vars, keep course title/price as copy values:
 ```ts
 export const LINE = {
-  link: process.env.NEXT_PUBLIC_LINE_OA_LINK ?? 'https://lin.ee/049vlbwy',
+  link: process.env.NEXT_PUBLIC_LINE_OA_LINK ?? 'https://lin.ee/oMmZLf7Z',
   id:   process.env.NEXT_PUBLIC_LINE_OA_ID   ?? '@049vlbwy',
 } as const
 
@@ -235,7 +235,7 @@ OMISE_WEBHOOK_SECRET
 
 ### Add
 ```
-NEXT_PUBLIC_LINE_OA_LINK=https://lin.ee/049vlbwy
+NEXT_PUBLIC_LINE_OA_LINK=https://lin.ee/oMmZLf7Z
 NEXT_PUBLIC_LINE_OA_ID=@049vlbwy
 NEXT_PUBLIC_POSTHOG_KEY=          # empty → no-op
 NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com

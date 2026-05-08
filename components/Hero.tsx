@@ -10,21 +10,18 @@ export default function Hero() {
           <div className="flex-1 text-center md:text-left anim-fade-up">
             {/* H1 — Noto Serif Thai */}
             <h1 className="font-[family-name:var(--font-serif)] text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.25] mb-5">
-              เขียนแคปชั่น แอด หน้าเพจ
-              <br />
-              มาทั้งปี
+              โพสต์ทุกวัน ยิงแอดทุกคืน
               <br />
               <span className="text-yellow-500">ทำไมยังไม่มีคนกดซื้อ?</span>
             </h1>
 
             {/* Sub */}
             <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
-              เพราะ <strong>"ดีไซน์สวย"</strong> ไม่ขาย —{' '}
-              <strong>คำที่ใช้</strong> ต่างหากที่ทำให้ปิดได้
+              ปัญหาไม่ได้อยู่ที่สินค้า ไม่ได้อยู่ที่กราฟิก
               <br />
-              คอร์ส <strong>แค่เปลี่ยนคำ ก็ทำเงิน</strong> — 24 บท framework + template + swipe file
+              ปัญหาอยู่ที่ <strong>&ldquo;คำ&rdquo;</strong> ที่คุณใช้ — แค่เปลี่ยนคำให้ตรงจุด ยอดขายเปลี่ยนทันที
               <br />
-              <span className="text-gray-600">ที่ใช้ปรับงานเดิมแล้วยอดเปลี่ยนทันที</span>
+              <strong>บทเรียน &ldquo;แค่เปลี่ยนคำ ก็ทำเงิน&rdquo;</strong> — 24 บท + ภาคผนวก 5 ส่วน ที่กรอกคำได้ทันที
             </p>
 
             {/* Primary CTA */}
@@ -37,9 +34,9 @@ export default function Hero() {
 
             {/* Trust strip */}
             <p className="mt-5 text-sm text-gray-500 flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-1">
-              <span>⭐⭐⭐⭐⭐ จากผู้อ่าน 200+ คน</span>
+              <span>📚 24 บท + ภาคผนวก 5 ส่วน</span>
               <span>🛡 คืนเงิน 7 วัน</span>
-              <span>🔒 PDPA compliant</span>
+              <span>🔒 PDPA</span>
             </p>
           </div>
 

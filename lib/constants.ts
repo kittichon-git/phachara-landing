@@ -13,7 +13,7 @@ export const BUSINESS = {
 
 export const COURSE = {
   title: "แค่เปลี่ยนคำ ก็ทำเงิน",
-  subtitle: "คอร์สเขียนคำขายของออนไลน์ให้คนกดซื้อ",
+  subtitle: "บทเรียนเขียนคำขายของออนไลน์ให้คนกดซื้อ",
   price: 990,
   anchorPrice: 1990,
   currency: "THB",
@@ -27,9 +27,9 @@ export const INSTRUCTOR = {
 } as const
 
 /** LINE OA deep link — append UTM per call-to-action position */
-const LINE_BASE = "https://lin.ee/049vlbwy"
+const LINE_BASE = "https://lin.ee/oMmZLf7Z"
 
-export type LinePosition = "hero" | "s4" | "s9" | "sticky" | "curriculum"
+export type LinePosition = "hero" | "s3" | "s4" | "s5" | "s7" | "s10" | "sticky"
 
 export function lineUrl(position: LinePosition): string {
   return `${LINE_BASE}?utm_source=sp&utm_medium=sp_${position}`
