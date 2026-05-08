@@ -27,7 +27,7 @@ export const INSTRUCTOR = {
 } as const
 
 /** LINE OA deep link — append UTM per call-to-action position */
-const LINE_BASE = "https://lin.ee/049vlbwy"
+const LINE_BASE = "https://lin.ee/oMmZLf7Z"
 
 export type LinePosition = "hero" | "s3" | "s4" | "s5" | "s7" | "s10" | "sticky"
 

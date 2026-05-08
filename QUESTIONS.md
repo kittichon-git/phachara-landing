@@ -17,6 +17,10 @@
 - Section ยังคง comment out รอ real customer quotes ≥ 5 รายการ
 - ต้องการ: ชื่อ + quote + consent จาก early reader จริง ก่อน restore
 
+## LINE Basic ID `@049vlbwy` (B28 — TBD)
+- พบใน `PLAN.md` lines 84, 239 เป็น example/docs เท่านั้น — **ไม่มีใน live code**
+- ยังไม่แก้ตามคำสั่ง B28 ("รอตรวจจริง") — ถ้า Basic ID จริงคือ `@oMmZLf7Z` หรืออื่น ให้แก้ PLAN.md ตาม
+
 ## Analytics position strings (Phase 4 change)
 - LinePosition type อัปเดตแล้วตาม spec: `hero | s3 | s4 | s5 | s7 | s10 | sticky`
 - ลบ: `s9`, `curriculum` (ไม่มีใน spec tracking list)
