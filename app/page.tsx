@@ -1,3 +1,4 @@
+import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import S2Pain from '@/components/sections/S2Pain'
 import S3FitCheck from '@/components/sections/S3FitCheck'
@@ -17,6 +18,7 @@ import ClientShell from '@/components/ClientShell'
 export default function Home() {
   return (
     <>
+      <Nav />
       <main>
         <Hero />
         <S2Pain />
