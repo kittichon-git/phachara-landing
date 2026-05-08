@@ -29,7 +29,7 @@ export const INSTRUCTOR = {
 /** LINE OA deep link — append UTM per call-to-action position */
 const LINE_BASE = "https://lin.ee/049vlbwy"
 
-export type LinePosition = "hero" | "s3" | "s4" | "s5" | "s7" | "s9" | "sticky"
+export type LinePosition = "hero" | "s3" | "s4" | "s5" | "s7" | "s10" | "sticky"
 
 export function lineUrl(position: LinePosition): string {
   return `${LINE_BASE}?utm_source=sp&utm_medium=sp_${position}`
