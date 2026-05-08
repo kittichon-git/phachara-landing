@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero'
 import S2Pain from '@/components/sections/S2Pain'
+import S3FitCheck from '@/components/sections/S3FitCheck'
 import S3Promise from '@/components/sections/S3Promise'
 import S4Preview from '@/components/sections/S4Preview'
 import S5Author from '@/components/sections/S5Author'
@@ -19,6 +20,7 @@ export default function Home() {
       <main>
         <Hero />
         <S2Pain />
+        <S3FitCheck />
         <S3Promise />
         <S4Preview />
         <S5Author />
