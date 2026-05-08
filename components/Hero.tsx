@@ -1,66 +1,82 @@
-import { COURSE } from '@/lib/constants'
-import NotifyButton from './NotifyButton'
+'use client'
+
+import { motion } from 'framer-motion'
+import LineCTAButton from './LineCTAButton'
+import { track } from '@/lib/analytics'
 
 export default function Hero() {
   return (
-    <header className="relative bg-gradient-to-b from-yellow-50 via-yellow-50/60 to-white">
-      <div className="max-w-4xl mx-auto px-4 py-20 sm:py-28 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 text-sm font-semibold px-4 py-1.5 rounded-full mb-8 shadow-sm">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gray-900 opacity-30"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-gray-900/70"></span>
-          </span>
-          เปิดขายเร็วๆ นี้
-        </div>
+    <header className="relative bg-gradient-to-b from-yellow-50 via-yellow-50/60 to-white overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 py-16 sm:py-24">
+        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
 
-        {/* Headline */}
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-4">
-          ✍️ แค่เปลี่ยนคำ
-          <br />
-          <span className="text-yellow-500">ก็ทำเงิน</span> 💰
-        </h1>
+          {/* Copy — 60% */}
+          <motion.div
+            className="flex-1 text-center md:text-left"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+          >
+            {/* H1 — Noto Serif Thai */}
+            <h1 className="font-[family-name:var(--font-serif)] text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.25] mb-5">
+              เขียนแคปชั่น แอด หน้าเพจ
+              <br />
+              มาทั้งปี
+              <br />
+              <span className="text-yellow-500">ทำไมยังไม่มีคนกดซื้อ?</span>
+            </h1>
 
-        {/* Subtitle */}
-        <p className="text-xl sm:text-2xl text-gray-600 font-medium mt-6 mb-10 max-w-2xl mx-auto leading-relaxed">
-          {COURSE.subtitle}
-          <br />
-          <span className="text-gray-500 text-lg">ด้วยเทคนิค copywriting ที่ใช้ได้จริง เพิ่ม conversion 2–5 เท่า</span>
-        </p>
+            {/* Sub */}
+            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
+              เพราะ <strong>"ดีไซน์สวย"</strong> ไม่ขาย —{' '}
+              <strong>คำที่ใช้</strong> ต่างหากที่ทำให้ปิดได้
+              <br />
+              คอร์ส <strong>แค่เปลี่ยนคำ ก็ทำเงิน</strong> — 24 บท framework + template + swipe file
+              <br />
+              <span className="text-gray-600">ที่ใช้ปรับงานเดิมแล้วยอดเปลี่ยนทันที</span>
+            </p>
 
-        {/* Pricing */}
-        <div className="flex items-center justify-center gap-4 mb-10">
-          <div className="bg-white rounded-2xl shadow-md px-8 py-5 flex items-end gap-3 border border-yellow-100">
-            <span className="text-gray-400 line-through text-2xl font-medium">
-              {COURSE.anchorPrice.toLocaleString('th-TH')}฿
-            </span>
-            <span className="text-5xl font-bold text-gray-900">
-              {COURSE.price.toLocaleString('th-TH')}
-              <span className="text-2xl ml-1">฿</span>
-            </span>
-            <span className="bg-red-100 text-red-600 text-sm font-bold px-2 py-1 rounded-lg mb-1">
-              -50%
-            </span>
-          </div>
-        </div>
+            {/* Primary CTA */}
+            <div onClick={() => track('sp_cta_click', { position: 'hero' })}>
+              <LineCTAButton
+                position="hero"
+                label="แอด LINE รับ 3 บทแรกฟรี"
+                sublabel="ไม่ต้องสมัครสมาชิก · ไม่ขอ email · อ่านได้เลย"
+                size="lg"
+              />
+            </div>
 
-        {/* CTA */}
-        <NotifyButton className="text-xl px-10 py-5" />
+            {/* Trust strip */}
+            <p className="mt-5 text-sm text-gray-500 flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-1">
+              <span>⭐⭐⭐⭐⭐ จากผู้อ่าน 200+ คน</span>
+              <span>🛡 คืนเงิน 7 วัน</span>
+              <span>🔒 PDPA compliant</span>
+            </p>
+          </motion.div>
 
-        <p className="mt-5 text-gray-400 text-sm">
-          ไม่มีค่าใช้จ่ายในการแจ้งเตือน · คืนเงิน 100% ภายใน 7 วัน
-        </p>
-
-        {/* Scroll indicator */}
-        <div className="mt-16 flex justify-center">
-          <div className="flex flex-col items-center gap-2 text-gray-400 text-xs">
-            <span>เรียนรู้เพิ่มเติม</span>
-            <svg className="w-5 h-5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
+          {/* Book mockup — 40% */}
+          <motion.div
+            className="w-52 md:w-72 shrink-0"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.55, delay: 0.15, ease: 'easeOut' }}
+            aria-hidden="true"
+          >
+            {/* Placeholder box until real book mockup is provided */}
+            <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-2xl flex flex-col items-center justify-center gap-3 text-white px-6">
+              <div className="text-5xl">📖</div>
+              <div className="font-[family-name:var(--font-serif)] text-xl font-black text-center leading-snug">
+                แค่เปลี่ยนคำ
+                <br />ก็ทำเงิน
+              </div>
+              <div className="text-xs opacity-80 text-center">24 บท · Swipe File · Template</div>
+            </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Sentinel for StickyLineCTA IntersectionObserver */}
+      <div id="hero-sentinel" aria-hidden="true" />
     </header>
   )
 }
