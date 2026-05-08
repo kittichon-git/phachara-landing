@@ -22,7 +22,7 @@ export default function Hero() {
               เพราะ <strong>"ดีไซน์สวย"</strong> ไม่ขาย —{' '}
               <strong>คำที่ใช้</strong> ต่างหากที่ทำให้ปิดได้
               <br />
-              คอร์ส <strong>แค่เปลี่ยนคำ ก็ทำเงิน</strong> — 24 บท framework + template + swipe file
+              บทเรียน <strong>แค่เปลี่ยนคำ ก็ทำเงิน</strong> — 24 บท framework + template + swipe file
               <br />
               <span className="text-gray-600">ที่ใช้ปรับงานเดิมแล้วยอดเปลี่ยนทันที</span>
             </p>

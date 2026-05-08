@@ -13,7 +13,7 @@ export const BUSINESS = {
 
 export const COURSE = {
   title: "แค่เปลี่ยนคำ ก็ทำเงิน",
-  subtitle: "คอร์สเขียนคำขายของออนไลน์ให้คนกดซื้อ",
+  subtitle: "บทเรียนเขียนคำขายของออนไลน์ให้คนกดซื้อ",
   price: 990,
   anchorPrice: 1990,
   currency: "THB",
