@@ -1,7 +1,4 @@
-'use client'
-
 import { lineUrl, type LinePosition } from '@/lib/constants'
-import { track } from '@/lib/analytics'
 
 interface Props {
   position: LinePosition
@@ -30,7 +27,7 @@ export default function LineCTAButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => track('sp_cta_click', { position })}
+      data-cta-position={position}
       className={`
         inline-flex flex-col items-center justify-center gap-0.5
         rounded-2xl font-bold text-white
@@ -43,14 +40,7 @@ export default function LineCTAButton({
       `}
     >
       <span className="flex items-center gap-2">
-        {/* LINE logo mark */}
-        <svg
-          aria-hidden="true"
-          width="22"
-          height="22"
-          viewBox="0 0 22 22"
-          fill="none"
-        >
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none">
           <path
             d="M11 1C5.477 1 1 4.926 1 9.75c0 3.348 2.128 6.27 5.31 7.9-.147.538-.534 1.953-.613 2.257-.096.374.138.37.29.269.12-.08 1.89-1.284 2.653-1.803.44.062.893.093 1.36.093 5.523 0 10-3.926 10-8.75S16.523 1 11 1Z"
             fill="white"

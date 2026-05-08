@@ -7,8 +7,7 @@ import S6Curriculum from '@/components/sections/S6Curriculum'
 import FAQ from '@/components/FAQ'
 import S9FinalCTA from '@/components/sections/S9FinalCTA'
 import Footer from '@/components/Footer'
-import StickyLineCTA from '@/components/StickyLineCTA'
-import AnalyticsInit from '@/components/AnalyticsInit'
+import ClientShell from '@/components/ClientShell'
 
 // S7 Testimonials — commented out until soft launch with real testimonials
 // {/* TODO: enable after soft launch with real testimonials — ห้ามใช้ fake/stock */}
@@ -28,8 +27,7 @@ export default function Home() {
         <S9FinalCTA />
       </main>
       <Footer />
-      <StickyLineCTA />
-      <AnalyticsInit />
+      <ClientShell />
     </>
   )
 }

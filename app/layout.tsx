@@ -4,16 +4,18 @@ import './globals.css'
 
 const notoSans = Noto_Sans_Thai_Looped({
   subsets: ['thai', 'latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-sans',
-  display: 'swap',
+  // optional = no font-swap repaint; on slow connections system Thai renders immediately
+  display: 'optional',
 })
 
 const notoSerif = Noto_Serif_Thai({
   subsets: ['thai', 'latin'],
-  weight: ['400', '600', '700', '900'],
+  weight: ['900'],
   variable: '--font-serif',
-  display: 'swap',
+  // optional = don't block LCP — fallback font paints immediately, webfont loads silently
+  display: 'optional',
 })
 
 export const metadata: Metadata = {

@@ -13,3 +13,17 @@ html {
 body {
   font-size: 16px;
 }
+
+@keyframes slide-up {
+  from { transform: translateY(18px); }
+  to   { transform: translateY(0);    }
+}
+
+/* opacity stays 1 — LCP fires immediately on initial paint */
+.anim-fade-up {
+  animation: slide-up 0.55s ease-out both;
+}
+
+.anim-fade-up-delay {
+  animation: slide-up 0.55s 0.15s ease-out both;
+}

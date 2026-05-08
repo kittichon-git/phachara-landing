@@ -1,6 +1,3 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import LineCTAButton from './LineCTAButton'
 
 export default function Hero() {
@@ -9,13 +6,8 @@ export default function Hero() {
       <div className="max-w-5xl mx-auto px-4 py-16 sm:py-24">
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
 
-          {/* Copy — 60% */}
-          <motion.div
-            className="flex-1 text-center md:text-left"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: 'easeOut' }}
-          >
+          {/* Copy — 60% — visible immediately (no opacity:0) */}
+          <div className="flex-1 text-center md:text-left anim-fade-up">
             {/* H1 — Noto Serif Thai */}
             <h1 className="font-[family-name:var(--font-serif)] text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.25] mb-5">
               เขียนแคปชั่น แอด หน้าเพจ
@@ -49,17 +41,13 @@ export default function Hero() {
               <span>🛡 คืนเงิน 7 วัน</span>
               <span>🔒 PDPA compliant</span>
             </p>
-          </motion.div>
+          </div>
 
-          {/* Book mockup — 40% */}
-          <motion.div
-            className="w-52 md:w-72 shrink-0"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.55, delay: 0.15, ease: 'easeOut' }}
+          {/* Book mockup — 40% — decorative, slight delay OK */}
+          <div
+            className="w-52 md:w-72 shrink-0 anim-fade-up-delay"
             aria-hidden="true"
           >
-            {/* Placeholder box until real book mockup is provided */}
             <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-2xl flex flex-col items-center justify-center gap-3 text-white px-6">
               <div className="text-5xl">📖</div>
               <div className="font-[family-name:var(--font-serif)] text-xl font-black text-center leading-snug">
@@ -68,7 +56,7 @@ export default function Hero() {
               </div>
               <div className="text-xs opacity-80 text-center">24 บท · Swipe File · Template</div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
