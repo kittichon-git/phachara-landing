@@ -35,57 +35,40 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section className="py-16 sm:py-24 px-5" aria-labelledby="faq-headline">
-      <div className="max-w-5xl mx-auto">
+    <section
+      className="py-9 sm:py-14 px-5"
+      style={{ borderTop: '1px solid var(--rule)' }}
+      aria-labelledby="faq-headline"
+    >
+      <div className="mx-auto" style={{ maxWidth: 760 }}>
 
         {/* Section head */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="eyebrow mb-4 block">คำถามที่พบบ่อย</span>
+        <div className="mb-8">
+          <span className="section-label">คำถามที่พบบ่อย</span>
           <h2
             id="faq-headline"
-            className="text-[clamp(28px,4.5vw,42px)] font-bold leading-snug mb-3"
-            style={{ fontFamily: 'var(--font-serif)', color: 'var(--ink)' }}
+            className="font-bold leading-snug mb-2"
+            style={{
+              fontFamily: 'var(--font-serif)',
+              color: 'var(--ink)',
+              fontSize: 'clamp(24px, 4vw, 30px)',
+            }}
           >
             มีคำถามอยู่ในใจ?
           </h2>
-          <p className="text-[17px]" style={{ color: 'var(--ink-soft)' }}>
-            รวม 8 คำถามที่คนถามบ่อยที่สุด — ถ้าไม่เจอที่อยากถาม ทักไลน์ได้เลย
+          <p className="text-[16px]" style={{ color: 'var(--ink-soft)' }}>
+            ถ้าไม่เจอคำถามที่อยากถาม ทักไลน์มาคุยกันได้เลย
           </p>
         </div>
 
-        <div className="max-w-[800px] mx-auto" style={{ borderTop: '1px solid var(--rule)' }}>
+        <div className="mt-6" style={{ borderTop: '1px solid var(--rule)' }}>
           {faqs.map(({ q, a }) => (
-            <details
-              key={q}
-              className="group"
-              style={{ borderBottom: '1px solid var(--rule)' }}
-            >
-              <summary
-                className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none select-none font-semibold text-[17.5px] leading-[1.5]"
-                style={{
-                  color: 'var(--ink)',
-                  fontFamily: 'var(--font-serif)',
-                }}
-              >
+            <details key={q} className="faq-item">
+              <summary>
                 <span>{q}</span>
-                {/* +/× toggle */}
-                <span
-                  className="shrink-0 w-7 h-7 rounded-full border grid place-items-center text-[16px] transition-all duration-200 group-open:rotate-45 group-open:text-white"
-                  style={{
-                    borderColor: 'var(--rule)',
-                    color: 'var(--ink-soft)',
-                  }}
-                  aria-hidden="true"
-                >
-                  +
-                </span>
+                <span className="faq-icon" aria-hidden="true">›</span>
               </summary>
-              <p
-                className="pb-5 text-[15.5px] leading-[1.75] pr-3"
-                style={{ color: 'var(--ink-soft)' }}
-              >
-                {a}
-              </p>
+              <p className="faq-a">{a}</p>
             </details>
           ))}
         </div>

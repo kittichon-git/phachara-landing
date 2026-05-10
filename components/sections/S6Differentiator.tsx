@@ -27,64 +27,74 @@ const cards = [
 
 export default function S6Differentiator() {
   return (
-    <section className="py-16 sm:py-24 px-5" aria-labelledby="diff-headline">
-      <div className="max-w-5xl mx-auto">
+    <section
+      className="py-9 sm:py-14 px-5"
+      style={{ borderTop: '1px solid var(--rule)' }}
+      aria-labelledby="diff-headline"
+    >
+      <div className="mx-auto" style={{ maxWidth: 760 }}>
 
         {/* Section head */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="eyebrow mb-4 block">ความต่าง</span>
+        <div className="mb-8">
+          <span className="section-label">ความต่าง</span>
           <h2
             id="diff-headline"
-            className="text-[clamp(28px,4.5vw,42px)] font-bold leading-snug mb-3"
-            style={{ fontFamily: 'var(--font-serif)', color: 'var(--ink)' }}
+            className="font-bold leading-snug mb-2"
+            style={{
+              fontFamily: 'var(--font-serif)',
+              color: 'var(--ink)',
+              fontSize: 'clamp(24px, 4vw, 30px)',
+            }}
           >
             แล้วเล่มนี้ต่างจากคอร์สอื่นยังไง?
           </h2>
-          <p className="text-[17px]" style={{ color: 'var(--ink-soft)' }}>
+          <p className="text-[16px]" style={{ color: 'var(--ink-soft)' }}>
             4 เหตุผลที่ทำให้บทเรียนนี้ &ldquo;ใช้ได้จริง&rdquo; กับธุรกิจไทย
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Diff items */}
+        <div className="flex flex-col gap-3 mt-6">
           {cards.map((card) => (
             <div
               key={card.num}
-              className="rounded-[22px] p-8 border transition-transform duration-200 hover:-translate-y-1 relative"
-              style={{
-                background: '#fbf6ec',
-                borderColor: 'var(--rule)',
-                boxShadow: 'var(--shadow-soft)',
-              }}
+              className="flex gap-3.5 p-5 rounded-lg"
+              style={{ background: 'var(--bg-soft)' }}
             >
-              <div
-                className="text-[14px] font-bold tracking-[0.1em] mb-1.5"
-                style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)' }}
-              >
-                {card.num}
+              <span className="text-[24px] shrink-0" aria-hidden="true">{card.icon}</span>
+              <div>
+                <div
+                  className="font-semibold mb-0.5"
+                  style={{ fontSize: 12, color: 'var(--ink-mute)' }}
+                >
+                  {card.num}
+                </div>
+                <h3
+                  className="font-semibold leading-snug mb-1"
+                  style={{
+                    fontFamily: 'var(--font-serif)',
+                    fontSize: 17,
+                    color: 'var(--ink)',
+                  }}
+                >
+                  {card.headline}
+                </h3>
+                <p className="text-[15px] leading-[1.7]" style={{ color: 'var(--ink-soft)' }}>
+                  {card.body}
+                </p>
               </div>
-              <span className="text-[32px] mb-3.5 block" style={{ filter: 'saturate(0.9)' }} aria-hidden="true">
-                {card.icon}
-              </span>
-              <h3
-                className="text-[21px] font-bold leading-[1.35] mb-3"
-                style={{ fontFamily: 'var(--font-serif)', color: 'var(--ink)' }}
-              >
-                {card.headline}
-              </h3>
-              <p className="text-[15.5px] leading-[1.7]" style={{ color: 'var(--ink-soft)' }}>
-                {card.body}
-              </p>
             </div>
           ))}
         </div>
 
-        <p
-          className="text-center mt-12 text-[clamp(19px,2.4vw,22px)] leading-[1.55] font-semibold max-w-[640px] mx-auto"
-          style={{ fontFamily: 'var(--font-serif)', color: 'var(--ink)' }}
-        >
-          ถ้าอยากได้ &ldquo;คู่มือเขียนคำที่ทำให้คนซื้อ ในบริบทตลาดไทย&rdquo;
-          <br />— เล่มนี้คือเล่มที่คุณกำลังหา
-        </p>
+        {/* Yellow callout */}
+        <div className="callout yellow mt-6" role="note">
+          <span className="text-[22px] shrink-0" aria-hidden="true">💡</span>
+          <p className="text-[15px]">
+            ถ้าอยากได้ &ldquo;คู่มือเขียนคำที่ทำให้คนซื้อ ในบริบทตลาดไทย&rdquo;
+            {' '}— เล่มนี้คือเล่มที่คุณกำลังหา
+          </p>
+        </div>
 
       </div>
     </section>

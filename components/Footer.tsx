@@ -12,11 +12,16 @@ export default function Footer() {
   const year = new Date().getFullYear()
   return (
     <footer
-      className="py-7 px-5 text-center text-[13px]"
-      style={{ background: '#1a140d', color: 'rgba(246,239,227,0.5)' }}
+      className="text-center text-[13px]"
+      style={{
+        background: 'var(--bg-soft)',
+        color: 'var(--ink-mute)',
+        borderTop: '1px solid var(--rule)',
+        padding: '32px 22px',
+      }}
       role="contentinfo"
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="mx-auto" style={{ maxWidth: 760 }}>
         <div className="mb-2">
           &copy; {year} {BUSINESS.nameEn} · บทเรียน &ldquo;แค่เปลี่ยนคำ ก็ทำเงิน&rdquo;
         </div>
@@ -27,7 +32,7 @@ export default function Footer() {
                 <a
                   href={link.href}
                   className="transition-colors hover:opacity-100"
-                  style={{ color: 'rgba(246,239,227,0.7)' }}
+                  style={{ color: 'var(--ink-soft)' }}
                 >
                   {link.label}
                 </a>
@@ -35,10 +40,16 @@ export default function Footer() {
             ))}
           </ul>
         </nav>
-        <address className="not-italic mt-4 text-[12px] space-y-0.5" style={{ color: 'rgba(246,239,227,0.35)' }}>
+        <address
+          className="not-italic mt-4 text-[12px] space-y-0.5"
+          style={{ color: 'var(--ink-mute)' }}
+        >
           <p>{BUSINESS.nameEn} · เลขผู้เสียภาษี {BUSINESS.taxId}</p>
           <p>
-            <a href={`mailto:${BUSINESS.email}`} style={{ color: 'rgba(246,239,227,0.5)' }}>
+            <a
+              href={`mailto:${BUSINESS.email}`}
+              style={{ color: 'var(--ink-soft)' }}
+            >
               {BUSINESS.email}
             </a>
           </p>

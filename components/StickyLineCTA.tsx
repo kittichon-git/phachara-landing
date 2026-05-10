@@ -52,30 +52,31 @@ export default function StickyLineCTA() {
             onClick={() => track('sp_cta_click', { position: 'sticky' })}
             className="flex items-center gap-3 rounded-[16px] px-4 py-3 transition-opacity hover:opacity-95"
             style={{
-              background: 'var(--ink)',
-              boxShadow: '0 8px 30px rgba(42,33,24,0.35)',
-              color: 'var(--paper)',
+              background: 'var(--line-green)',
+              boxShadow: '0 8px 30px rgba(6,199,85,0.35)',
+              color: 'white',
             }}
           >
             {/* LINE icon box */}
             <span
               className="grid place-items-center rounded-[8px] font-black text-[11px] shrink-0"
               style={{
-                width: 36, height: 36,
-                background: 'var(--line-green)',
-                color: 'white',
+                width: 36,
+                height: 36,
+                background: 'white',
+                color: 'var(--line-green)',
               }}
               aria-hidden="true"
             >
               LINE
             </span>
             <div>
-              <div className="font-semibold text-[14px] leading-none mb-0.5">แอด LINE รับ 3 บทฟรี</div>
-              <div className="text-[11px]" style={{ color: 'rgba(246,239,227,0.65)' }}>
+              <div className="font-semibold text-[14px] leading-none mb-0.5">เรียนฟรี 2 บทเรียน</div>
+              <div className="text-[11px]" style={{ color: 'rgba(255,255,255,0.8)' }}>
                 ไม่ต้องสมัคร · อ่านได้เลย
               </div>
             </div>
-            <span className="ml-1 font-semibold" style={{ color: 'rgba(246,239,227,0.65)' }} aria-hidden="true">→</span>
+            <span className="ml-1 font-semibold" style={{ color: 'rgba(255,255,255,0.8)' }} aria-hidden="true">→</span>
           </a>
         </motion.div>
       )}

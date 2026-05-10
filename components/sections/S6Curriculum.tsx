@@ -100,79 +100,76 @@ const sections = [
 export default function S6Curriculum() {
   return (
     <section
-      className="py-16 sm:py-24 px-5"
-      style={{ background: 'linear-gradient(180deg, transparent, rgba(216,200,169,0.18) 50%, transparent)' }}
+      className="py-9 sm:py-14 px-5"
+      style={{ borderTop: '1px solid var(--rule)' }}
       aria-labelledby="curriculum-headline"
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="mx-auto" style={{ maxWidth: 760 }}>
 
         {/* Section head */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="eyebrow mb-4 block">สารบัญ</span>
+        <div className="mb-8">
+          <span className="section-label">สารบัญ</span>
           <h2
             id="curriculum-headline"
-            className="text-[clamp(28px,4.5vw,42px)] font-bold leading-snug mb-3"
-            style={{ fontFamily: 'var(--font-serif)', color: 'var(--ink)' }}
+            className="font-bold leading-snug mb-2"
+            style={{
+              fontFamily: 'var(--font-serif)',
+              color: 'var(--ink)',
+              fontSize: 'clamp(24px, 4vw, 30px)',
+            }}
           >
             เนื้อหา 24 บท แบ่งเป็น 7 ภาค + ภาคผนวก
           </h2>
-          <p className="text-[17px]" style={{ color: 'var(--ink-soft)' }}>
+          <p className="text-[16px]" style={{ color: 'var(--ink-soft)' }}>
             โปร่งใสเต็มที่ — เห็นทุกหัวข้อก่อนตัดสินใจ ไม่มีอะไรซ่อน
           </p>
         </div>
 
-        {/* TOC container */}
-        <div className="toc-container max-w-[880px] mx-auto">
+        {/* TOC parts */}
+        <div className="mt-6" style={{ borderTop: '1px solid var(--rule)' }}>
           {sections.map((sec) => (
             <div key={sec.part} className="toc-part">
 
-              {/* Section header */}
-              <div className="flex items-start gap-4 mb-3.5">
-                <div
-                  className="shrink-0 w-12 h-12 rounded-[12px] grid place-items-center text-[22px]"
-                  style={{
-                    background: sec.isAppendix ? 'rgba(184,138,44,0.16)' : 'var(--accent-bg)',
-                    border: `1px solid ${sec.isAppendix ? 'rgba(184,138,44,0.3)' : 'rgba(194,84,42,0.2)'}`,
-                  }}
-                  aria-hidden="true"
-                >
-                  {sec.icon}
-                </div>
-
-                <div className="flex-1 min-w-0">
+              {/* Part header */}
+              <div className="flex gap-3 items-start mb-2.5">
+                <span className="text-[22px] shrink-0" aria-hidden="true">{sec.icon}</span>
+                <div>
                   <div
-                    className="text-[11px] tracking-[0.22em] uppercase mb-0.5"
-                    style={{ color: 'var(--ink-mute)', fontFamily: 'var(--font-serif)' }}
+                    className="font-semibold mb-0.5"
+                    style={{ fontSize: 12, color: 'var(--ink-mute)' }}
                   >
                     {sec.part}
                   </div>
                   <h3
-                    className="text-[21px] font-bold leading-snug mb-1.5"
-                    style={{ fontFamily: 'var(--font-serif)', color: 'var(--ink)' }}
+                    className="font-bold leading-snug mb-1"
+                    style={{
+                      fontFamily: 'var(--font-serif)',
+                      fontSize: 18,
+                      color: 'var(--ink)',
+                    }}
                   >
                     {sec.title}
                   </h3>
-                  <p className="text-[14.5px] leading-[1.65]" style={{ color: 'var(--ink-soft)' }}>
+                  <p style={{ fontSize: 14.5, color: 'var(--ink-soft)', lineHeight: 1.65 }}>
                     {sec.summary}
                   </p>
                 </div>
               </div>
 
               {/* Chapter list */}
-              <ul className="toc-list space-y-2.5 mt-4">
+              <ul
+                className="list-none p-0 flex flex-col gap-1"
+                style={{ marginLeft: 36, marginTop: 12 }}
+              >
                 {sec.items.map((item) => (
                   <li
                     key={item.num}
-                    className="flex gap-3.5 text-[15px] leading-[1.55] pl-3.5 border-l-2"
-                    style={{ color: 'var(--ink-soft)', borderColor: 'var(--rule)' }}
+                    className="flex gap-3 py-1 text-[15px]"
+                    style={{ color: 'var(--ink)' }}
                   >
                     <span
-                      className="shrink-0 font-bold"
-                      style={{
-                        fontFamily: 'var(--font-serif)',
-                        color: sec.isAppendix ? 'var(--gold)' : 'var(--accent)',
-                        minWidth: 48,
-                      }}
+                      className="font-medium shrink-0"
+                      style={{ color: 'var(--ink-mute)', minWidth: 44 }}
                     >
                       {item.num}
                     </span>
@@ -186,11 +183,11 @@ export default function S6Curriculum() {
         </div>
 
         {/* Mini CTA */}
-        <div className="mt-10 text-center">
-          <p className="text-[16px] mb-4" style={{ color: 'var(--ink-soft)' }}>
-            อยากดูสารบัญฉบับเต็ม? → แอดมา ส่งให้ใน LINE
+        <div className="mt-8">
+          <p className="text-[15.5px] mb-3" style={{ color: 'var(--ink-soft)' }}>
+            อยากอ่านเนื้อหาบางส่วนก่อน? → เรียนฟรี 2 บทเรียน
           </p>
-          <LineCTAButton position="s7" size="md" label="แอด LINE ดูสารบัญฉบับเต็ม" />
+          <LineCTAButton position="s7" size="md" label="เรียนฟรี 2 บทเรียน" />
         </div>
 
       </div>

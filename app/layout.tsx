@@ -1,26 +1,24 @@
 import type { Metadata } from 'next'
-import { Noto_Sans_Thai_Looped, Noto_Serif_Thai } from 'next/font/google'
+import { IBM_Plex_Sans_Thai_Looped, IBM_Plex_Sans_Thai } from 'next/font/google'
 import './globals.css'
 
-const notoSans = Noto_Sans_Thai_Looped({
+const ibmPlexSansThaiLooped = IBM_Plex_Sans_Thai_Looped({
   subsets: ['thai', 'latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-sans',
-  // optional = no font-swap repaint; on slow connections system Thai renders immediately
   display: 'optional',
 })
 
-const notoSerif = Noto_Serif_Thai({
+const ibmPlexSansThai = IBM_Plex_Sans_Thai({
   subsets: ['thai', 'latin'],
   weight: ['700'],
   variable: '--font-serif',
-  // optional = don't block LCP — fallback font paints immediately, webfont loads silently
   display: 'optional',
 })
 
 export const metadata: Metadata = {
   title: 'แค่เปลี่ยนคำ ก็ทำเงิน — คอร์ส Copywriting 24 บท | phachara.com',
-  description: 'เรียนรู้ framework เขียนขายออนไลน์ให้คนกดซื้อ 24 บท + Swipe File + Template แอด LINE รับ 3 บทแรกฟรี',
+  description: 'เรียนรู้ framework เขียนขายออนไลน์ให้คนกดซื้อ 24 บท + Swipe File + Template แอด LINE รับ 2 บทแรกฟรี',
   metadataBase: new URL('https://phachara.com'),
   openGraph: {
     title: 'แค่เปลี่ยนคำ ก็ทำเงิน | phachara.com',
@@ -41,8 +39,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="th" className={`${notoSans.variable} ${notoSerif.variable}`}>
-      <body className="font-[family-name:var(--font-sans)] text-[var(--ink)] antialiased text-base relative z-[2]">
+    <html lang="th" className={`${ibmPlexSansThaiLooped.variable} ${ibmPlexSansThai.variable}`}>
+      <body className="font-[family-name:var(--font-sans)] text-[var(--ink)] antialiased text-base">
         {children}
       </body>
     </html>

@@ -18,79 +18,77 @@ const notFitItems = [
 
 export default function S3FitCheck() {
   return (
-    <section className="py-16 sm:py-24 px-5" aria-labelledby="fitcheck-headline">
-      <div className="max-w-5xl mx-auto">
+    <section
+      className="py-9 sm:py-14 px-5"
+      style={{ borderTop: '1px solid var(--rule)' }}
+      aria-labelledby="fitcheck-headline"
+    >
+      <div className="mx-auto" style={{ maxWidth: 760 }}>
 
         {/* Section head */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="eyebrow mb-4 block">ก่อนตัดสินใจ</span>
+        <div className="mb-8">
+          <span className="section-label">ก่อนตัดสินใจ</span>
           <h2
             id="fitcheck-headline"
-            className="text-[clamp(28px,4.5vw,42px)] font-bold leading-snug mb-3"
-            style={{ fontFamily: 'var(--font-serif)', color: 'var(--ink)' }}
+            className="font-bold leading-snug mb-2"
+            style={{
+              fontFamily: 'var(--font-serif)',
+              color: 'var(--ink)',
+              fontSize: 'clamp(24px, 4vw, 30px)',
+            }}
           >
             บทเรียนนี้เหมาะกับใคร?
           </h2>
-          <p className="text-[17px]" style={{ color: 'var(--ink-soft)' }}>
+          <p className="text-[16px]" style={{ color: 'var(--ink-soft)' }}>
             เราอยากให้คุณรู้ตั้งแต่แรก ว่าคุ้มกับเวลาและเงินของคุณหรือเปล่า
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* ✅ Fit */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* YES col */}
           <div
-            className="rounded-[22px] p-8 border border-t-4"
-            style={{
-              background: '#fbf6ec',
-              borderColor: 'var(--rule)',
-              borderTopColor: '#4a8d3f',
-              boxShadow: 'var(--shadow-soft)',
-            }}
+            className="rounded-lg p-6"
+            style={{ background: 'var(--green-bg)' }}
           >
             <h3
-              className="text-[22px] font-bold mb-4 flex items-center gap-2.5"
-              style={{ fontFamily: 'var(--font-serif)', color: '#2f6b27' }}
+              className="font-semibold mb-4 text-[16px]"
+              style={{ color: 'var(--green-fg)' }}
             >
-              <span aria-hidden="true">✅</span> เหมาะกับคุณถ้า...
+              ✅ เหมาะกับคุณถ้า...
             </h3>
-            <ul className="space-y-0 divide-y" style={{ borderColor: 'rgba(216,200,169,0.7)' }}>
+            <ul className="grid gap-[10px] list-none p-0 m-0">
               {fitItems.map((item) => (
                 <li
                   key={item}
-                  className="py-3 flex gap-3 text-[15.5px] leading-[1.65]"
-                  style={{ color: 'var(--ink-soft)' }}
+                  className="flex gap-2.5 text-[15px] leading-[1.65]"
+                  style={{ color: 'var(--green-fg)' }}
                 >
-                  <span className="shrink-0 font-bold mt-0.5 text-sm" style={{ color: '#4a8d3f' }} aria-hidden="true">✓</span>
+                  <span className="font-bold shrink-0 mt-0.5" aria-hidden="true">✓</span>
                   {item}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* ❌ Not Fit */}
+          {/* NO col */}
           <div
-            className="rounded-[22px] p-8 border border-t-4 opacity-[0.94]"
-            style={{
-              background: '#fbf6ec',
-              borderColor: 'var(--rule)',
-              borderTopColor: '#b8703a',
-              boxShadow: 'var(--shadow-soft)',
-            }}
+            className="rounded-lg p-6"
+            style={{ background: 'var(--red-bg)' }}
           >
             <h3
-              className="text-[22px] font-bold mb-4 flex items-center gap-2.5"
-              style={{ fontFamily: 'var(--font-serif)', color: '#8a4f23' }}
+              className="font-semibold mb-4 text-[16px]"
+              style={{ color: 'var(--red-fg)' }}
             >
-              <span aria-hidden="true">❌</span> ยังไม่เหมาะถ้า...
+              ❌ ยังไม่เหมาะถ้า...
             </h3>
-            <ul className="space-y-0 divide-y" style={{ borderColor: 'rgba(216,200,169,0.7)' }}>
+            <ul className="grid gap-[10px] list-none p-0 m-0">
               {notFitItems.map((item) => (
                 <li
                   key={item}
-                  className="py-3 flex gap-3 text-[15.5px] leading-[1.65]"
-                  style={{ color: 'var(--ink-soft)' }}
+                  className="flex gap-2.5 text-[15px] leading-[1.65]"
+                  style={{ color: 'var(--red-fg)' }}
                 >
-                  <span className="shrink-0 font-bold mt-0.5 text-sm" style={{ color: '#b8703a' }} aria-hidden="true">✗</span>
+                  <span className="font-bold shrink-0 mt-0.5" aria-hidden="true">✕</span>
                   {item}
                 </li>
               ))}
@@ -99,13 +97,10 @@ export default function S3FitCheck() {
         </div>
 
         {/* Mini CTA */}
-        <div className="mt-9 text-center">
-          <p className="text-[16px] mb-4" style={{ color: 'var(--ink-soft)' }}>
-            ตรงกับคุณข้อใดข้อหนึ่งใช่ไหม? →{' '}
-            <span style={{ color: 'var(--accent)', fontWeight: 600 }}>แอด LINE รับ 3 บทฟรี</span>
-          </p>
-          <LineCTAButton position="s3" label="แอด LINE รับ 3 บทฟรี" size="md" />
-        </div>
+        <p className="mt-4 text-[15.5px]" style={{ color: 'var(--ink-soft)' }}>
+          ตรงกับคุณข้อใดข้อหนึ่งใช่ไหม? →{' '}
+          <LineCTAButton position="s3" label="เรียนฟรี 2 บทเรียน" size="md" />
+        </p>
 
       </div>
     </section>

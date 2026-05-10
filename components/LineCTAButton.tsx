@@ -10,7 +10,7 @@ interface Props {
 
 export default function LineCTAButton({
   position,
-  label = 'แอด LINE รับ 3 บทแรกฟรี',
+  label = 'เรียนฟรี 2 บทเรียน',
   sublabel,
   size = 'lg',
   className = '',
@@ -27,7 +27,7 @@ export default function LineCTAButton({
       data-cta-position={position}
       className={`
         inline-flex flex-col items-center justify-center gap-0.5
-        rounded-[14px] font-semibold text-white
+        rounded-lg font-semibold text-white
         transition-transform duration-150
         hover:-translate-y-0.5 active:translate-y-0
         ${isLg ? 'px-7 py-[18px] text-[17px]' : 'px-5 py-3 text-base'}
@@ -35,7 +35,7 @@ export default function LineCTAButton({
       `}
       style={{
         background: 'var(--line-green)',
-        boxShadow: '0 8px 24px -8px rgba(6,199,85,0.55), inset 0 -3px 0 rgba(0,0,0,0.12)',
+        boxShadow: '0 2px 8px -2px rgba(6,199,85,0.35)',
       }}
     >
       <span className="flex items-center gap-2.5">
