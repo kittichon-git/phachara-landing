@@ -1,157 +1,183 @@
 import type { Metadata } from 'next'
-import { BUSINESS } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'ข้อกำหนดการใช้งาน | phachara.com',
-  description: 'ข้อกำหนดและเงื่อนไขการใช้งานบริการของ phachara.com โปรดอ่านก่อนใช้บริการ',
+  description: 'ข้อกำหนดและเงื่อนไขการใช้บริการ phachara.com',
   alternates: { canonical: 'https://phachara.com/legal/terms' },
 }
 
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
       <header className="bg-gray-900 text-white py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <a href="/" className="text-yellow-400 text-sm font-medium hover:text-yellow-300 transition-colors mb-6 inline-block">
             ← กลับหน้าหลัก
           </a>
-          <h1 className="text-3xl sm:text-4xl font-bold">ข้อกำหนดการใช้งาน</h1>
-          <p className="text-gray-400 mt-2 text-sm">อัปเดตล่าสุด: 8 พฤษภาคม 2568</p>
+          <h1 className="text-3xl sm:text-4xl font-bold">ข้อกำหนดและเงื่อนไขการใช้งาน</h1>
+          <p className="text-gray-400 mt-2 text-sm">อัปเดตล่าสุด: 17 พฤษภาคม 2569</p>
         </div>
       </header>
 
-      {/* Content */}
       <main className="max-w-3xl mx-auto px-4 py-12">
-        <p className="text-lg text-gray-600 leading-relaxed mb-10">
-          กรุณาอ่านข้อกำหนดและเงื่อนไขต่อไปนี้อย่างละเอียดก่อนใช้บริการของ {BUSINESS.nameEn}
-          (&ldquo;บริษัท&rdquo;, &ldquo;เรา&rdquo;) การเข้าถึงหรือใช้บริการของเราถือว่าท่านยอมรับข้อกำหนดเหล่านี้แล้ว
-        </p>
+        <div className="prose prose-gray max-w-none">
 
-        {/* Section 1 - Acceptance */}
-        <section className="mb-10" aria-labelledby="acceptance">
-          <h2 id="acceptance" className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="w-8 h-8 rounded-full bg-yellow-400 text-gray-900 flex items-center justify-center text-sm font-bold flex-shrink-0">1</span>
-            การยอมรับข้อกำหนด (Acceptance of Terms)
-          </h2>
-          <p className="text-gray-600 leading-relaxed">
-            การสมัครสมาชิก ซื้อสินค้า หรือใช้บริการใดๆ ของ {BUSINESS.displayName} ถือว่าท่านได้อ่าน
-            ทำความเข้าใจ และยอมรับข้อกำหนดการใช้งานฉบับนี้ทุกประการ หากท่านไม่เห็นด้วยกับข้อกำหนดใดๆ
-            กรุณาหยุดใช้บริการทันที
+          <p>
+            กรุณาอ่านข้อกำหนดเหล่านี้อย่างละเอียดก่อนใช้บริการของ phachara.com
+            (&ldquo;เรา&rdquo;, &ldquo;บริการ&rdquo;)
+            การเข้าถึงหรือใช้บริการถือว่าคุณยอมรับข้อกำหนดทั้งหมดต่อไปนี้
           </p>
-        </section>
 
-        {/* Section 2 - Account */}
-        <section className="mb-10" aria-labelledby="account">
-          <h2 id="account" className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="w-8 h-8 rounded-full bg-yellow-400 text-gray-900 flex items-center justify-center text-sm font-bold flex-shrink-0">2</span>
-            บัญชีผู้ใช้ (Account)
-          </h2>
-          <div className="text-gray-600 leading-relaxed space-y-3">
-            <p>
-              ผู้ใช้บริการต้องมีอายุ <strong>18 ปีบริบูรณ์ขึ้นไป</strong> หรือได้รับความยินยอมจากผู้ปกครองตามกฎหมาย
-            </p>
-            <p>
-              ท่านรับผิดชอบในการรักษาความปลอดภัยของบัญชีและรหัสผ่าน บริษัทจะไม่รับผิดชอบต่อความเสียหาย
-              ที่เกิดจากการที่บัญชีของท่านถูกเข้าถึงโดยไม่ได้รับอนุญาต
-            </p>
-          </div>
-        </section>
+          <h2>1. ภาพรวม</h2>
+          <p>
+            phachara.com เป็นแพลตฟอร์มเรียนรู้ออนไลน์ที่ดำเนินการโดย{' '}
+            <strong>กิตติชน สนิทเชื้อ</strong> ในรูปแบบ
+            <strong>บุคคลธรรมดา</strong>{' '}
+            ให้บริการ<strong>บทเรียนออนไลน์</strong> (เนื้อหาบทความ-ข้อความ ไม่มีคลิปวิดีโอ) ผ่านระบบ LINE OA + LIFF
+          </p>
+          <p>
+            เมื่อคุณสมัครเรียน ซื้อบทเรียน หรือใช้บริการใดๆ ของเรา ถือว่าคุณได้อ่าน
+            เข้าใจ และยอมรับข้อกำหนดฉบับนี้
+          </p>
 
-        {/* Section 3 - License */}
-        <section className="mb-10" aria-labelledby="license">
-          <h2 id="license" className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="w-8 h-8 rounded-full bg-yellow-400 text-gray-900 flex items-center justify-center text-sm font-bold flex-shrink-0">3</span>
-            สิทธิ์การใช้งาน (License)
-          </h2>
-          <div className="text-gray-600 leading-relaxed space-y-3">
-            <p>
-              เมื่อซื้อคอร์สเรียน ท่านได้รับสิทธิ์การใช้งาน<strong>ส่วนตัวที่ไม่สามารถโอนได้</strong> (non-transferable personal license)
-              ในการเข้าถึงเนื้อหาคอร์สเพื่อการศึกษาส่วนตัวเท่านั้น
-            </p>
-            <p>ท่านไม่มีสิทธิ์:</p>
-            <ul className="list-disc list-inside space-y-1 ml-2">
-              <li>แชร์ ขายต่อ หรือแจกจ่ายเนื้อหาคอร์สให้บุคคลอื่น</li>
-              <li>บันทึกหน้าจอหรือดาวน์โหลดวิดีโอโดยไม่ได้รับอนุญาต</li>
-              <li>นำเนื้อหาไปใช้เพื่อการค้าหรือสร้างงานดัดแปลง</li>
+          <h2>2. คุณสมบัติผู้ใช้</h2>
+          <ul>
+            <li>
+              คุณต้องมีอายุ <strong>20 ปีบริบูรณ์</strong>ขึ้นไป
+              ผู้ที่มีอายุต่ำกว่า 20 ปี ต้องได้รับความยินยอมจากผู้ปกครองตามกฎหมายก่อนใช้บริการ
+            </li>
+            <li>คุณต้องมีบัญชี LINE ที่ active</li>
+            <li>คุณต้องให้ข้อมูลที่ถูกต้องและเป็นจริง</li>
+          </ul>
+
+          <h2>3. บัญชีและความปลอดภัย</h2>
+          <p>
+            บัญชีของคุณผูกกับ LINE User ID —
+            คุณรับผิดชอบในการรักษาความปลอดภัยของบัญชี LINE ของคุณ
+            เราจะไม่รับผิดชอบต่อความเสียหายที่เกิดจากการที่บุคคลอื่นเข้าถึงบัญชี LINE ของคุณ
+          </p>
+
+          <h2>4. การชำระเงิน</h2>
+          <ul>
+            <li>ราคาสินค้าทั้งหมดแสดงเป็น <strong>บาทไทย (THB)</strong></li>
+            <li>
+              <strong>เราเป็นบุคคลธรรมดา ไม่ได้จดทะเบียนภาษีมูลค่าเพิ่ม (VAT)</strong>{' '}
+              — ราคาที่แสดงเป็นราคาสุทธิ
+            </li>
+            <li>
+              การชำระเงินดำเนินการผ่าน <strong>Stripe Payments</strong>{' '}
+              ซึ่งรองรับบัตรเครดิต/เดบิต, PromptPay, Apple Pay และ Link
+            </li>
+            <li>
+              เราไม่เก็บข้อมูลบัตรเครดิตของคุณ
+              ทั้งหมดอยู่ภายใต้การจัดการของ Stripe ที่มี certification PCI DSS Level 1
+            </li>
+            <li>
+              ราคาอาจปรับเปลี่ยนได้ตลอดเวลา ราคาที่บังคับใช้คือราคา ณ วันที่ทำรายการสำเร็จ
+            </li>
+          </ul>
+
+          <h2>5. ลิขสิทธิ์และสิทธิการใช้งาน</h2>
+          <p>
+            เมื่อคุณซื้อบทเรียน คุณได้รับ{' '}
+            <strong>สิทธิ์ใช้งานส่วนบุคคล (Personal License) แบบไม่จำกัดเวลา และไม่สามารถโอนได้</strong>{' '}
+            สำหรับเข้าถึงเนื้อหาเพื่อการศึกษาส่วนตัวเท่านั้น
+          </p>
+
+          <aside className="not-prose my-6 rounded-lg border-l-4 border-red-500 bg-red-50 p-4">
+            <p className="font-bold text-red-900">❌ ห้ามทำสิ่งต่อไปนี้</p>
+            <ul className="mt-2 list-disc pl-6 text-sm text-red-900 space-y-1">
+              <li>แชร์ ขายต่อ หรือเผยแพร่เนื้อหาบทเรียนให้บุคคลอื่น</li>
+              <li>ดาวน์โหลด บันทึกหน้าจอ หรือคัดลอกเนื้อหาเพื่อแจกจ่าย</li>
+              <li>นำเนื้อหาไปใช้สร้างผลิตภัณฑ์ที่แข่งขันกับเรา</li>
+              <li>ใช้เนื้อหาเพื่อสอน อบรม หรือเผยแพร่ในเชิงพาณิชย์ใดๆ ที่ไม่ได้รับอนุญาตเป็นลายลักษณ์อักษร</li>
             </ul>
-          </div>
-        </section>
+          </aside>
 
-        {/* Section 4 - Payment */}
-        <section className="mb-10" aria-labelledby="payment">
-          <h2 id="payment" className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="w-8 h-8 rounded-full bg-yellow-400 text-gray-900 flex items-center justify-center text-sm font-bold flex-shrink-0">4</span>
-            การชำระเงิน (Payment)
-          </h2>
-          <div className="text-gray-600 leading-relaxed space-y-3">
-            <p>
-              ราคาสินค้าและบริการทั้งหมดแสดงในสกุลเงิน <strong>บาทไทย (THB)</strong> และ
-              <strong>รวมภาษีมูลค่าเพิ่ม (VAT) 7%</strong> แล้ว
-            </p>
-            <p>
-              บริษัทขอสงวนสิทธิ์ในการเปลี่ยนแปลงราคาได้ตลอดเวลา โดยราคาที่ใช้จะเป็นราคา
-              ณ วันที่ทำรายการซื้อขาย
-            </p>
-          </div>
-        </section>
-
-        {/* Section 5 - Refund */}
-        <section className="mb-10" aria-labelledby="refund-terms">
-          <h2 id="refund-terms" className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="w-8 h-8 rounded-full bg-yellow-400 text-gray-900 flex items-center justify-center text-sm font-bold flex-shrink-0">5</span>
-            นโยบายการคืนเงิน (Refund Policy)
-          </h2>
-          <p className="text-gray-600 leading-relaxed">
-            นโยบายการคืนเงินของเรากำหนดให้ท่านสามารถขอคืนเงินได้ภายใน 7 วันนับจากวันซื้อ
-            ตามเงื่อนไขที่กำหนด ดูรายละเอียดเพิ่มเติมได้ที่{' '}
-            <a href="/legal/refund" className="text-yellow-600 font-semibold hover:underline">
-              นโยบายการคืนเงิน →
-            </a>
+          <p>
+            ลิขสิทธิ์ทั้งหมดในเนื้อหา ภาพ และ template เป็นของ กิตติชน สนิทเชื้อ
+            การละเมิดข้างต้นอาจนำไปสู่การ:
           </p>
-        </section>
+          <ul>
+            <li>ยกเลิกบัญชีและเข้าถึงบทเรียน (ไม่คืนเงิน)</li>
+            <li>ดำเนินคดีตามกฎหมายลิขสิทธิ์ พ.ศ. 2537</li>
+          </ul>
 
-        {/* Section 6 - Limitation */}
-        <section className="mb-10" aria-labelledby="limitation">
-          <h2 id="limitation" className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="w-8 h-8 rounded-full bg-yellow-400 text-gray-900 flex items-center justify-center text-sm font-bold flex-shrink-0">6</span>
-            การจำกัดความรับผิด (Limitation of Liability)
-          </h2>
-          <p className="text-gray-600 leading-relaxed">
-            บริษัทไม่รับประกันว่าผลลัพธ์ที่ได้จากการใช้ความรู้ในคอร์สจะตรงกับที่คาดหวังในทุกกรณี
-            ผลลัพธ์ขึ้นอยู่กับปัจจัยหลายประการรวมถึงความพยายามและบริบทของแต่ละบุคคล
-            ความรับผิดของบริษัทจะถูกจำกัดไม่เกินจำนวนเงินที่ท่านชำระสำหรับบริการนั้นๆ
+          <h2>6. นโยบายการคืนเงิน</h2>
+          <p>
+            คืนเงินเต็มจำนวนภายใน <strong>7 วัน</strong> หลังชำระ
+            ถ้าเปิดบทเรียนไม่เกิน <strong>3 บท</strong> จาก 24 บท
+            ดูรายละเอียดเต็มที่{' '}
+            <a href="/legal/refund">นโยบายการคืนเงิน</a>
           </p>
-        </section>
 
-        {/* Section 7 - Governing Law */}
-        <section className="mb-10" aria-labelledby="governing-law">
-          <h2 id="governing-law" className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span className="w-8 h-8 rounded-full bg-yellow-400 text-gray-900 flex items-center justify-center text-sm font-bold flex-shrink-0">7</span>
-            กฎหมายที่บังคับใช้และการระงับข้อพิพาท
-          </h2>
-          <div className="text-gray-600 leading-relaxed space-y-3">
-            <p>
-              ข้อกำหนดฉบับนี้อยู่ภายใต้บังคับและตีความตาม<strong>กฎหมายไทย</strong>
-              ข้อพิพาทใดๆ ที่เกิดขึ้นจะถูกนำเสนอต่อศาลที่มีเขตอำนาจในประเทศไทย
-            </p>
-            <p>
-              หากมีคำถามเกี่ยวกับข้อกำหนดนี้ กรุณาติดต่อเราที่{' '}
-              <a href={`mailto:${BUSINESS.email}`} className="text-yellow-600 font-semibold hover:underline">
-                {BUSINESS.email}
-              </a>
-            </p>
-          </div>
-        </section>
+          <h2>7. ความพร้อมใช้งานของบริการ</h2>
+          <p>
+            เราพยายามรักษาบริการให้ available 99.5% ขึ้นไป
+            แต่ไม่รับประกันว่าบริการจะไม่หยุดชะงัก เราสงวนสิทธิในการ:
+          </p>
+          <ul>
+            <li>หยุดบริการชั่วคราวเพื่อ maintenance แจ้งล่วงหน้าผ่าน LINE OA</li>
+            <li>ปรับปรุง แก้ไข หรือเพิ่มเติมเนื้อหาบทเรียน</li>
+            <li>ยกเลิกบัญชีผู้ใช้ที่ละเมิดข้อกำหนด</li>
+          </ul>
+
+          <h2>8. ข้อจำกัดความรับผิด</h2>
+          <p>
+            <strong>เท่าที่กฎหมายอนุญาต</strong>{' '}
+            ความรับผิดของเราถูกจำกัดดังต่อไปนี้ — ข้อยกเว้นในกรณีจงใจ ฉ้อฉล
+            หรือละเมิดข้อมูลส่วนบุคคลอย่างร้ายแรงยังคงมีผลบังคับตามกฎหมาย:
+          </p>
+          <ul>
+            <li>บทเรียนเป็นเครื่องมือเรียนรู้ ผลลัพธ์ขึ้นอยู่กับการนำไปใช้ของผู้เรียน</li>
+            <li><strong>เราไม่รับประกันยอดขาย รายได้ หรือผลลัพธ์ทางธุรกิจ</strong> จากการเรียน</li>
+            <li>testimonial ที่แสดงเป็นตัวอย่างประสบการณ์เฉพาะบุคคล ไม่ใช่การการันตี</li>
+            <li>ความรับผิดสูงสุดของเราจำกัดไม่เกินจำนวนเงินที่คุณชำระสำหรับบริการนั้น</li>
+          </ul>
+
+          <h2>9. การยกเลิกบัญชี</h2>
+          <p>เราสงวนสิทธิยกเลิกบัญชีของคุณโดยไม่คืนเงิน หากพบ:</p>
+          <ul>
+            <li>การละเมิดลิขสิทธิ์ตามข้อ 5</li>
+            <li>การ chargeback หรือ dispute การชำระเงินโดยไม่มีเหตุอันควร</li>
+            <li>พฤติกรรม abuse, harassment ต่อ admin หรือผู้เรียนอื่น</li>
+            <li>การให้ข้อมูลเท็จในการสมัคร</li>
+          </ul>
+          <p>
+            คุณสามารถขอลบบัญชีของคุณได้ตลอดเวลาตาม{' '}
+            <a href="/legal/privacy">นโยบายความเป็นส่วนตัว</a>
+          </p>
+
+          <h2>10. การเปลี่ยนแปลงข้อกำหนด</h2>
+          <p>
+            เราอาจปรับข้อกำหนดนี้เป็นครั้งคราว การเปลี่ยนแปลงสำคัญจะแจ้งผ่าน LINE
+            OA ล่วงหน้าอย่างน้อย 14 วัน หากคุณใช้บริการต่อหลังการเปลี่ยนแปลงมีผล
+            ถือว่ายอมรับข้อกำหนดใหม่
+          </p>
+
+          <h2>11. กฎหมายที่บังคับใช้</h2>
+          <p>
+            ข้อกำหนดฉบับนี้อยู่ภายใต้บังคับและตีความตาม{' '}
+            <strong>กฎหมายไทย</strong> ข้อพิพาทใดๆ จะถูกระงับโดย
+            <strong>ศาลไทยที่มีเขตอำนาจตามกฎหมาย</strong>
+          </p>
+
+          <h2>12. ติดต่อเรา</h2>
+          <p>
+            ดูช่องทางติดต่อและเวลาทำการที่{' '}
+            <a href="/contact">หน้าติดต่อเรา</a>
+          </p>
+
+        </div>
       </main>
 
-      {/* Footer nav */}
       <div className="border-t border-gray-200 py-8 px-4">
-        <div className="max-w-3xl mx-auto flex gap-4 text-sm">
+        <div className="max-w-3xl mx-auto flex flex-wrap gap-4 text-sm">
           <a href="/" className="text-yellow-600 hover:text-yellow-700 font-medium">← หน้าหลัก</a>
           <span className="text-gray-300">|</span>
           <a href="/legal/refund" className="text-gray-500 hover:text-gray-700">คืนเงิน</a>
           <a href="/legal/privacy" className="text-gray-500 hover:text-gray-700">ความเป็นส่วนตัว</a>
+          <a href="/legal/cookie" className="text-gray-500 hover:text-gray-700">คุกกี้</a>
           <a href="/contact" className="text-gray-500 hover:text-gray-700">ติดต่อ</a>
         </div>
       </div>

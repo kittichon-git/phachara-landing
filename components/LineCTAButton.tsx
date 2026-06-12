@@ -8,59 +8,22 @@ interface Props {
   className?: string
 }
 
-export default function LineCTAButton({
-  position,
-  label = 'เรียนฟรี 2 บทเรียน',
-  sublabel,
-  size = 'lg',
-  className = '',
-}: Props) {
-  const href = lineUrl(position)
-
-  const isLg = size === 'lg'
-
+export default function LineCTAButton({ position, label = 'เริ่มอ่านฟรี 2 บทแรก ใน LINE', sublabel, size = 'lg', className = '' }: Props) {
   return (
     <a
-      href={href}
+      href={lineUrl(position)}
       target="_blank"
       rel="noopener noreferrer"
       data-cta-position={position}
-      className={`
-        inline-flex flex-col items-center justify-center gap-0.5
-        rounded-lg font-semibold text-white
-        transition-transform duration-150
-        hover:-translate-y-0.5 active:translate-y-0
-        ${isLg ? 'px-7 py-[18px] text-[17px]' : 'px-5 py-3 text-base'}
-        ${className}
-      `}
-      style={{
-        background: 'var(--line-green)',
-        boxShadow: '0 2px 8px -2px rgba(6,199,85,0.35)',
-      }}
+      className={`cta-btn ${className}`}
+      style={{ fontSize: size === 'lg' ? 18 : 16, padding: size === 'lg' ? '18px 32px' : '14px 24px' }}
     >
       <span className="flex items-center gap-2.5">
-        {/* LINE box icon */}
-        <span
-          className="grid place-items-center rounded-[6px] font-black shrink-0"
-          style={{
-            width: isLg ? 22 : 18,
-            height: isLg ? 22 : 18,
-            background: 'white',
-            color: 'var(--line-green)',
-            fontSize: isLg ? 11 : 9,
-            fontFamily: 'var(--font-sans)',
-            letterSpacing: '-0.02em',
-          }}
-          aria-hidden="true"
-        >
-          LINE
-        </span>
+        <span className="grid place-items-center rounded-[5px] font-black shrink-0 text-[10px]" style={{ width: 22, height: 22, background: 'white', color: 'var(--line-green)', fontFamily: 'var(--font-heading)' }} aria-hidden="true">LINE</span>
         {label}
         <span aria-hidden="true">→</span>
       </span>
-      {sublabel && (
-        <span className="text-xs font-normal opacity-85">{sublabel}</span>
-      )}
+      {sublabel && <span className="cta-btn-sub">{sublabel}</span>}
     </a>
   )
 }

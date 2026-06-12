@@ -51,17 +51,9 @@ export default function ContactPage() {
                 <div>
                   <p className="text-xs text-gray-400 uppercase tracking-wide mb-1">ชื่อบริษัท</p>
                   <p className="text-gray-900 font-semibold">{BUSINESS.nameEn}</p>
-                  <p className="text-gray-500 text-sm">{BUSINESS.name}</p>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <span className="text-xl" aria-hidden="true">📍</span>
-                <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wide mb-1">ที่อยู่</p>
-                  <p className="text-gray-700 leading-relaxed text-sm">{BUSINESS.address}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
+<div className="flex items-start gap-4">
                 <span className="text-xl" aria-hidden="true">🧾</span>
                 <div>
                   <p className="text-xs text-gray-400 uppercase tracking-wide mb-1">เลขผู้เสียภาษี</p>
@@ -80,18 +72,6 @@ export default function ContactPage() {
                   </a>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <span className="text-xl" aria-hidden="true">📞</span>
-                <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wide mb-1">โทรศัพท์</p>
-                  <a
-                    href={`tel:${BUSINESS.phone}`}
-                    className="text-yellow-600 font-semibold hover:underline text-sm"
-                  >
-                    {BUSINESS.phone}
-                  </a>
-                </div>
-              </div>
             </address>
           </section>
 
@@ -102,7 +82,7 @@ export default function ContactPage() {
               <ul className="text-gray-600 text-sm space-y-2">
                 <li className="flex justify-between">
                   <span>จันทร์ – ศุกร์</span>
-                  <span className="font-medium">09:00 – 18:00 น.</span>
+                  <span className="font-medium">09:00 – 16:00 น.</span>
                 </li>
                 <li className="flex justify-between">
                   <span>เสาร์ – อาทิตย์</span>
