@@ -50,39 +50,70 @@ const testimonials = [
 
 export default function S5Outcome() {
   return (
-    <section className="px-5 py-14" style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}>
-      <div className="mx-auto" style={{ maxWidth: 560 }}>
+    <section
+      className="px-5 py-20"
+      style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}
+    >
+      <div className="mx-auto" style={{ maxWidth: 620 }}>
         <span className="section-label">เสียงตอบรับ</span>
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(20px,5vw,28px)', fontWeight: 800, color: 'var(--ink)', lineHeight: 1.35, marginBottom: 28 }}>
+        <h2
+          style={{
+            fontFamily: 'var(--font-heading)',
+            fontSize: 'clamp(22px,5vw,30px)',
+            fontWeight: 800,
+            color: 'var(--ink)',
+            lineHeight: 1.3,
+            marginBottom: 28,
+          }}
+        >
           จากคนที่ลองอ่านจริง
         </h2>
 
         <div className="flex flex-col gap-4">
-          {testimonials.map(t => (
-            <div key={t.id} className="card" style={{ borderLeft: '3px solid var(--teal)' }}>
-              <div className="flex gap-3 items-start">
-                <div className="flex-shrink-0 mt-1">
+          {testimonials.map((t) => (
+            <div
+              key={t.id}
+              className="card"
+              style={{ borderLeft: '3px solid rgba(61,165,169,0.5)' }}
+            >
+              <div className="flex gap-4 items-start">
+                {/* Avatar */}
+                <div className="shrink-0">
                   <Image
                     src={t.image}
                     alt={t.imageAlt}
-                    width={56}
-                    height={56}
-                    className="rounded-lg object-cover"
-                    style={{ width: 56, height: 56 }}
+                    width={52}
+                    height={52}
+                    className="rounded-xl object-cover"
+                    style={{ width: 52, height: 52 }}
                   />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[15.5px] font-semibold mb-2" style={{ color: 'var(--ink)', fontFamily: 'var(--font-heading)', lineHeight: 1.5 }}>
+                  {/* Quote */}
+                  <p
+                    className="text-[15.5px] font-semibold mb-2.5 leading-snug"
+                    style={{ color: 'var(--ink)', fontFamily: 'var(--font-heading)' }}
+                  >
                     &ldquo;{t.pullQuote}&rdquo;
                   </p>
-                  <div className="flex flex-wrap items-center gap-1 text-[12.5px]" style={{ color: 'var(--ink-mute)' }}>
-                    <span className="font-semibold" style={{ color: 'var(--ink-soft)' }}>{t.name}</span>
+                  {/* Attribution */}
+                  <div
+                    className="flex flex-wrap items-center gap-1 text-[12.5px] mb-2"
+                    style={{ color: 'var(--ink-mute)' }}
+                  >
+                    <span className="font-semibold" style={{ color: 'var(--ink-soft)' }}>
+                      {t.name}
+                    </span>
                     <span>·</span>
                     <span>{t.bio}</span>
                   </div>
-                  <div className="mt-2 text-[12px] px-2 py-1 rounded-md inline-block" style={{ background: 'var(--teal-bg)', color: 'var(--teal)' }}>
+                  {/* Change point pill */}
+                  <span
+                    className="inline-block text-[12px] px-2.5 py-1 rounded-lg"
+                    style={{ background: 'var(--teal-bg)', color: 'var(--teal)' }}
+                  >
                     ↳ {t.changePoint}
-                  </div>
+                  </span>
                 </div>
               </div>
             </div>

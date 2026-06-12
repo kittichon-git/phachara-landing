@@ -18,45 +18,102 @@ const bonuses = [
 
 export default function S7Curriculum() {
   return (
-    <section className="px-5 py-14" style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}>
-      <div className="mx-auto" style={{ maxWidth: 560 }}>
+    <section
+      className="px-5 py-20"
+      style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}
+    >
+      <div className="mx-auto" style={{ maxWidth: 620 }}>
         <span className="section-label">เนื้อหา 7 ภาค 24 บท</span>
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(20px,5vw,28px)', fontWeight: 800, color: 'var(--ink)', lineHeight: 1.35, marginBottom: 8 }}>
+        <h2
+          style={{
+            fontFamily: 'var(--font-heading)',
+            fontSize: 'clamp(22px,5vw,30px)',
+            fontWeight: 800,
+            color: 'var(--ink)',
+            lineHeight: 1.3,
+            marginBottom: 8,
+          }}
+        >
           หยิบใช้ตามงานได้ทันที
         </h2>
         <p className="mb-8 text-[15px]" style={{ color: 'var(--ink-soft)' }}>
           ไม่ต้องอ่านรวดเดียว เลือกบทที่ตรงกับโพสต์ที่กำลังเขียน แล้วเอาไปปรับใช้ได้ทันที
         </p>
 
+        {/* Chapter list */}
         <div className="flex flex-col gap-3 mb-8">
-          {chapters.map(c => (
+          {chapters.map((c) => (
             <div key={c.n} className="card flex gap-4">
-              <div className="shrink-0 w-7 h-7 rounded-full grid place-items-center text-[12px] font-bold mt-0.5" style={{ background: 'var(--teal-bg)', border: '1px solid var(--teal)', color: 'var(--teal)', fontFamily: 'var(--font-heading)' }}>
+              <div
+                className="shrink-0 w-8 h-8 rounded-full grid place-items-center text-[12px] font-black mt-0.5"
+                style={{
+                  background: 'var(--teal-bg)',
+                  border: '1px solid rgba(61,165,169,0.5)',
+                  color: 'var(--teal)',
+                  fontFamily: 'var(--font-heading)',
+                  minWidth: 32,
+                }}
+              >
                 {c.n}
               </div>
               <div>
-                <p className="font-semibold text-[15px] mb-1" style={{ color: 'var(--ink)', fontFamily: 'var(--font-heading)', lineHeight: 1.4 }}>{c.title}</p>
-                <p className="text-[13.5px]" style={{ color: 'var(--ink-mute)' }}>→ {c.body}</p>
+                <p
+                  className="font-semibold text-[15px] mb-1.5"
+                  style={{ color: 'var(--ink)', fontFamily: 'var(--font-heading)', lineHeight: 1.4 }}
+                >
+                  {c.title}
+                </p>
+                <p className="text-[13.5px]" style={{ color: 'var(--ink-mute)', lineHeight: 1.6 }}>
+                  → {c.body}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
         {/* Bonuses */}
-        <div className="rounded-xl p-5" style={{ background: 'var(--amber-bg)', border: '1px solid rgba(229,190,99,0.3)' }}>
-          <p className="font-bold text-[14px] mb-4" style={{ color: 'var(--amber)', fontFamily: 'var(--font-heading)' }}>🎁 โบนัส 5 ชุด</p>
-          <div className="flex flex-col gap-2.5">
-            {bonuses.map(b => (
-              <div key={b.id} className="flex items-start gap-2.5">
-                <span className="text-[11px] font-bold px-1.5 py-0.5 rounded mt-0.5 shrink-0" style={{ background: 'rgba(229,190,99,0.2)', color: 'var(--amber)', border: '1px solid rgba(229,190,99,0.4)' }}>{b.id}</span>
+        <div
+          className="rounded-2xl p-6"
+          style={{
+            background: 'var(--amber-bg)',
+            border: '1px solid rgba(229,190,99,0.25)',
+          }}
+        >
+          <p
+            className="font-bold text-[14px] mb-5"
+            style={{ color: 'var(--amber)', fontFamily: 'var(--font-heading)' }}
+          >
+            🎁 โบนัส 5 ชุด รวมมูลค่า 1,500 ฿
+          </p>
+          <div className="flex flex-col gap-3">
+            {bonuses.map((b) => (
+              <div key={b.id} className="flex items-start gap-3">
+                <span
+                  className="text-[11px] font-bold px-2 py-0.5 rounded-md mt-0.5 shrink-0"
+                  style={{
+                    background: 'rgba(229,190,99,0.18)',
+                    color: 'var(--amber)',
+                    border: '1px solid rgba(229,190,99,0.3)',
+                    fontFamily: 'var(--font-heading)',
+                  }}
+                >
+                  {b.id}
+                </span>
                 <div>
-                  <span className="text-[14px] font-semibold" style={{ color: 'var(--ink)', fontFamily: 'var(--font-heading)' }}>{b.title}</span>
-                  <span className="text-[13px] ml-1" style={{ color: 'var(--ink-mute)' }}>— {b.desc}</span>
+                  <span
+                    className="text-[14px] font-semibold"
+                    style={{ color: 'var(--ink)', fontFamily: 'var(--font-heading)' }}
+                  >
+                    {b.title}
+                  </span>
+                  <span className="text-[13px] ml-1.5" style={{ color: 'var(--ink-mute)' }}>
+                    — {b.desc}
+                  </span>
                 </div>
               </div>
             ))}
           </div>
-          <p className="mt-4 text-[13px]" style={{ color: 'var(--ink-soft)' }}>
+          <p className="mt-5 text-[13px]" style={{ color: 'var(--ink-soft)' }}>
             จบ 7 ภาค → หยิบ 100+ Template ไทยไปใช้กับโพสต์ / แคปชัน / DM / เซลเพจได้เลย
           </p>
         </div>

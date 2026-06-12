@@ -1,30 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  /* Canvas */
-  --bg:           #0e1420;
-  --bg-soft:      #131c2e;
-  --bg-card:      #192236;
-  --bg-section-alt: #111827;
+  /* Canvas — deep blue-black with cool tint */
+  --bg:             #07091a;
+  --bg-soft:        #0b1020;
+  --bg-card:        rgba(255, 255, 255, 0.04);
+  --bg-card-hover:  rgba(255, 255, 255, 0.07);
+  --bg-section-alt: #090e1c;
 
   /* Text */
-  --ink:          #f0ede8;
-  --ink-soft:     #b8c0cc;
-  --ink-mute:     #6b7a90;
+  --ink:      #f0ede8;
+  --ink-soft: #a8b4c4;
+  --ink-mute: #546070;
 
   /* Borders */
-  --rule:         rgba(255,255,255,0.08);
-  --rule-soft:    rgba(255,255,255,0.04);
+  --rule:      rgba(255, 255, 255, 0.09);
+  --rule-soft: rgba(255, 255, 255, 0.05);
 
   /* Brand accents */
-  --amber:        #e5be63;
-  --amber-d:      #c89a3a;
-  --amber-bg:     rgba(229,190,99,0.12);
-  --teal:         #3da5a9;
-  --teal-d:       #2f8588;
-  --teal-bg:      rgba(61,165,169,0.12);
-  --rust:         #c2542a;
-  --rust-bg:      rgba(194,84,42,0.12);
+  --amber:     #e5be63;
+  --amber-d:   #c89a3a;
+  --amber-bg:  rgba(229, 190, 99, 0.1);
+  --teal:      #3da5a9;
+  --teal-d:    #2f8588;
+  --teal-bg:   rgba(61, 165, 169, 0.1);
+  --rust:      #c2542a;
+  --rust-bg:   rgba(194, 84, 42, 0.1);
 
   /* LINE */
   --line-green:   #06c755;
@@ -34,11 +35,17 @@
   --font-heading: var(--font-kanit);
   --font-body:    var(--font-bai);
 
+  /* Radii */
+  --radius-card: 24px;
+  --radius-btn:  12px;
+
   /* Shadows */
-  --shadow-card:  0 4px 32px -4px rgba(0,0,0,0.5);
-  --shadow-cta:   0 8px 32px -4px rgba(6,199,85,0.35);
+  --shadow-card: 0 4px 40px -8px rgba(0, 0, 0, 0.8),
+                 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  --shadow-cta:  0 8px 40px -4px rgba(6, 199, 85, 0.45);
 }
 
+/* ─── Base ──────────────────────────────────────────────────── */
 html { scroll-behavior: smooth; }
 
 body {
@@ -51,57 +58,91 @@ body {
   overflow-x: hidden;
 }
 
-/* Section utilities */
+/* ─── Section label ─────────────────────────────────────────── */
 .section-label {
   display: block;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--amber);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
-/* Card */
+/* ─── Premium glass card ────────────────────────────────────── */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--rule);
-  border-radius: 14px;
-  padding: 22px 20px;
+  border-radius: var(--radius-card);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
 }
 
-/* CTA button */
+/* ─── Terminal / demo block ─────────────────────────────────── */
+.terminal {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.65);
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--rule);
+}
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── CTA button ────────────────────────────────────────────── */
 .cta-btn {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 4px;
   background: var(--line-green);
   color: #fff;
   font-family: var(--font-heading), "Kanit", sans-serif;
   font-weight: 700;
-  font-size: 17px;
-  padding: 16px 28px;
-  border-radius: 10px;
+  font-size: 18px;
+  padding: 20px 36px;
+  border-radius: var(--radius-btn);
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
+  transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
   box-shadow: var(--shadow-cta);
 }
-.cta-btn:hover { background: var(--line-green-d); transform: translateY(-1px); }
+.cta-btn:hover {
+  background: var(--line-green-d);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 48px -4px rgba(6, 199, 85, 0.55);
+}
 .cta-btn:active { transform: translateY(0); }
-.cta-btn-sub { font-size: 12px; font-weight: 400; opacity: 0.85; font-family: var(--font-body); }
+.cta-btn-sub {
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.8;
+  font-family: var(--font-body);
+}
 
-/* Step number badge */
+/* ─── Step number badge ─────────────────────────────────────── */
 .step-num {
   display: grid;
   place-items: center;
-  width: 32px; height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: var(--teal-bg);
-  border: 1px solid var(--teal);
+  border: 1px solid rgba(61, 165, 169, 0.5);
   color: var(--teal);
   font-family: var(--font-heading);
   font-weight: 800;
@@ -109,15 +150,16 @@ body {
   flex-shrink: 0;
 }
 
-/* FAQ details */
+/* ─── FAQ accordion ─────────────────────────────────────────── */
 details.faq-item { border-bottom: 1px solid var(--rule); }
 details.faq-item:last-child { border-bottom: none; }
+
 details.faq-item summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 14px;
-  padding: 18px 0;
+  padding: 22px 0;
   cursor: pointer;
   list-style: none;
   font-family: var(--font-heading);
@@ -127,32 +169,66 @@ details.faq-item summary {
   color: var(--ink);
 }
 details.faq-item summary::-webkit-details-marker { display: none; }
+
 details.faq-item .faq-icon {
   flex-shrink: 0;
-  width: 24px; height: 24px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   border: 1px solid var(--rule);
   color: var(--ink-mute);
   font-size: 16px;
   display: grid;
   place-items: center;
-  transition: transform 0.2s ease, border-color 0.2s;
+  transition: transform 0.25s ease, border-color 0.2s, color 0.2s;
 }
-details.faq-item[open] .faq-icon { transform: rotate(90deg); border-color: var(--amber); color: var(--amber); }
-details.faq-item .faq-a { padding: 0 0 18px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.75; }
+details.faq-item[open] .faq-icon {
+  transform: rotate(90deg);
+  border-color: var(--amber);
+  color: var(--amber);
+}
+details.faq-item .faq-a {
+  padding: 0 0 22px;
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  line-height: 1.75;
+}
 
-/* Animations */
+/* ─── Badge pill ────────────────────────────────────────────── */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid rgba(229, 190, 99, 0.35);
+  background: rgba(229, 190, 99, 0.07);
+  border-radius: 100px;
+  padding: 7px 16px;
+}
+
+/* ─── Animations ────────────────────────────────────────────── */
 @keyframes fade-up {
-  from { transform: translateY(16px); opacity: 0; }
+  from { transform: translateY(20px); opacity: 0; }
   to   { transform: translateY(0);    opacity: 1; }
 }
-.anim-fade-up       { animation: fade-up 0.5s ease-out both; }
-.anim-fade-up-d1    { animation: fade-up 0.5s 0.1s ease-out both; }
-.anim-fade-up-d2    { animation: fade-up 0.5s 0.2s ease-out both; }
+.anim-fade-up    { animation: fade-up 0.6s ease-out both; }
+.anim-fade-up-d1 { animation: fade-up 0.6s 0.10s ease-out both; }
+.anim-fade-up-d2 { animation: fade-up 0.6s 0.20s ease-out both; }
+.anim-fade-up-d3 { animation: fade-up 0.6s 0.30s ease-out both; }
+.anim-fade-up-d4 { animation: fade-up 0.6s 0.40s ease-out both; }
 
-/* Skip link */
+/* ─── Skip link ─────────────────────────────────────────────── */
 .skip-link {
-  position: absolute; left: -9999px; top: 4px;
-  background: var(--line-green); color: #fff; padding: 8px 16px; border-radius: 6px; z-index: 999;
+  position: absolute;
+  left: -9999px;
+  top: 4px;
+  background: var(--line-green);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  z-index: 999;
 }
 .skip-link:focus { left: 8px; }

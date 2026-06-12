@@ -15,32 +15,74 @@ const notForItems = [
 
 export default function S6Fit() {
   return (
-    <section className="px-5 py-14" style={{ background: 'var(--bg)', borderTop: '1px solid var(--rule)' }}>
-      <div className="mx-auto" style={{ maxWidth: 560 }}>
+    <section
+      className="px-5 py-20"
+      style={{ background: 'var(--bg)', borderTop: '1px solid var(--rule)' }}
+    >
+      <div className="mx-auto" style={{ maxWidth: 620 }}>
         <span className="section-label">เช็กก่อนตัดสินใจ</span>
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(20px,5vw,28px)', fontWeight: 800, color: 'var(--ink)', lineHeight: 1.35, marginBottom: 24 }}>
+        <h2
+          style={{
+            fontFamily: 'var(--font-heading)',
+            fontSize: 'clamp(22px,5vw,30px)',
+            fontWeight: 800,
+            color: 'var(--ink)',
+            lineHeight: 1.3,
+            marginBottom: 24,
+          }}
+        >
           บทเรียนนี้เหมาะกับคุณไหม?
         </h2>
 
         <div className="flex flex-col gap-4">
-          <div className="card" style={{ borderColor: 'rgba(61,165,169,0.3)' }}>
-            <p className="text-[12px] font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--teal)' }}>✅ เหมาะกับใคร</p>
-            <ul className="flex flex-col gap-2.5">
-              {forItems.map(item => (
-                <li key={item} className="flex items-start gap-2 text-[15px]" style={{ color: 'var(--ink-soft)' }}>
-                  <span style={{ color: 'var(--teal)', flexShrink: 0, marginTop: 2 }}>✓</span>
+          {/* For */}
+          <div
+            className="card"
+            style={{ borderColor: 'rgba(61,165,169,0.3)' }}
+          >
+            <p
+              className="text-[11px] font-bold tracking-[0.14em] uppercase mb-5"
+              style={{ color: 'var(--teal)' }}
+            >
+              ✅ เหมาะกับใคร
+            </p>
+            <ul className="flex flex-col gap-3">
+              {forItems.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-[15px]"
+                  style={{ color: 'var(--ink-soft)', lineHeight: 1.6 }}
+                >
+                  <span
+                    style={{ color: 'var(--teal)', flexShrink: 0, marginTop: 3 }}
+                  >
+                    ✓
+                  </span>
                   {item}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="card" style={{ borderColor: 'rgba(107,122,144,0.3)' }}>
-            <p className="text-[12px] font-bold uppercase tracking-widest mb-4" style={{ color: 'var(--ink-mute)' }}>❌ ไม่เหมาะกับใคร</p>
-            <ul className="flex flex-col gap-2.5">
-              {notForItems.map(item => (
-                <li key={item} className="flex items-start gap-2 text-[15px]" style={{ color: 'var(--ink-mute)' }}>
-                  <span style={{ flexShrink: 0, marginTop: 2 }}>✕</span>
+          {/* Not for */}
+          <div
+            className="card"
+            style={{ borderColor: 'rgba(107,122,144,0.2)' }}
+          >
+            <p
+              className="text-[11px] font-bold tracking-[0.14em] uppercase mb-5"
+              style={{ color: 'var(--ink-mute)' }}
+            >
+              ❌ ไม่เหมาะกับใคร
+            </p>
+            <ul className="flex flex-col gap-3">
+              {notForItems.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-[15px]"
+                  style={{ color: 'var(--ink-mute)', lineHeight: 1.6 }}
+                >
+                  <span style={{ flexShrink: 0, marginTop: 3 }}>✕</span>
                   {item}
                 </li>
               ))}

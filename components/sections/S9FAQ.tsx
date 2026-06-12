@@ -9,18 +9,42 @@ const faqs = [
 
 export default function S9FAQ() {
   return (
-    <section className="px-5 py-14" style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}>
-      <div className="mx-auto" style={{ maxWidth: 560 }}>
-        {/* Risk reversal */}
-        <div className="rounded-xl p-5 mb-10" style={{ background: 'var(--teal-bg)', border: '1px solid rgba(61,165,169,0.3)' }}>
-          <p className="font-bold text-[17px] mb-2" style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)' }}>🛡 รับประกัน 7 วัน คืนเงิน 100%</p>
-          <p className="text-[14.5px]" style={{ color: 'var(--ink-soft)', lineHeight: 1.7 }}>
-            หากเปิดอ่าน 3 บทแรกแล้วรู้สึกว่าไม่ตอบโจทย์ ทัก LINE หาเราเพื่อขอคืนเงินเต็มจำนวน ไม่มีเงื่อนไข ไม่ถามจุกจิก
+    <section
+      className="px-5 py-20"
+      style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}
+    >
+      <div className="mx-auto" style={{ maxWidth: 620 }}>
+        {/* Guarantee banner */}
+        <div
+          className="rounded-2xl p-6 mb-12"
+          style={{
+            background: 'rgba(61,165,169,0.07)',
+            border: '1px solid rgba(61,165,169,0.25)',
+          }}
+        >
+          <p
+            className="font-bold text-[18px] mb-2.5"
+            style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)' }}
+          >
+            🛡 รับประกัน 7 วัน คืนเงิน 100%
+          </p>
+          <p className="text-[15px]" style={{ color: 'var(--ink-soft)', lineHeight: 1.75 }}>
+            หากเปิดอ่าน 3 บทแรกแล้วรู้สึกว่าไม่ตอบโจทย์ ทัก LINE หาเราเพื่อขอคืนเงินเต็มจำนวน
+            ไม่มีเงื่อนไข ไม่ถามจุกจิก
           </p>
         </div>
 
         <span className="section-label">คำถามที่พบบ่อย</span>
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(20px,5vw,28px)', fontWeight: 800, color: 'var(--ink)', lineHeight: 1.35, marginBottom: 24 }}>
+        <h2
+          style={{
+            fontFamily: 'var(--font-heading)',
+            fontSize: 'clamp(22px,5vw,30px)',
+            fontWeight: 800,
+            color: 'var(--ink)',
+            lineHeight: 1.3,
+            marginBottom: 24,
+          }}
+        >
           มีคำถามอยู่ในใจ?
         </h2>
 
@@ -29,7 +53,9 @@ export default function S9FAQ() {
             <details key={q} className="faq-item">
               <summary>
                 <span>{q}</span>
-                <span className="faq-icon" aria-hidden="true">›</span>
+                <span className="faq-icon" aria-hidden="true">
+                  ›
+                </span>
               </summary>
               <p className="faq-a">{a}</p>
             </details>
