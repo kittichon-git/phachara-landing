@@ -1,22 +1,25 @@
 const steps = [
   {
     n: '01',
-    title: 'ทำให้คนหยุดอ่าน',
-    body: 'เปลี่ยนประโยคเปิดให้ชัดพอที่คนจะไม่เลื่อนผ่านทันที',
+    icon: '👁️',
+    title: 'สะกดสายตา (Hook)',
+    body: 'เปลี่ยนประโยคแรกให้ดึงดูด จนลูกค้าไม่อยากเลื่อนผ่าน',
     before: '"โปรเดือนนี้"',
-    after: '"ลูกค้าถามบ่อยสุดว่า…"',
+    after: '"ส่องกระจกตอนเช้าแล้วเจอจุดด่างดำที่เพิ่งโผล่?"',
   },
   {
     n: '02',
-    title: 'ทำให้คนเข้าใจและเชื่อ',
-    body: 'ใช้คำที่อธิบายสินค้าให้เห็นภาพ ลดความลังเล และเพิ่มความน่าเชื่อถือ',
+    icon: '🤝',
+    title: 'สร้างความเชื่อใจ (Trust)',
+    body: 'ใช้คำอธิบายที่เห็นภาพ ตัดความลังเล และทำให้ลูกค้าเชื่อมั่น',
     before: '"วัตถุดิบพรีเมียม"',
-    after: '"ตัวเดียวกับที่ร้านดังใช้"',
+    after: '"ตัวเดียวกับที่ร้านดังใช้ — ลูกค้าสั่งซ้ำทุกเดือน"',
   },
   {
     n: '03',
-    title: 'ทำให้คนรู้ว่าต้องทำอะไรต่อ',
-    body: 'วาง CTA / ข้อเสนอ / ประโยคปิดให้ชัด โดยไม่ต้องยัดเยียด',
+    icon: '⚡',
+    title: 'กระตุ้นการตัดสินใจ (Action)',
+    body: 'วางประโยคปิดการขายให้เนียน จนลูกค้าโอนเงินโดยไม่ต้องยัดเยียด',
     before: '"สนใจทักแชท"',
     after: '"พิมพ์ \'1\' เดี๋ยวส่งวิธีสั่งให้"',
   },
@@ -29,7 +32,7 @@ export default function S4Mechanism() {
       style={{ background: 'var(--bg)', borderTop: '1px solid var(--rule)' }}
     >
       <div className="mx-auto" style={{ maxWidth: 620 }}>
-        <span className="section-label">กลไก 3 ขั้นตอน</span>
+        <span className="section-label">วิธีใหม่</span>
         <h2
           style={{
             fontFamily: 'var(--font-heading)',
@@ -40,7 +43,7 @@ export default function S4Mechanism() {
             marginBottom: 12,
           }}
         >
-          นี่คือกลไก 3 ขั้นตอนที่คุณจะทำตามได้
+          3 ขั้นตอนเปลี่ยน &ldquo;คำธรรมดา&rdquo; เป็น &ldquo;คำทำเงิน&rdquo;
         </h2>
 
         <div className="flex flex-col gap-5 mt-8">
@@ -52,7 +55,7 @@ export default function S4Mechanism() {
                   className="font-bold text-[17px] mb-2"
                   style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)' }}
                 >
-                  {s.title}
+                  {s.icon} {s.title}
                 </p>
                 <p className="text-[15px] mb-4" style={{ color: 'var(--ink-soft)', lineHeight: 1.7 }}>
                   {s.body}
@@ -85,10 +88,6 @@ export default function S4Mechanism() {
             </div>
           ))}
         </div>
-
-        <p className="mt-8 text-[14.5px]" style={{ color: 'var(--ink-mute)' }}>
-          นี่คือหลักคิด — สูตรเต็มคำต่อคำอยู่ในเล่ม
-        </p>
       </div>
     </section>
   )

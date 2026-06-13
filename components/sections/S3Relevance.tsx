@@ -2,22 +2,22 @@ const pains = [
   {
     n: '01',
     symptom: 'ยิงแอดแพง แต่คนเลื่อนผ่านใน 1 วิ',
-    diagnosis: 'เพราะประโยคแรกยังไม่ทำให้เขารู้สึกว่า "เรื่องนี้เกี่ยวกับเขา"',
+    diagnosis: 'เพราะคำเปิดโพสต์ ไม่เกี่ยวอะไรกับเขา',
   },
   {
     n: '02',
-    symptom: 'คนหยุดดู แต่พออ่านจบก็เงียบ',
-    diagnosis: 'เพราะคำที่ใช้กำลัง "อธิบายแค่ตัวสินค้า" ไม่ได้ทำให้เขา "อยากได้"',
+    symptom: 'คนหยุดอ่าน แต่จบแล้วก็เงียบ',
+    diagnosis: 'เพราะคำที่คุณใช้ แค่ "อธิบาย" แต่ไม่ได้ทำให้ "อยากซื้อ"',
   },
   {
     n: '03',
-    symptom: 'อธิบายจนหมดใจ แต่ลูกค้าตอบ "ขอดูก่อนนะ"',
-    diagnosis: 'เพราะยังไม่มีคำที่ปิดความลังเลและให้เขากล้าตัดสินใจ',
+    symptom: 'อธิบายจนเหนื่อย แต่ลูกค้าตอบ "ขอดูก่อน"',
+    diagnosis: 'เพราะไม่มีคำที่ช่วยตัดความลังเล',
   },
   {
     n: '04',
-    symptom: 'ทั้งที่สินค้าดีกว่าคู่แข่ง แต่ไม่มีใครทักมาถาม',
-    diagnosis: 'เพราะคำในโพสต์ยังไม่เปิดช่องให้เขาเริ่มบทสนทนา',
+    symptom: 'สินค้าดีกว่าคู่แข่ง แต่ไม่มีใครถาม',
+    diagnosis: 'เพราะคุณไม่ได้เปิดช่องให้เขาเริ่มคุย',
   },
 ]
 
@@ -28,7 +28,7 @@ export default function S3Relevance() {
       style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}
     >
       <div className="mx-auto" style={{ maxWidth: 620 }}>
-        <span className="section-label">ถ้าโพสต์ยังเงียบ</span>
+        <span className="section-label">ปัญหา</span>
         <h2
           style={{
             fontFamily: 'var(--font-heading)',
@@ -39,22 +39,18 @@ export default function S3Relevance() {
             marginBottom: 12,
           }}
         >
-          ปัญหาอาจไม่ใช่สินค้า
+          ถ้าโพสต์ยังเงียบ...
+          <br />
+          ปัญหาไม่ได้อยู่ที่สินค้า
         </h2>
         <p className="mb-8 text-[15.5px]" style={{ color: 'var(--ink-soft)', lineHeight: 1.8 }}>
-          คุณขยันโพสต์ทุกวัน และสินค้าก็ดีจริง — ไม่ใช่ว่าคุณขายไม่เก่ง แต่{' '}
-          <strong style={{ color: 'var(--ink)' }}>&ldquo;คำ&rdquo;</strong>{' '}
-          ที่ใช้ ยังไม่ได้ทำงานแทนคุณ
+          คุณขยันโพสต์ทุกวัน สินค้าก็ดีจริง แต่ยอดขายกลับลดลงเรื่อยๆ
+          ไม่ใช่เพราะคุณขายไม่เก่ง แต่เพราะตลาดเปลี่ยนไป และ{' '}
+          <strong style={{ color: 'var(--ink)' }}>&ldquo;คำเดิม&rdquo;</strong>{' '}
+          ไม่ทำงานอีกแล้ว:
         </p>
 
-        <p
-          className="mb-5 text-[11px] font-bold tracking-[0.14em] uppercase"
-          style={{ color: 'var(--amber)' }}
-        >
-          คุณกำลังเจอแบบนี้อยู่ไหม?
-        </p>
-
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 mb-8">
           {pains.map((p) => (
             <div
               key={p.n}
@@ -82,6 +78,21 @@ export default function S3Relevance() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Callout */}
+        <div
+          className="rounded-2xl px-6 py-5"
+          style={{
+            background: 'var(--amber-bg)',
+            border: '1px solid rgba(229,190,99,0.25)',
+          }}
+        >
+          <p className="text-[16px] font-semibold" style={{ color: 'var(--ink)', lineHeight: 1.65 }}>
+            💡 คุณคุมตลาดและคู่แข่งไม่ได้ แต่คุณเปลี่ยน{' '}
+            <span style={{ color: 'var(--amber)' }}>&ldquo;คำ&rdquo;</span>{' '}
+            ในโพสต์ของคุณได้ และนี่คือวิธีแก้
+          </p>
         </div>
       </div>
     </section>

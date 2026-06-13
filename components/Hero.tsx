@@ -21,7 +21,7 @@ export default function Hero() {
         {/* Badge */}
         <div className="anim-fade-up flex justify-center mb-7">
           <span className="badge-pill">
-            สำหรับคนขายของออนไลน์ที่โพสต์ทุกวัน แต่ยอดทักยังเงียบ
+            สำหรับคนขายของออนไลน์ที่โพสต์ทุกวัน... แต่ยอดขายยังเงียบ
           </span>
         </div>
 
@@ -40,7 +40,9 @@ export default function Hero() {
         >
           เปลี่ยนคำธรรมดา
           <br />
-          <span style={{ color: 'var(--amber)' }}>ให้ลูกค้าอยากทัก</span>
+          <span style={{ color: 'var(--amber)' }}>ให้ลูกค้า &ldquo;อยากซื้อ&rdquo;</span>
+          <br />
+          <span style={{ fontSize: '0.75em', fontWeight: 800 }}>ตั้งแต่ประโยคแรก</span>
         </h1>
 
         {/* Subheadline */}
@@ -54,24 +56,29 @@ export default function Hero() {
             maxWidth: 480,
           }}
         >
-          สูตรการใช้{' '}
+          สูตรลับการใช้{' '}
           <strong style={{ color: 'var(--ink)' }}>&ldquo;คำ&rdquo;</strong>{' '}
-          สำหรับคนขายของออนไลน์ — แม้ไม่เคยเขียนขายมาก่อน
+          ที่ช่วยให้ปิดการขายได้ แม้ไม่เคยเขียนโฆษณามาก่อน
         </p>
 
-        {/* Mechanism flow */}
+        {/* Chip row */}
         <div className="anim-fade-up-d2 flex items-center justify-center gap-2 flex-wrap mb-10">
-          {['หยุดอ่าน', 'เข้าใจสินค้า', 'อยากทัก'].map((chip, i) => (
-            <span key={chip} className="flex items-center gap-2">
+          {[
+            { label: 'สะกดสายตา', icon: '👁️' },
+            { label: 'สร้างความเชื่อใจ', icon: '🛡️' },
+            { label: 'ลูกค้าอยากซื้อเอง', icon: '🛒' },
+          ].map((chip, i) => (
+            <span key={chip.label} className="flex items-center gap-2">
               <span
-                className="px-4 py-2 rounded-full text-[13px] font-semibold"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold"
                 style={{
                   background: 'var(--teal-bg)',
                   color: 'var(--teal)',
                   border: '1px solid rgba(61,165,169,0.35)',
                 }}
               >
-                {chip}
+                <span>{chip.icon}</span>
+                {chip.label}
               </span>
               {i < 2 && (
                 <span style={{ color: 'var(--amber)', fontSize: 14 }}>→</span>
@@ -84,7 +91,7 @@ export default function Hero() {
         <div className="anim-fade-up-d3 flex flex-col items-center gap-3 mb-8">
           <LineCTAButton
             position="hero"
-            label="เริ่มอ่านฟรี 2 บทแรก ใน LINE"
+            label="เริ่มอ่านฟรี 2 บทแรกใน LINE"
             sublabel="ไม่ต้องกรอกบัตร · อ่านฟรีก่อน · ไม่สแปม"
             className="w-full max-w-[400px]"
           />
@@ -160,7 +167,7 @@ export default function Hero() {
 
         {/* Scroll cue */}
         <p className="mt-10 text-[13px]" style={{ color: 'var(--ink-mute)' }}>
-          ↓ แล้วทำไมโพสต์เดิมที่เคยได้ผล วันนี้ถึงเงียบ?
+          ↓ ถ้าโพสต์ยังเงียบ ปัญหาไม่ได้อยู่ที่สินค้า
         </p>
 
         {/* Sentinel for StickyLineCTA IntersectionObserver */}

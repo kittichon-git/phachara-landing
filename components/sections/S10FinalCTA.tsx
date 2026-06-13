@@ -29,17 +29,22 @@ export default function S10FinalCTA() {
             letterSpacing: '-0.02em',
           }}
         >
-          เริ่มจากลองอ่านฟรี 2 บทแรก
+          พิสูจน์ด้วยโพสต์ของคุณเอง
         </h2>
 
         <p className="mb-4 text-[16px]" style={{ color: 'var(--ink-soft)', lineHeight: 1.8 }}>
-          ถ้าอ่านแล้วรู้สึกว่าวิธี &ldquo;เปลี่ยนคำ&rdquo; ช่วยให้โพสต์ของคุณชัดขึ้น
-          ค่อยตัดสินใจต่อ
+          คุณไม่ต้องเชื่อทั้งหมดในตอนนี้ เริ่มต้นจากการทดลองอ่านฟรี 2 บทแรก
+        </p>
+
+        <p
+          className="mb-4 text-[16px] font-semibold"
+          style={{ color: 'var(--ink)', lineHeight: 1.7, fontFamily: 'var(--font-heading)' }}
+        >
+          อย่าปล่อยให้โพสต์ต่อไปของคุณ ต้องเสียลูกค้าไปฟรีๆ อีกเลย...
         </p>
 
         <p className="mb-10 text-[15px]" style={{ color: 'var(--ink-mute)', lineHeight: 1.8 }}>
-          คุณไม่จำเป็นต้องเชื่อทั้งหน้าตั้งแต่ตอนนี้ แค่เริ่มจากบทแรก
-          แล้วดูเองว่าวิธีคิดนี้เอาไปใช้กับโพสต์ของคุณได้ไหม
+          ถ้าอ่านแล้วรู้สึกว่า &ldquo;คำ&rdquo; ของคุณทรงพลังขึ้น ค่อยตัดสินใจ
         </p>
 
         <div className="flex flex-col items-center gap-3">
