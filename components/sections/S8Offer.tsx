@@ -13,36 +13,26 @@ const valueStack = [
 export default function S8Offer() {
   return (
     <section
-      className="relative px-5 py-20 overflow-hidden"
-      style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}
+      className="px-5 py-20"
+      style={{ background: '#FDFBF7' }}
     >
-      {/* Radial glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(229,190,99,0.08) 0%, transparent 70%)',
-        }}
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto" style={{ maxWidth: 540 }}>
+      <div className="mx-auto" style={{ maxWidth: 540 }}>
         {/* Header */}
         <div className="text-center mb-10">
           <span className="section-label">ข้อเสนอ</span>
           <h2
             style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(24px,5vw,34px)',
+              fontSize: 'clamp(24px, 5vw, 34px)',
               fontWeight: 800,
-              color: 'var(--ink)',
+              color: '#1A1A1A',
               lineHeight: 1.25,
+              letterSpacing: '-0.5px',
               marginBottom: 10,
             }}
           >
             ทั้งหมดที่ได้ใน {COURSE.price.toLocaleString()} บาท
           </h2>
-          <p className="text-[15px]" style={{ color: 'var(--ink-soft)' }}>
+          <p className="text-[15px]" style={{ color: '#666666' }}>
             ไม่ใช่แค่บทเรียนอ่านอย่างเดียว แต่เป็นชุดสูตร + template + prompt
             ที่หยิบไปใช้ตอนเขียนโพสต์จริงได้
           </p>
@@ -51,18 +41,20 @@ export default function S8Offer() {
         {/* Pricing card */}
         <div
           style={{
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid var(--rule)',
-            borderRadius: 28,
+            background: '#FFFFFF',
+            border: '2px solid #E87A3D',
+            borderRadius: 16,
             overflow: 'hidden',
-            boxShadow: 'var(--shadow-card)',
+            boxShadow: '0 8px 40px rgba(232,122,61,0.15)',
+            maxWidth: 480,
+            margin: '0 auto',
           }}
         >
           {/* Value stack */}
           <div className="p-6 pb-2">
             <p
-              className="text-[10px] font-bold tracking-[0.16em] uppercase mb-4"
-              style={{ color: 'var(--ink-mute)' }}
+              className="text-[11px] font-bold tracking-[0.16em] uppercase mb-4"
+              style={{ color: '#666666' }}
             >
               สิ่งที่ได้รับ
             </p>
@@ -72,22 +64,13 @@ export default function S8Offer() {
                   key={item.label}
                   className="flex items-start justify-between gap-3 py-3"
                   style={{
-                    borderBottom:
-                      idx < valueStack.length - 1
-                        ? '1px solid var(--rule)'
-                        : 'none',
+                    borderBottom: idx < valueStack.length - 1 ? '1px solid #E5DDD5' : 'none',
                   }}
                 >
-                  <p
-                    className="text-[14px]"
-                    style={{ color: 'var(--ink-soft)', lineHeight: 1.5 }}
-                  >
+                  <p className="text-[14px]" style={{ color: '#444444', lineHeight: 1.5 }}>
                     {item.label}
                   </p>
-                  <p
-                    className="text-[13px] shrink-0 font-medium tabular-nums"
-                    style={{ color: 'var(--ink-mute)' }}
-                  >
+                  <p className="text-[13px] shrink-0 font-medium tabular-nums" style={{ color: '#666666' }}>
                     {item.value.toLocaleString()} ฿
                   </p>
                 </div>
@@ -95,20 +78,14 @@ export default function S8Offer() {
               {/* Total row */}
               <div
                 className="flex items-center justify-between pt-4 pb-2"
-                style={{ borderTop: '2px solid rgba(255,255,255,0.12)' }}
+                style={{ borderTop: '1px solid #E5DDD5' }}
               >
-                <span
-                  className="text-[13px] font-semibold"
-                  style={{ color: 'var(--ink-soft)' }}
-                >
+                <span className="text-[13px] font-semibold" style={{ color: '#666666' }}>
                   มูลค่าทั้งหมด
                 </span>
                 <span
                   className="text-[15px] font-bold tabular-nums"
-                  style={{
-                    color: 'var(--ink-mute)',
-                    textDecoration: 'line-through',
-                  }}
+                  style={{ color: '#999999', textDecoration: 'line-through' }}
                 >
                   {COURSE.anchorPrice.toLocaleString()} ฿
                 </span>
@@ -120,37 +97,33 @@ export default function S8Offer() {
           <div
             className="px-6 pt-6 pb-7 text-center"
             style={{
-              background: 'rgba(229,190,99,0.06)',
-              borderTop: '1px solid rgba(229,190,99,0.18)',
+              background: '#FFF0E6',
+              borderTop: '2px dashed #E87A3D',
             }}
           >
             <p
               className="text-[11px] font-bold tracking-[0.14em] uppercase mb-2"
-              style={{ color: 'var(--ink-mute)' }}
+              style={{ color: '#666666' }}
             >
               ราคาพิเศษวันนี้
             </p>
             <div className="flex items-end justify-center gap-2 mb-1">
               <span
                 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(60px,16vw,76px)',
-                  fontWeight: 900,
+                  fontSize: 'clamp(60px, 16vw, 76px)',
+                  fontWeight: 800,
                   lineHeight: 1,
-                  color: 'var(--amber)',
+                  color: '#E87A3D',
                   letterSpacing: '-0.03em',
                 }}
               >
                 {COURSE.price.toLocaleString()}
               </span>
-              <span
-                className="mb-2.5 font-bold text-[24px]"
-                style={{ color: 'var(--amber)' }}
-              >
+              <span className="mb-2.5 font-bold text-[24px]" style={{ color: '#E87A3D' }}>
                 ฿
               </span>
             </div>
-            <p className="text-[13px] mb-6" style={{ color: 'var(--ink-mute)' }}>
+            <p className="text-[13px] mb-6" style={{ color: '#666666' }}>
               จ่ายครั้งเดียว · เข้าถึงตลอดชีพ · เปิดอ่านบน LINE ได้ทุกที่
             </p>
             <LineCTAButton
@@ -163,10 +136,7 @@ export default function S8Offer() {
         </div>
 
         {/* Risk reversal */}
-        <p
-          className="text-center text-[13px] mt-5"
-          style={{ color: 'var(--ink-mute)' }}
-        >
+        <p className="text-center text-[13px] mt-5" style={{ color: '#666666' }}>
           🛡 รับประกันคืนเงิน 7 วัน — ไม่มีคำถาม ไม่มีเงื่อนไข
         </p>
       </div>

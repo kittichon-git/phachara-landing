@@ -2,17 +2,17 @@ export default function SLossAversion() {
   return (
     <section
       className="px-5 py-20"
-      style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}
+      style={{ background: 'linear-gradient(135deg, #FFF0E6 0%, #FFE8DC 100%)' }}
     >
-      <div className="mx-auto" style={{ maxWidth: 620 }}>
+      <div className="mx-auto" style={{ maxWidth: 760 }}>
         <span className="section-label">ค่าเสียโอกาส</span>
         <h2
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(22px,5vw,30px)',
+            fontSize: 'clamp(26px, 4vw, 34px)',
             fontWeight: 800,
-            color: 'var(--ink)',
+            color: '#1A1A1A',
             lineHeight: 1.3,
+            letterSpacing: '-0.5px',
             marginBottom: 28,
           }}
         >
@@ -22,26 +22,20 @@ export default function SLossAversion() {
         <div className="flex flex-col gap-3 mb-6">
           {[
             { icon: '💸', text: 'ค่าโฆษณาที่คุณยิงทิ้งไปฟรีๆ เพราะคนเลื่อนผ่าน...' },
-            {
-              icon: '⏰',
-              text: 'ค่าเวลาที่คุณนั่งคิดคอนเทนต์เป็นชั่วโมง แต่จบด้วยความเงียบ...',
-            },
-            {
-              icon: '👥',
-              text: 'ลูกค้ากี่คนที่หลุดมือไปซื้อกับคู่แข่ง เพียงเพราะเขาใช้ "คำ" ที่โดนใจกว่า?',
-            },
+            { icon: '⏰', text: 'ค่าเวลาที่คุณนั่งคิดคอนเทนต์เป็นชั่วโมง แต่จบด้วยความเงียบ...' },
+            { icon: '👥', text: 'ลูกค้ากี่คนที่หลุดมือไปซื้อกับคู่แข่ง เพียงเพราะเขาใช้ "คำ" ที่โดนใจกว่า?' },
           ].map((item) => (
             <div
               key={item.icon}
-              className="flex items-start gap-4 px-5 py-4 rounded-xl"
+              className="flex items-start gap-4 rounded-lg"
               style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid var(--rule)',
-                borderLeft: '4px solid rgba(229,190,99,0.5)',
+                background: '#FFFFFF',
+                borderLeft: '5px solid #E87A3D',
+                padding: '20px 24px',
               }}
             >
               <span style={{ fontSize: 20, flexShrink: 0, marginTop: 1 }}>{item.icon}</span>
-              <p className="text-[15.5px]" style={{ color: 'var(--ink-soft)', lineHeight: 1.65 }}>
+              <p className="text-[15.5px]" style={{ color: '#444444', lineHeight: 1.65 }}>
                 {item.text}
               </p>
             </div>
@@ -50,16 +44,16 @@ export default function SLossAversion() {
 
         {/* Highlight question */}
         <div
-          className="rounded-2xl px-6 py-5"
+          className="rounded-lg"
           style={{
-            background: 'var(--amber-bg)',
-            border: '1px solid rgba(229,190,99,0.3)',
-            borderLeft: '4px solid var(--amber)',
+            background: 'linear-gradient(135deg, #FFF0E6, #FFEBE0)',
+            borderLeft: '5px solid #E87A3D',
+            padding: '24px 28px',
           }}
         >
           <p
             className="text-[17px] font-bold"
-            style={{ color: 'var(--amber)', fontFamily: 'var(--font-heading)', lineHeight: 1.6 }}
+            style={{ color: '#E87A3D', lineHeight: 1.6 }}
           >
             ❓ ความสูญเสียเหล่านี้ แพงกว่า 890 บาทที่คุณจะลงทุนเพื่อแก้ปัญหานี้อย่างถาวรหรือไม่?
           </p>

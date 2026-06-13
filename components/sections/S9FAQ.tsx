@@ -29,24 +29,24 @@ export default function S9FAQ() {
   return (
     <section
       className="px-5 py-20"
-      style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}
+      style={{ background: '#F4EFEA' }}
     >
-      <div className="mx-auto" style={{ maxWidth: 620 }}>
+      <div className="mx-auto" style={{ maxWidth: 760 }}>
         {/* Guarantee banner */}
         <div
-          className="rounded-2xl p-6 mb-12"
+          className="rounded-xl p-6 mb-12"
           style={{
-            background: 'rgba(61,165,169,0.07)',
-            border: '1px solid rgba(61,165,169,0.25)',
+            background: '#EAF7EE',
+            border: '1px solid #A8D8B9',
           }}
         >
           <p
             className="font-bold text-[17px] mb-1"
-            style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)' }}
+            style={{ color: '#3A9E5F' }}
           >
             🛡️ พิสูจน์ด้วยตัวเอง ⬇️ ทดลองอ่านฟรี ∞ ไม่ต้องเสี่ยงจ่ายก่อน
           </p>
-          <p className="text-[15px]" style={{ color: 'var(--ink-soft)', lineHeight: 1.75 }}>
+          <p className="text-[15px]" style={{ color: '#444444', lineHeight: 1.75 }}>
             คุณไม่ต้องรับความเสี่ยงใดๆ เริ่มต้นอ่าน 2 บทแรกได้ฟรี
             เพื่อพิสูจน์ว่า &ldquo;คำ&rdquo; ช่วยเพิ่มยอดขายได้จริง ก่อนตัดสินใจ
           </p>
@@ -55,25 +55,23 @@ export default function S9FAQ() {
         <span className="section-label">คำถามที่พบบ่อย</span>
         <h2
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(22px,5vw,30px)',
+            fontSize: 'clamp(26px, 4vw, 34px)',
             fontWeight: 800,
-            color: 'var(--ink)',
+            color: '#1A1A1A',
             lineHeight: 1.3,
+            letterSpacing: '-0.5px',
             marginBottom: 24,
           }}
         >
           มีคำถามอยู่ในใจ?
         </h2>
 
-        <div style={{ borderTop: '1px solid var(--rule)' }}>
+        <div className="flex flex-col gap-3">
           {faqs.map(({ q, a }) => (
             <details key={q} className="faq-item">
               <summary>
                 <span>{q}</span>
-                <span className="faq-icon" aria-hidden="true">
-                  ›
-                </span>
+                <span className="faq-icon" aria-hidden="true">+</span>
               </summary>
               <p className="faq-a">{a}</p>
             </details>

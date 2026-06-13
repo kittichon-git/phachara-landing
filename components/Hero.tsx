@@ -3,20 +3,11 @@ import LineCTAButton from './LineCTAButton'
 export default function Hero() {
   return (
     <section
-      className="relative px-5 pt-16 pb-20 text-center overflow-hidden"
-      style={{ background: 'var(--bg)' }}
+      id="hero"
+      className="px-5 pt-20 pb-24 text-center"
+      style={{ background: '#FDFBF7' }}
     >
-      {/* Radial amber glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 90% 55% at 50% -5%, rgba(229,190,99,0.13) 0%, transparent 70%)',
-        }}
-        aria-hidden="true"
-      />
-
-      <div className="relative mx-auto" style={{ maxWidth: 660 }}>
+      <div className="mx-auto" style={{ maxWidth: 760 }}>
 
         {/* Badge */}
         <div className="anim-fade-up flex justify-center mb-7">
@@ -29,20 +20,19 @@ export default function Hero() {
         <h1
           className="anim-fade-up-d1"
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(44px, 10vw, 70px)',
-            fontWeight: 900,
-            lineHeight: 1.08,
-            letterSpacing: '-0.025em',
-            color: 'var(--ink)',
+            fontSize: 'clamp(36px, 6vw, 58px)',
+            fontWeight: 800,
+            lineHeight: 1.15,
+            letterSpacing: '-1px',
+            color: '#1A1A1A',
             marginBottom: 20,
           }}
         >
           เปลี่ยนคำธรรมดา
           <br />
-          <span style={{ color: 'var(--amber)' }}>ให้ลูกค้า &ldquo;อยากซื้อ&rdquo;</span>
+          <span style={{ color: '#E87A3D' }}>ให้ลูกค้า &ldquo;อยากซื้อ&rdquo;</span>
           <br />
-          <span style={{ fontSize: '0.75em', fontWeight: 800 }}>ตั้งแต่ประโยคแรก</span>
+          ตั้งแต่ประโยคแรก
         </h1>
 
         {/* Subheadline */}
@@ -51,41 +41,15 @@ export default function Hero() {
           style={{
             fontSize: 18,
             lineHeight: 1.75,
-            color: 'var(--ink-soft)',
+            color: '#666666',
             marginBottom: 32,
-            maxWidth: 480,
+            maxWidth: 500,
           }}
         >
           สูตรลับการใช้{' '}
-          <strong style={{ color: 'var(--ink)' }}>&ldquo;คำ&rdquo;</strong>{' '}
+          <strong style={{ color: '#1A1A1A' }}>&ldquo;คำ&rdquo;</strong>{' '}
           ที่ช่วยให้ปิดการขายได้ แม้ไม่เคยเขียนโฆษณามาก่อน
         </p>
-
-        {/* Chip row */}
-        <div className="anim-fade-up-d2 flex items-center justify-center gap-2 flex-wrap mb-10">
-          {[
-            { label: 'สะกดสายตา', icon: '👁️' },
-            { label: 'สร้างความเชื่อใจ', icon: '🛡️' },
-            { label: 'ลูกค้าอยากซื้อเอง', icon: '🛒' },
-          ].map((chip, i) => (
-            <span key={chip.label} className="flex items-center gap-2">
-              <span
-                className="flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold"
-                style={{
-                  background: 'var(--teal-bg)',
-                  color: 'var(--teal)',
-                  border: '1px solid rgba(61,165,169,0.35)',
-                }}
-              >
-                <span>{chip.icon}</span>
-                {chip.label}
-              </span>
-              {i < 2 && (
-                <span style={{ color: 'var(--amber)', fontSize: 14 }}>→</span>
-              )}
-            </span>
-          ))}
-        </div>
 
         {/* Primary CTA */}
         <div className="anim-fade-up-d3 flex flex-col items-center gap-3 mb-8">
@@ -98,75 +62,65 @@ export default function Hero() {
         </div>
 
         {/* Trust badges */}
-        <div className="anim-fade-up-d3 flex flex-wrap justify-center gap-2 mb-12">
-          {['📚 7 ภาค 24 บท', '🎁 โบนัส 5 ชุด', '🛡 คืนเงิน 7 วัน'].map(
-            (b) => (
-              <span
-                key={b}
-                className="px-3 py-1.5 rounded-full text-[12.5px]"
-                style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid var(--rule)',
-                  color: 'var(--ink-mute)',
-                }}
-              >
-                {b}
-              </span>
-            ),
-          )}
+        <div className="anim-fade-up-d3 flex flex-wrap justify-center gap-2 mb-14">
+          {['📚 7 ภาค 24 บท', '🎁 โบนัส 5 ชุด', '🛡 คืนเงิน 7 วัน'].map((b) => (
+            <span
+              key={b}
+              className="px-3 py-1.5 rounded-full text-[12.5px]"
+              style={{
+                border: '1.5px solid #E5DDD5',
+                color: '#666666',
+              }}
+            >
+              {b}
+            </span>
+          ))}
         </div>
 
-        {/* Terminal demo block */}
+        {/* Before / After comparison — reference style */}
         <div
-          className="anim-fade-up-d4 terminal mx-auto text-left"
-          style={{ maxWidth: 520 }}
+          className="anim-fade-up-d4 mx-auto text-left"
+          style={{
+            maxWidth: 540,
+            background: '#FFFFFF',
+            border: '1px solid #E5DDD5',
+            borderRadius: 12,
+            overflow: 'hidden',
+            boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
+          }}
         >
-          <div className="terminal-bar">
-            <span className="terminal-dot" style={{ background: '#ff5f56' }} />
-            <span className="terminal-dot" style={{ background: '#ffbd2e' }} />
-            <span className="terminal-dot" style={{ background: '#27c93f' }} />
-            <span
-              className="ml-2 text-[11px] font-medium"
-              style={{ color: 'var(--ink-mute)' }}
+          {/* Before */}
+          <div
+            className="px-6 py-5"
+            style={{ borderBottom: '1px solid #E5DDD5' }}
+          >
+            <p
+              className="text-[11px] font-bold tracking-widest uppercase mb-2.5"
+              style={{ color: '#D94040' }}
             >
-              โพสต์ก่อน vs หลัง
-            </span>
+              ❌ คำที่ใช้อยู่
+            </p>
+            <p className="text-[15px] leading-relaxed" style={{ color: '#666666' }}>
+              เซรั่มเข้มข้น Vitamin C 20% ลดเลือนจุดด่างดำ ผิวกระจ่างใส
+            </p>
           </div>
-          <div className="p-5 flex flex-col gap-5">
-            <div>
-              <p
-                className="text-[10px] font-bold tracking-[0.16em] uppercase mb-2.5"
-                style={{ color: 'var(--rust)' }}
-              >
-                ❌ คำที่ใช้อยู่
-              </p>
-              <p
-                className="text-[14.5px] leading-relaxed"
-                style={{ color: 'var(--ink-mute)' }}
-              >
-                เซรั่มเข้มข้น Vitamin C 20% ลดเลือนจุดด่างดำ ผิวกระจ่างใส
-              </p>
-            </div>
-            <div className="pt-5" style={{ borderTop: '1px solid var(--rule)' }}>
-              <p
-                className="text-[10px] font-bold tracking-[0.16em] uppercase mb-2.5"
-                style={{ color: 'var(--teal)' }}
-              >
-                ✅ คำที่ใช้แทน
-              </p>
-              <p
-                className="text-[14.5px] leading-relaxed"
-                style={{ color: 'var(--ink)' }}
-              >
-                ส่องกระจกตอนเช้าแล้วเจอจุดด่างดำที่เพิ่งโผล่?
-                ขวดนี้คือตัวที่ลูกค้าซื้อซ้ำบ่อยสุด
-              </p>
-            </div>
+          {/* After */}
+          <div className="px-6 py-5">
+            <p
+              className="text-[11px] font-bold tracking-widest uppercase mb-2.5"
+              style={{ color: '#3A9E5F' }}
+            >
+              ✅ คำที่ใช้แทน
+            </p>
+            <p className="text-[15px] leading-relaxed" style={{ color: '#1A1A1A' }}>
+              ส่องกระจกตอนเช้าแล้วเจอจุดด่างดำที่เพิ่งโผล่?
+              ขวดนี้คือตัวที่ลูกค้าซื้อซ้ำบ่อยสุด
+            </p>
           </div>
         </div>
 
         {/* Scroll cue */}
-        <p className="mt-10 text-[13px]" style={{ color: 'var(--ink-mute)' }}>
+        <p className="mt-10 text-[13px]" style={{ color: '#666666' }}>
           ↓ ถ้าโพสต์ยังเงียบ ปัญหาไม่ได้อยู่ที่สินค้า
         </p>
 

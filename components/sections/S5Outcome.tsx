@@ -52,17 +52,17 @@ export default function S5Outcome() {
   return (
     <section
       className="px-5 py-20"
-      style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}
+      style={{ background: '#F4EFEA' }}
     >
-      <div className="mx-auto" style={{ maxWidth: 620 }}>
+      <div className="mx-auto" style={{ maxWidth: 960 }}>
         <span className="section-label">เสียงตอบรับจริง</span>
         <h2
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(22px,5vw,30px)',
+            fontSize: 'clamp(26px, 4vw, 34px)',
             fontWeight: 800,
-            color: 'var(--ink)',
+            color: '#1A1A1A',
             lineHeight: 1.3,
+            letterSpacing: '-0.5px',
             marginBottom: 28,
           }}
         >
@@ -73,44 +73,40 @@ export default function S5Outcome() {
           {testimonials.map((t) => (
             <div
               key={t.id}
-              className="card"
-              style={{ borderLeft: '3px solid rgba(61,165,169,0.5)' }}
+              style={{
+                background: '#FFFFFF',
+                borderRadius: 16,
+                padding: 32,
+                boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
+                borderLeft: '3px solid #E87A3D',
+              }}
             >
-              <div className="flex gap-4 items-start">
+              {/* Quote */}
+              <p
+                className="text-[16px] font-semibold mb-4 italic"
+                style={{ color: '#1A1A1A', borderLeft: '3px solid #E87A3D', paddingLeft: 16, lineHeight: 1.7 }}
+              >
+                &ldquo;{t.pullQuote}&rdquo;
+              </p>
+              <div className="flex gap-4 items-center">
                 {/* Avatar */}
-                <div className="shrink-0">
-                  <Image
-                    src={t.image}
-                    alt={t.imageAlt}
-                    width={52}
-                    height={52}
-                    className="rounded-xl object-cover"
-                    style={{ width: 52, height: 52 }}
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  {/* Quote */}
-                  <p
-                    className="text-[15.5px] font-semibold mb-2.5 leading-snug"
-                    style={{ color: 'var(--ink)', fontFamily: 'var(--font-heading)' }}
-                  >
-                    &ldquo;{t.pullQuote}&rdquo;
-                  </p>
-                  {/* Attribution */}
-                  <div
-                    className="flex flex-wrap items-center gap-1 text-[12.5px] mb-2"
-                    style={{ color: 'var(--ink-mute)' }}
-                  >
-                    <span className="font-semibold" style={{ color: 'var(--ink-soft)' }}>
-                      {t.name}
-                    </span>
+                <Image
+                  src={t.image}
+                  alt={t.imageAlt}
+                  width={48}
+                  height={48}
+                  className="rounded-xl object-cover shrink-0"
+                  style={{ width: 48, height: 48 }}
+                />
+                <div>
+                  <div className="flex items-center gap-1 text-[13px]" style={{ color: '#666666' }}>
+                    <span className="font-semibold" style={{ color: '#1A1A1A' }}>{t.name}</span>
                     <span>·</span>
                     <span>{t.bio}</span>
                   </div>
-                  {/* Change point pill */}
                   <span
-                    className="inline-block text-[12px] px-2.5 py-1 rounded-lg"
-                    style={{ background: 'var(--teal-bg)', color: 'var(--teal)' }}
+                    className="inline-block text-[12px] mt-1 px-2.5 py-1 rounded-lg"
+                    style={{ background: '#EAF7EE', color: '#3A9E5F' }}
                   >
                     ↳ {t.changePoint}
                   </span>

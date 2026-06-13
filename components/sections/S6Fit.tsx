@@ -15,17 +15,17 @@ export default function S6Fit() {
   return (
     <section
       className="px-5 py-20"
-      style={{ background: 'var(--bg)', borderTop: '1px solid var(--rule)' }}
+      style={{ background: '#F4EFEA' }}
     >
-      <div className="mx-auto" style={{ maxWidth: 680 }}>
+      <div className="mx-auto" style={{ maxWidth: 760 }}>
         <span className="section-label">เช็กก่อนตัดสินใจ</span>
         <h2
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(22px,5vw,30px)',
+            fontSize: 'clamp(26px, 4vw, 34px)',
             fontWeight: 800,
-            color: 'var(--ink)',
+            color: '#1A1A1A',
             lineHeight: 1.3,
+            letterSpacing: '-0.5px',
             marginBottom: 24,
           }}
         >
@@ -38,18 +38,18 @@ export default function S6Fit() {
         >
           {/* For */}
           <div
-            className="rounded-2xl p-6"
+            className="rounded-xl"
             style={{
-              background: 'rgba(61,165,169,0.06)',
-              border: '1.5px solid rgba(61,165,169,0.3)',
+              background: '#EAF7EE',
+              border: '1.5px solid #A8D8B9',
+              padding: '28px 24px',
             }}
           >
             <div
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl mb-5"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-lg mb-5"
               style={{
-                background: 'var(--teal)',
+                background: '#3A9E5F',
                 color: '#fff',
-                fontFamily: 'var(--font-heading)',
                 fontWeight: 800,
                 fontSize: 15,
               }}
@@ -61,9 +61,9 @@ export default function S6Fit() {
                 <li
                   key={item}
                   className="flex items-start gap-3 text-[14.5px]"
-                  style={{ color: 'var(--ink-soft)', lineHeight: 1.6 }}
+                  style={{ color: '#444444', lineHeight: 1.6 }}
                 >
-                  <span style={{ color: 'var(--teal)', flexShrink: 0, marginTop: 3 }}>✓</span>
+                  <span style={{ color: '#3A9E5F', flexShrink: 0, marginTop: 3 }}>✓</span>
                   {item}
                 </li>
               ))}
@@ -72,18 +72,18 @@ export default function S6Fit() {
 
           {/* Not for */}
           <div
-            className="rounded-2xl p-6"
+            className="rounded-xl"
             style={{
-              background: 'rgba(194,84,42,0.05)',
-              border: '1.5px solid rgba(194,84,42,0.25)',
+              background: '#FDEAEA',
+              border: '1.5px solid #F0AAAA',
+              padding: '28px 24px',
             }}
           >
             <div
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl mb-5"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-lg mb-5"
               style={{
-                background: 'var(--rust)',
+                background: '#D94040',
                 color: '#fff',
-                fontFamily: 'var(--font-heading)',
                 fontWeight: 800,
                 fontSize: 15,
               }}
@@ -95,7 +95,7 @@ export default function S6Fit() {
                 <li
                   key={item}
                   className="flex items-start gap-3 text-[14.5px]"
-                  style={{ color: 'var(--ink-mute)', lineHeight: 1.6 }}
+                  style={{ color: '#666666', lineHeight: 1.6 }}
                 >
                   <span style={{ flexShrink: 0, marginTop: 3 }}>✕</span>
                   {item}

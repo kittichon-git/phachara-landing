@@ -29,17 +29,17 @@ export default function S4Mechanism() {
   return (
     <section
       className="px-5 py-20"
-      style={{ background: 'var(--bg)', borderTop: '1px solid var(--rule)' }}
+      style={{ background: '#FDFBF7' }}
     >
-      <div className="mx-auto" style={{ maxWidth: 620 }}>
+      <div className="mx-auto" style={{ maxWidth: 760 }}>
         <span className="section-label">วิธีใหม่</span>
         <h2
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(22px,5vw,30px)',
+            fontSize: 'clamp(26px, 4vw, 34px)',
             fontWeight: 800,
-            color: 'var(--ink)',
+            color: '#1A1A1A',
             lineHeight: 1.3,
+            letterSpacing: '-0.5px',
             marginBottom: 12,
           }}
         >
@@ -48,38 +48,48 @@ export default function S4Mechanism() {
 
         <div className="flex flex-col gap-5 mt-8">
           {steps.map((s) => (
-            <div key={s.n} className="card flex gap-5">
+            <div
+              key={s.n}
+              style={{
+                background: '#FFFFFF',
+                borderRadius: 12,
+                padding: '18px 22px',
+                display: 'flex',
+                gap: 18,
+                boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
+              }}
+            >
               <div className="step-num">{s.n}</div>
               <div className="flex-1 min-w-0">
                 <p
                   className="font-bold text-[17px] mb-2"
-                  style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)' }}
+                  style={{ color: '#3A9E5F' }}
                 >
                   {s.icon} {s.title}
                 </p>
-                <p className="text-[15px] mb-4" style={{ color: 'var(--ink-soft)', lineHeight: 1.7 }}>
+                <p className="text-[15px] mb-4" style={{ color: '#666666', lineHeight: 1.7 }}>
                   {s.body}
                 </p>
                 <div
                   className="rounded-xl overflow-hidden"
-                  style={{ border: '1px solid var(--rule)' }}
+                  style={{ border: '1px solid #E5DDD5' }}
                 >
                   <div
                     className="flex items-center gap-2 px-4 py-2.5"
-                    style={{ borderBottom: '1px solid var(--rule)', background: 'rgba(255,255,255,0.03)' }}
+                    style={{ borderBottom: '1px solid #E5DDD5', background: '#F4EFEA' }}
                   >
-                    <span className="text-[10px] font-bold tracking-widest uppercase" style={{ color: 'var(--rust)' }}>
+                    <span className="text-[10px] font-bold tracking-widest uppercase" style={{ color: '#D94040' }}>
                       ❌ ก่อน
                     </span>
-                    <span className="text-[13px]" style={{ color: 'var(--ink-mute)' }}>
+                    <span className="text-[13px]" style={{ color: '#666666' }}>
                       {s.before}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 px-4 py-2.5">
-                    <span className="text-[10px] font-bold tracking-widest uppercase" style={{ color: 'var(--teal)' }}>
+                  <div className="flex items-center gap-2 px-4 py-2.5" style={{ background: '#FFFFFF' }}>
+                    <span className="text-[10px] font-bold tracking-widest uppercase" style={{ color: '#3A9E5F' }}>
                       ✅ หลัง
                     </span>
-                    <span className="text-[13px]" style={{ color: 'var(--ink-soft)' }}>
+                    <span className="text-[13px]" style={{ color: '#1A1A1A' }}>
                       {s.after}
                     </span>
                   </div>
