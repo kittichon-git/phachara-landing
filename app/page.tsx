@@ -16,13 +16,13 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <main id="hero">
+      <main>
         <Hero />
         <S3Relevance />
         <S4Mechanism />
         <S5Outcome />
-        <S7Curriculum />
         <S6Fit />
+        <S7Curriculum />
         <SLossAversion />
         <S8Offer />
         <S9FAQ />

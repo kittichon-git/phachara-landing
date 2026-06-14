@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { lineUrl } from '@/lib/constants'
-import { trackCtaClick } from '@/lib/analytics'
+import { fireCTAEvents } from '@/lib/track'
 
 export default function StickyLineCTA() {
   const [visible, setVisible] = useState(false)
@@ -21,6 +21,10 @@ export default function StickyLineCTA() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  function handleClick() {
+    fireCTAEvents('sticky')
+  }
+
   if (!visible) return null
 
   return (
@@ -29,7 +33,8 @@ export default function StickyLineCTA() {
         href={lineUrl('sticky')}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => trackCtaClick('sticky')}
+        data-cta-position="sticky"
+        onClick={handleClick}
         className="flex items-center gap-3 rounded-[16px] px-4 py-3 w-full"
         style={{
           background: 'var(--line-green)',
@@ -44,22 +49,17 @@ export default function StickyLineCTA() {
             height: 36,
             background: 'white',
             color: 'var(--line-green)',
-            fontFamily: 'var(--font-heading)',
+            fontFamily: 'var(--font-body)',
           }}
           aria-hidden="true"
         >
           LINE
         </span>
-        <div>
-          <div
-            className="font-semibold text-[14px] leading-none mb-0.5"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            เริ่มอ่านฟรี 2 บทแรกใน LINE
-          </div>
-          <div className="text-[11px]" style={{ color: 'rgba(255,255,255,0.8)' }}>
-            ไม่ต้องกรอกบัตร · อ่านได้เลย
-          </div>
+        <div
+          className="font-semibold text-[14px]"
+          style={{ fontFamily: 'var(--font-body)' }}
+        >
+          อ่านฟรี 2 บท ใน LINE
         </div>
         <span
           className="ml-auto font-semibold text-[16px]"

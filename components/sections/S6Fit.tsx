@@ -1,6 +1,6 @@
 const forItems = [
   'มีสินค้าดี แต่โพสต์ขายแล้วยอดขายไม่นิ่ง',
-  'ขยันโพสต์ แต่รู้สึกว่าตัวเองกำลัง "อธิบายสินค้า" มากกว่า "ทำให้อยากซื้อ"',
+  <>ขยันโพสต์ แต่รู้สึกว่าตัวเองกำลัง<br /><span className="thai-nowrap">&ldquo;อธิบายสินค้า&rdquo;</span>{' '}มากกว่า{' '}<span className="thai-nowrap">&ldquo;ทำให้อยากซื้อ&rdquo;</span></>,
   'อยากได้สูตรและ Template ไปปรับใช้ทันที ไม่อยากเริ่มจากกระดาษเปล่า',
   'อยากให้ลูกค้าทักมาด้วยความอยากได้ ไม่ใช่ทักมาเพราะโดนตื๊อ',
 ]
@@ -13,95 +13,105 @@ const notForItems = [
 
 export default function S6Fit() {
   return (
-    <section
-      className="px-5 py-20"
-      style={{ background: '#F4EFEA' }}
-    >
-      <div className="mx-auto" style={{ maxWidth: 760 }}>
-        <span className="section-label">เช็กก่อนตัดสินใจ</span>
-        <h2
-          style={{
-            fontSize: 'clamp(26px, 4vw, 34px)',
-            fontWeight: 800,
-            color: '#1A1A1A',
-            lineHeight: 1.3,
-            letterSpacing: '-0.5px',
-            marginBottom: 24,
-          }}
-        >
-          เช็คก่อนว่าบทเรียนนี้เหมาะกับคุณไหม?
-        </h2>
+    <section id="fit" style={{ padding: '80px 24px', background: '#F4EFEA' }}>
+      <div style={{ maxWidth: 760, margin: '0 auto' }}>
+
+        {/* No section-label — reference doesn't have one for fit */}
+        <div className="text-center">
+          <h2
+            style={{
+              fontSize: 'clamp(26px, 4vw, 34px)',
+              fontWeight: 800,
+              letterSpacing: '-0.5px',
+              marginBottom: 16,
+            }}
+          >
+            เช็คก่อนว่าบทเรียนนี้เหมาะกับคุณไหม?
+          </h2>
+        </div>
 
         <div
-          className="grid gap-4"
-          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: 24,
+            marginTop: 36,
+          }}
         >
-          {/* For */}
+          {/* Yes box */}
           <div
-            className="rounded-xl"
             style={{
               background: '#EAF7EE',
               border: '1.5px solid #A8D8B9',
+              borderRadius: 12,
               padding: '28px 24px',
             }}
           >
             <div
-              className="flex items-center gap-2 px-4 py-2.5 rounded-lg mb-5"
               style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                fontSize: 16,
+                fontWeight: 800,
+                padding: '10px 16px',
+                borderRadius: 8,
+                marginBottom: 20,
                 background: '#3A9E5F',
                 color: '#fff',
-                fontWeight: 800,
-                fontSize: 15,
               }}
             >
               ✅ เหมาะมาก ถ้าคุณ:
             </div>
-            <ul className="flex flex-col gap-3">
-              {forItems.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 text-[14.5px]"
-                  style={{ color: '#444444', lineHeight: 1.6 }}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {forItems.map((item, i) => (
+                <div
+                  key={i}
+                  style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15, lineHeight: 1.55 }}
                 >
-                  <span style={{ color: '#3A9E5F', flexShrink: 0, marginTop: 3 }}>✓</span>
+                  <span style={{ fontSize: 16, marginTop: 2, flexShrink: 0 }}>✅</span>
                   {item}
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
-          {/* Not for */}
+          {/* No box */}
           <div
-            className="rounded-xl"
             style={{
               background: '#FDEAEA',
               border: '1.5px solid #F0AAAA',
+              borderRadius: 12,
               padding: '28px 24px',
             }}
           >
             <div
-              className="flex items-center gap-2 px-4 py-2.5 rounded-lg mb-5"
               style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                fontSize: 16,
+                fontWeight: 800,
+                padding: '10px 16px',
+                borderRadius: 8,
+                marginBottom: 20,
                 background: '#D94040',
                 color: '#fff',
-                fontWeight: 800,
-                fontSize: 15,
               }}
             >
               ❌ ไม่เหมาะเลย ถ้าคุณ:
             </div>
-            <ul className="flex flex-col gap-3">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {notForItems.map((item) => (
-                <li
+                <div
                   key={item}
-                  className="flex items-start gap-3 text-[14.5px]"
-                  style={{ color: '#666666', lineHeight: 1.6 }}
+                  style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15, lineHeight: 1.55 }}
                 >
-                  <span style={{ flexShrink: 0, marginTop: 3 }}>✕</span>
+                  <span style={{ fontSize: 16, marginTop: 2, flexShrink: 0 }}>❌</span>
                   {item}
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </div>

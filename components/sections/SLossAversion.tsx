@@ -1,61 +1,53 @@
 export default function SLossAversion() {
   return (
     <section
-      className="px-5 py-20"
-      style={{ background: 'linear-gradient(135deg, #FFF0E6 0%, #FFE8DC 100%)' }}
+      id="loss-aversion"
+      style={{ padding: '80px 24px', background: 'linear-gradient(135deg, #FFF0E6 0%, #FFE8DC 100%)' }}
     >
-      <div className="mx-auto" style={{ maxWidth: 760 }}>
-        <span className="section-label">ค่าเสียโอกาส</span>
+      <div style={{ maxWidth: 760, margin: '0 auto' }}>
         <h2
           style={{
             fontSize: 'clamp(26px, 4vw, 34px)',
             fontWeight: 800,
-            color: '#1A1A1A',
-            lineHeight: 1.3,
             letterSpacing: '-0.5px',
-            marginBottom: 28,
+            marginBottom: 32,
           }}
         >
           ค่าเสียโอกาสที่คุณกำลังจ่ายอยู่ทุกวัน
         </h2>
 
-        <div className="flex flex-col gap-3 mb-6">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
           {[
-            { icon: '💸', text: 'ค่าโฆษณาที่คุณยิงทิ้งไปฟรีๆ เพราะคนเลื่อนผ่าน...' },
-            { icon: '⏰', text: 'ค่าเวลาที่คุณนั่งคิดคอนเทนต์เป็นชั่วโมง แต่จบด้วยความเงียบ...' },
-            { icon: '👥', text: 'ลูกค้ากี่คนที่หลุดมือไปซื้อกับคู่แข่ง เพียงเพราะเขาใช้ "คำ" ที่โดนใจกว่า?' },
-          ].map((item) => (
+            '💸 ค่าโฆษณาที่คุณยิงทิ้งไปฟรีๆ เพราะคนเลื่อนผ่าน...',
+            '⏰ ค่าเวลาที่คุณนั่งคิดคอนเทนต์เป็นชั่วโมง แต่จบด้วยความเงียบ...',
+            '👥 ลูกค้ากี่คนที่หลุดมือไปซื้อกับคู่แข่ง เพียงเพราะเขาใช้ "คำ" ที่โดนใจกว่า?',
+          ].map((text) => (
             <div
-              key={item.icon}
-              className="flex items-start gap-4 rounded-lg"
+              key={text}
               style={{
                 background: '#FFFFFF',
                 borderLeft: '5px solid #E87A3D',
+                borderRadius: 8,
                 padding: '20px 24px',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
               }}
             >
-              <span style={{ fontSize: 20, flexShrink: 0, marginTop: 1 }}>{item.icon}</span>
-              <p className="text-[15.5px]" style={{ color: '#444444', lineHeight: 1.65 }}>
-                {item.text}
-              </p>
+              <p className="thai-pretty" style={{ fontSize: 16, lineHeight: 1.6, color: '#1A1A1A', margin: 0 }}>{text}</p>
             </div>
           ))}
         </div>
 
-        {/* Highlight question */}
         <div
-          className="rounded-lg"
           style={{
-            background: 'linear-gradient(135deg, #FFF0E6, #FFEBE0)',
+            background: 'linear-gradient(135deg, #FFF0E6 0%, #FFEBE0 100%)',
             borderLeft: '5px solid #E87A3D',
+            borderRadius: 8,
             padding: '24px 28px',
+            marginTop: 8,
           }}
         >
-          <p
-            className="text-[17px] font-bold"
-            style={{ color: '#E87A3D', lineHeight: 1.6 }}
-          >
-            ❓ ความสูญเสียเหล่านี้ แพงกว่า 890 บาทที่คุณจะลงทุนเพื่อแก้ปัญหานี้อย่างถาวรหรือไม่?
+          <p style={{ fontSize: 18, fontWeight: 700, color: '#E87A3D', lineHeight: 1.6, margin: 0, textWrap: 'pretty' }}>
+            ความสูญเสียเหล่านี้ แพงกว่า 890 บาทที่คุณจะลงทุนเพื่อแก้ปัญหานี้อย่างถาวรหรือไม่?
           </p>
         </div>
       </div>

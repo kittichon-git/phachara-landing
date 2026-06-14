@@ -1,7 +1,9 @@
 'use client'
 
+import { COURSE } from './constants'
+
 // ── sp_* behavior event layer ─────────────────────────────────────────────────
-// Used by: /tiktok bridge (TikTokBridgeContent, TikTokBridgeCta)
+// Used by: /tiktok bridge (TikTokBridgeContent)
 
 function getSpSessionId(): string {
   try {
@@ -50,4 +52,20 @@ export function trackSpEvent(
   if (typeof window.clarity === 'function') {
     window.clarity('event', eventName)
   }
+}
+
+// ── Canonical CTA event set — single source of truth for all CTA buttons ─────
+// sp_cta_click + line_add + generate_lead (GA4) + Lead (Meta) + ClickButton (TikTok)
+export function fireCTAEvents(position: string): void {
+  if (typeof window === 'undefined') return
+  trackSpEvent('sp_cta_click', { cta_location: position })
+  trackSpEvent('line_add', { cta_location: position })
+  window.gtag?.('event', 'generate_lead', {
+    value: COURSE.price,
+    currency: COURSE.currency,
+    event_category: 'cta_click',
+    event_label: position,
+  })
+  window.fbq?.('track', 'Lead')
+  window.ttq?.track?.('ClickButton', { content_name: 'LINE CTA', content_category: position })
 }

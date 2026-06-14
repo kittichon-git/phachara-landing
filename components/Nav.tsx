@@ -1,45 +1,73 @@
+'use client'
+
 import { lineUrl } from '@/lib/constants'
+import { fireCTAEvents } from '@/lib/track'
 
 export default function Nav() {
+  function handleCtaClick() {
+    fireCTAEvents('nav')
+  }
+
   return (
     <nav
-      className="sticky top-0 z-50"
+      className="sticky top-0 z-50 flex items-center justify-between"
       style={{
         background: '#FDFBF7',
         borderBottom: '1px solid #E5DDD5',
+        padding: '0 40px',
         height: 60,
       }}
       aria-label="เมนูหลัก"
     >
-      <div
-        className="flex items-center justify-between mx-auto px-10"
-        style={{ maxWidth: 760, height: '100%' }}
+      <a
+        href="#"
+        className="no-underline"
+        style={{ fontSize: 20, fontWeight: 800, color: '#1A1A1A', letterSpacing: '-0.5px' }}
+        aria-label="แค่เปลี่ยนคำ ก็ทำเงิน — กลับหน้าแรก"
       >
-        <a
-          href="#"
-          className="flex items-center gap-2 no-underline font-bold text-[15px]"
-          style={{ color: '#1A1A1A' }}
-          aria-label="แค่เปลี่ยนคำ ก็ทำเงิน — กลับหน้าแรก"
-        >
-          <span aria-hidden="true" style={{ color: '#E87A3D' }}>✦</span>
-          <span>เปลี่ยนคำ ก็ทำเงิน</span>
-        </a>
-        <a
-          href={lineUrl('nav')}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 font-semibold text-[13px] transition-all"
-          style={{
-            background: '#E87A3D',
-            color: 'white',
-            padding: '9px 22px',
-            borderRadius: 8,
-            boxShadow: '0 4px 16px rgba(232,122,61,0.3)',
-          }}
-        >
-          เรียนฟรี 2 บท →
-        </a>
-      </div>
+        <span style={{ color: '#E87A3D' }}>คำ</span>ทำเงิน
+      </a>
+
+      <ul
+        className="hidden md:flex gap-7 list-none"
+        style={{ margin: 0, padding: 0 }}
+        aria-label="ลิงก์ในหน้า"
+      >
+        {[
+          { href: '#problem', label: 'ปัญหา' },
+          { href: '#curriculum', label: 'เนื้อหา' },
+          { href: '#proof', label: 'รีวิว' },
+          { href: '#offer', label: 'ราคา' },
+        ].map((l) => (
+          <li key={l.href}>
+            <a
+              href={l.href}
+              className="no-underline transition-colors"
+              style={{ color: '#666666', fontSize: 15, fontWeight: 500 }}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        href={lineUrl('nav')}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleCtaClick}
+        className="no-underline transition-colors"
+        style={{
+          background: '#E87A3D',
+          color: '#fff',
+          padding: '9px 22px',
+          borderRadius: 8,
+          fontWeight: 700,
+          fontSize: 15,
+        }}
+      >
+        เริ่มอ่านฟรี
+      </a>
     </nav>
   )
 }
