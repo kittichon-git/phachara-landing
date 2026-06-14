@@ -67,10 +67,12 @@ export default function S6Fit() {
               {forItems.map((item, i) => (
                 <div
                   key={i}
-                  style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15, lineHeight: 1.55 }}
+                  style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15 }}
                 >
                   <span style={{ fontSize: 16, marginTop: 2, flexShrink: 0 }}>✅</span>
-                  {item}
+                  <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-word', lineHeight: 1.65 }}>
+                    {item}
+                  </span>
                 </div>
               ))}
             </div>
@@ -102,13 +104,15 @@ export default function S6Fit() {
               ❌ ไม่เหมาะเลย ถ้าคุณ:
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {notForItems.map((item) => (
+              {notForItems.map((item, i) => (
                 <div
-                  key={item}
-                  style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15, lineHeight: 1.55 }}
+                  key={i}
+                  style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15 }}
                 >
                   <span style={{ fontSize: 16, marginTop: 2, flexShrink: 0 }}>❌</span>
-                  {item}
+                  <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-word', lineHeight: 1.65 }}>
+                    {item}
+                  </span>
                 </div>
               ))}
             </div>
