@@ -55,7 +55,9 @@ export function trackSpEvent(
 }
 
 // ── Canonical CTA event set — single source of truth for all CTA buttons ─────
-// sp_cta_click + line_add + generate_lead (GA4) + Lead (Meta) + ClickButton (TikTok)
+// sp_cta_click + line_add + generate_lead (GA4)
+// LINE_ADD + Lead (Meta custom + standard)
+// ClickButton (TikTok)
 export function fireCTAEvents(position: string): void {
   if (typeof window === 'undefined') return
   trackSpEvent('sp_cta_click', { cta_location: position })
@@ -66,6 +68,19 @@ export function fireCTAEvents(position: string): void {
     event_category: 'cta_click',
     event_label: position,
   })
-  window.fbq?.('track', 'Lead')
+  window.fbq?.('trackCustom', 'LINE_ADD', {
+    content_name: 'LINE OA Signup',
+    content_category: 'Lead Generation',
+    currency: 'THB',
+    value: 0,
+    cta_location: position,
+  })
+  window.fbq?.('track', 'Lead', {
+    content_name: 'LINE OA Signup',
+    content_category: 'Lead Generation',
+    currency: 'THB',
+    value: 0,
+    cta_location: position,
+  })
   window.ttq?.track?.('ClickButton', { content_name: 'LINE CTA', content_category: position })
 }
