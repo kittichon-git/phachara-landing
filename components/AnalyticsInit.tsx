@@ -14,17 +14,6 @@ export default function AnalyticsInit() {
     const t3 = setTimeout(() => trackSpEvent('sp_3s_active'), 3000)
     const t10 = setTimeout(() => trackSpEvent('sp_10s_active'), 10000)
 
-    // CTA click tracking via event delegation on data-cta-position elements
-    function onCTAClick(e: MouseEvent) {
-      const el = (e.target as Element).closest('[data-cta-position]')
-      if (el) {
-        track('sp_cta_click', { position: el.getAttribute('data-cta-position') as never })
-        track('sp_line_redirect')
-        gtagEvent('sp_cta_click', { position: el.getAttribute('data-cta-position') })
-      }
-    }
-    document.addEventListener('click', onCTAClick)
-
     // Scroll depth
     const fired = new Set<string>()
     function onScroll() {
@@ -56,7 +45,6 @@ export default function AnalyticsInit() {
     return () => {
       clearTimeout(t3)
       clearTimeout(t10)
-      document.removeEventListener('click', onCTAClick)
       window.removeEventListener('scroll', onScroll)
       ctaObserver.disconnect()
     }
