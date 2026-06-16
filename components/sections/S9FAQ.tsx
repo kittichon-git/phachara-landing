@@ -1,61 +1,73 @@
 const faqs = [
-  { q: 'เป็นวิดีโอ หรือเนื้อหาอ่าน?', a: 'เป็นเนื้อหาอ่านออนไลน์ ออกแบบให้อ่านสั้นๆ และหยิบ template ไปใช้ได้เร็วกว่าเปิดดูวิดีโอยาว' },
-  { q: 'ไม่มีพื้นฐานเขียนหรือการตลาด เรียนได้ไหม?', a: 'ได้ครับ เนื้อหาให้สูตร + ตัวอย่างก่อน–หลัง เพื่อให้เริ่มปรับคำกับสินค้าของตัวเองได้' },
-  { q: 'อ่านบนมือถือได้ไหม มีวันหมดอายุไหม?', a: 'อ่านได้บนมือถือผ่าน LINE / browser และเข้าถึงได้ตลอดชีพ' },
-  { q: 'มีตัวอย่างให้เอาไปใช้เลยไหม?', a: 'มีครบ ทั้ง 100+ Template, 50+ Hook Formulas และ Prompt Library 30 ชุด' },
-  { q: 'ใช้กับลูกค้าคนไทยได้จริงไหม?', a: 'ตัวอย่างเขียนจากบริบทการขายของออนไลน์ในไทย เน้นภาษาที่คนไทยอ่านแล้วเข้าใจง่าย' },
-  { q: 'จ่ายผ่านอะไรได้บ้าง?', a: 'PromptPay (QR) หรือบัตรเครดิต/เดบิต — ปลอดภัยตามมาตรฐาน PCI' },
+  {
+    q: '1. เป็นวิดีโอ หรือเนื้อหาอ่าน?',
+    a: 'เป็นเนื้อหาอ่านออนไลน์ ออกแบบให้อ่านสั้นๆ และหยิบ Template ไปใช้ได้เร็วกว่าการเปิดดูวิดีโอยาวๆ',
+  },
+  {
+    q: '2. ไม่มีพื้นฐานเขียนหรือการตลาด เรียนได้ไหม?',
+    a: 'ได้ครับ เนื้อหาให้สูตร + ตัวอย่างก่อน–หลัง เพื่อให้เริ่มปรับคำกับสินค้าของตัวเองได้ทันที',
+  },
+  {
+    q: '3. อ่านบนมือถือได้ไหม มีวันหมดอายุไหม?',
+    a: 'อ่านได้บนมือถือผ่าน LINE / Browser และเข้าถึงได้ตลอดชีพ',
+  },
+  {
+    q: '4. มีตัวอย่างให้เอาไปใช้เลยไหม?',
+    a: 'มีครบ ทั้ง 100+ Template, 50+ Hook Formulas และ Prompt Library 30 ชุด',
+  },
+  {
+    q: '5. ใช้กับลูกค้าคนไทยได้จริงไหม?',
+    a: 'ตัวอย่างเขียนจากบริบทการขายของออนไลน์ในไทย เน้นภาษาที่คนไทยอ่านแล้วเข้าใจง่าย',
+  },
+  {
+    q: '6. เป็นหนังสือจัดส่งหรือไม่?',
+    a: 'ไม่ใช่หนังสือจัดส่ง เป็นบทเรียนออนไลน์ อ่านได้ทันทีหลังเข้าถึง',
+  },
 ]
 
 export default function S9FAQ() {
   return (
-    <section
-      className="px-5 py-20"
-      style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}
-    >
-      <div className="mx-auto" style={{ maxWidth: 620 }}>
+    <section id="faq" style={{ padding: '80px 24px', background: '#F4EFEA' }}>
+      <div style={{ maxWidth: 760, margin: '0 auto' }}>
+
+        <div className="text-center" style={{ marginBottom: 40 }}>
+          <h2
+            style={{
+              fontSize: 'clamp(26px, 4vw, 34px)',
+              fontWeight: 800,
+              letterSpacing: '-0.5px',
+            }}
+          >
+            คำถามที่พบบ่อย
+          </h2>
+        </div>
+
         {/* Guarantee banner */}
         <div
-          className="rounded-2xl p-6 mb-12"
           style={{
-            background: 'rgba(61,165,169,0.07)',
-            border: '1px solid rgba(61,165,169,0.25)',
+            background: '#EAF7EE',
+            border: '1.5px solid #A8D8B9',
+            borderRadius: 12,
+            padding: 24,
+            marginBottom: 48,
           }}
         >
-          <p
-            className="font-bold text-[18px] mb-2.5"
-            style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)' }}
-          >
-            🛡 รับประกัน 7 วัน คืนเงิน 100%
+          <p style={{ fontSize: 16, fontWeight: 700, color: '#3A9E5F', marginBottom: 8 }}>
+            🛡️ พิสูจน์ด้วยตัวเอง ⬇️ ทดลองอ่านฟรี ∞{' '}
+            <span className="thai-nowrap">ไม่ต้องเสี่ยงจ่ายก่อน</span>
           </p>
-          <p className="text-[15px]" style={{ color: 'var(--ink-soft)', lineHeight: 1.75 }}>
-            หากเปิดอ่าน 3 บทแรกแล้วรู้สึกว่าไม่ตอบโจทย์ ทัก LINE หาเราเพื่อขอคืนเงินเต็มจำนวน
-            ไม่มีเงื่อนไข ไม่ถามจุกจิก
+          <p className="thai-pretty" style={{ fontSize: 15, color: '#444444', lineHeight: 1.6, margin: 0 }}>
+            คุณไม่ต้องรับความเสี่ยงใดๆ เริ่มต้นอ่าน 2 บทแรกได้ฟรี
+            เพื่อพิสูจน์ว่า &ldquo;คำ&rdquo; ช่วยเพิ่มยอดขายได้จริง ก่อนตัดสินใจ
           </p>
         </div>
 
-        <span className="section-label">คำถามที่พบบ่อย</span>
-        <h2
-          style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(22px,5vw,30px)',
-            fontWeight: 800,
-            color: 'var(--ink)',
-            lineHeight: 1.3,
-            marginBottom: 24,
-          }}
-        >
-          มีคำถามอยู่ในใจ?
-        </h2>
-
-        <div style={{ borderTop: '1px solid var(--rule)' }}>
+        <div className="faq-list">
           {faqs.map(({ q, a }) => (
             <details key={q} className="faq-item">
               <summary>
                 <span>{q}</span>
-                <span className="faq-icon" aria-hidden="true">
-                  ›
-                </span>
+                <span className="faq-icon" aria-hidden="true">+</span>
               </summary>
               <p className="faq-a">{a}</p>
             </details>

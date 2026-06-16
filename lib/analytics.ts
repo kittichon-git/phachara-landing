@@ -43,27 +43,3 @@ export function gtagEvent(eventName: string, params?: Record<string, unknown>) {
   window.gtag?.('event', eventName, params)
 }
 
-// ── Meta Pixel helper ─────────────────────────────────────────────────────
-export function fbqEvent(eventName: string, params?: Record<string, unknown>) {
-  if (typeof window === 'undefined') return
-  window.fbq?.('trackCustom', eventName, params)
-}
-
-// ── TikTok Pixel helper ───────────────────────────────────────────────────
-export function ttqEvent(eventName: string, params?: Record<string, unknown>) {
-  if (typeof window === 'undefined') return
-  window.ttq?.track?.(eventName, params)
-}
-
-// ── CTA click — fire all platforms before redirect ────────────────────────
-export function trackCtaClick(position: LinePosition) {
-  // PostHog (existing events)
-  track('sp_cta_click', { position })
-  track('sp_line_redirect')
-  // GA4
-  gtagEvent('LineAddIntent', { cta_location: `sp_${position}` })
-  // Meta Pixel
-  fbqEvent('LINE_ADD', { cta_location: `sp_${position}` })
-  // TikTok Pixel
-  ttqEvent('ClickButton', { content_category: 'salepage', content_name: `cta_${position}` })
-}

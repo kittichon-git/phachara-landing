@@ -1,61 +1,73 @@
+'use client'
+
 import { lineUrl } from '@/lib/constants'
+import { fireCTAEvents } from '@/lib/track'
 
 export default function Nav() {
-  return (
-    <div className="sticky top-0 z-50">
-      {/* Attention strip */}
-      <div
-        className="w-full text-center px-4 py-2.5 text-[12px] font-semibold"
-        style={{
-          background: 'rgba(229,190,99,0.1)',
-          borderBottom: '1px solid rgba(229,190,99,0.18)',
-          color: 'var(--amber)',
-          letterSpacing: '0.04em',
-        }}
-      >
-        🎁 อ่านฟรี 2 บทแรกก่อนตัดสินใจ — ไม่ต้องกรอกบัตร
-      </div>
+  function handleCtaClick() {
+    fireCTAEvents('nav')
+  }
 
-      {/* Main nav */}
-      <nav
-        style={{
-          background: 'rgba(7,9,26,0.96)',
-          backdropFilter: 'blur(16px)',
-          borderBottom: '1px solid var(--rule)',
-        }}
-        aria-label="เมนูหลัก"
+  return (
+    <nav
+      className="sticky top-0 z-50 flex items-center justify-between"
+      style={{
+        background: '#FDFBF7',
+        borderBottom: '1px solid #E5DDD5',
+        padding: '0 40px',
+        height: 60,
+      }}
+      aria-label="เมนูหลัก"
+    >
+      <a
+        href="#"
+        className="no-underline"
+        style={{ fontSize: 20, fontWeight: 800, color: '#1A1A1A', letterSpacing: '-0.5px' }}
+        aria-label="แค่เปลี่ยนคำ ก็ทำเงิน — กลับหน้าแรก"
       >
-        <div
-          className="flex items-center justify-between mx-auto px-5"
-          style={{ maxWidth: 780, height: 54 }}
-        >
-          <a
-            href="#"
-            className="flex items-center gap-2 no-underline font-bold text-[15px]"
-            style={{ color: 'var(--ink)', fontFamily: 'var(--font-heading)' }}
-            aria-label="แค่เปลี่ยนคำ ก็ทำเงิน — กลับหน้าแรก"
-          >
-            <span aria-hidden="true" style={{ color: 'var(--amber)' }}>
-              ✦
-            </span>
-            <span>เปลี่ยนคำ ก็ทำเงิน</span>
-          </a>
-          <a
-            href={lineUrl('nav')}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-semibold text-[13px] px-4 py-2 rounded-lg transition-all"
-            style={{
-              background: 'var(--line-green)',
-              color: 'white',
-              fontFamily: 'var(--font-heading)',
-              boxShadow: '0 2px 12px rgba(6,199,85,0.3)',
-            }}
-          >
-            เรียนฟรี 2 บท →
-          </a>
-        </div>
-      </nav>
-    </div>
+        <span style={{ color: '#E87A3D' }}>คำ</span>ทำเงิน
+      </a>
+
+      <ul
+        className="hidden md:flex gap-7 list-none"
+        style={{ margin: 0, padding: 0 }}
+        aria-label="ลิงก์ในหน้า"
+      >
+        {[
+          { href: '#problem', label: 'ปัญหา' },
+          { href: '#curriculum', label: 'เนื้อหา' },
+          { href: '#proof', label: 'รีวิว' },
+          { href: '#offer', label: 'ราคา' },
+        ].map((l) => (
+          <li key={l.href}>
+            <a
+              href={l.href}
+              className="no-underline transition-colors"
+              style={{ color: '#666666', fontSize: 15, fontWeight: 500 }}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        href={lineUrl('nav')}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleCtaClick}
+        className="no-underline transition-colors"
+        style={{
+          background: '#E87A3D',
+          color: '#fff',
+          padding: '9px 22px',
+          borderRadius: 8,
+          fontWeight: 700,
+          fontSize: 15,
+        }}
+      >
+        เริ่มอ่านฟรี
+      </a>
+    </nav>
   )
 }

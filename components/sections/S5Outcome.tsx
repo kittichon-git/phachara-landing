@@ -3,119 +3,109 @@ import Image from 'next/image'
 const testimonials = [
   {
     id: 1,
-    pullQuote: 'ช่วยเปลี่ยนทนายความให้เป็นครีเอเตอร์สายกฎหมายมืออาชีพ',
-    name: 'ทนายความ / ครีเอเตอร์',
-    bio: 'ทำช่องให้ความรู้กฎหมาย',
-    changePoint: 'ทำคอนเทนต์กฎหมายให้น่าสนใจ เข้าใจง่าย',
+    quote: 'เปลี่ยนแค่มุมเปิดคอนเทนต์ คนก็หยุดดูและเข้าใจง่ายขึ้นทันที',
+    name: 'Nutty',
+    role: 'ทนายความ / ครีเอเตอร์',
     image: '/images/proof-1.webp',
     imageAlt: 'รีวิวจากทนายความที่ใช้เทคนิคการเขียนทำคอนเทนต์กฎหมาย',
+    ts: '10:24',
   },
   {
     id: 2,
-    pullQuote: 'ใช้คำสั้นแต่โดนใจ เหมือนเขียนเพื่อเปลี่ยนความคิดคน',
-    name: 'เต๊ะ พนมไพร',
-    bio: 'ข้าราชการ',
-    changePoint: 'ทำให้คนรู้สึก "เออ มันจริง"',
+    quote: 'ใช้คำสั้นแต่โดนใจ เอาสูตรไปจับกับโพสต์เดิม ยอดก็เปลี่ยน',
+    name: 'เตะ พนมไพร',
+    role: 'ข้าราชการ / ทำช่องปักตะกร้า',
     image: '/images/proof-2.webp',
     imageAlt: 'รีวิวจากข้าราชการที่เริ่มทำช่องปักตะกร้าสินค้า',
+    ts: '09:15',
   },
   {
     id: 3,
-    pullQuote: 'คุ้มมากละ ขนาดแค่อ่านไป 4–5 บท ก็ได้อะไรมาเยอะ',
+    quote: 'คุ้มมาก อ่านไป 4-5 บท ก็หยิบมาใช้ได้เลย ไม่ต้องรออ่านจบ',
     name: 'nim',
-    bio: 'ช่อง TikTok สอนทำใบงาน',
-    changePoint: 'หยิบใช้ได้ก่อนอ่านจบ',
+    role: 'เจ้าของช่อง TikTok สอนทำใบงาน',
     image: '/images/proof-3.webp',
     imageAlt: 'รีวิวจากเจ้าของช่อง TikTok สอนทำใบงาน',
+    ts: '11:08',
   },
   {
     id: 4,
-    pullQuote: 'แค่เปลี่ยนคำพูด ก็เอาไปปรับใช้กับยอดขายได้จริง',
+    quote: 'เปลี่ยนจากการแค่อธิบายสินค้า เป็นการเขียนให้คนอยากซื้อต่อ',
     name: 'พนักงานบริษัท',
-    bio: 'ช่องหารายได้เสริม',
-    changePoint: 'ใช้ได้ทั้งงานและชีวิต',
+    role: 'พนักงานบริษัท / ทำรายได้เสริม',
     image: '/images/proof-4.webp',
     imageAlt: 'รีวิวจากพนักงานบริษัทที่ทำช่องหารายได้เสริม',
+    ts: '08:47',
   },
   {
     id: 5,
-    pullQuote: 'คำพูดเดียวกัน ถ้าเลือกใช้ต่างกัน ผลลัพธ์ก็ต่างกันได้จริง',
+    quote: 'คำพูดเดียวกัน ถ้าเลือกใช้ต่างกัน ผลลัพธ์ยอดขายก็ต่างกันได้จริง',
     name: 'นักศึกษา',
-    bio: 'ช่อง TikTok หารายได้เสริม',
-    changePoint: 'เห็นว่าการเลือกคำเปลี่ยนผลลัพธ์',
+    role: 'นักศึกษา / ทำรายได้เสริม',
     image: '/images/proof-5.webp',
     imageAlt: 'รีวิวจากนักศึกษาที่ทำช่อง TikTok หารายได้เสริม',
+    ts: '13:52',
   },
 ]
 
 export default function S5Outcome() {
   return (
-    <section
-      className="px-5 py-20"
-      style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}
-    >
-      <div className="mx-auto" style={{ maxWidth: 620 }}>
-        <span className="section-label">เสียงตอบรับ</span>
-        <h2
+    <section id="proof" style={{ padding: '80px 24px', background: '#F4EFEA' }}>
+      <div style={{ maxWidth: 960, margin: '0 auto' }}>
+
+        <div className="text-center">
+          <span className="section-label">เสียงตอบรับจริง</span>
+          <h2
+            style={{
+              fontSize: 'clamp(26px, 4vw, 34px)',
+              fontWeight: 800,
+              letterSpacing: '-0.5px',
+              marginBottom: 16,
+            }}
+          >
+            ผลลัพธ์จากคนที่เปลี่ยนคำ
+          </h2>
+        </div>
+
+        <div
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(22px,5vw,30px)',
-            fontWeight: 800,
-            color: 'var(--ink)',
-            lineHeight: 1.3,
-            marginBottom: 28,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 28,
+            maxWidth: 800,
+            margin: '40px auto 0',
           }}
         >
-          จากคนที่ลองอ่านจริง
-        </h2>
-
-        <div className="flex flex-col gap-4">
           {testimonials.map((t) => (
-            <div
-              key={t.id}
-              className="card"
-              style={{ borderLeft: '3px solid rgba(61,165,169,0.5)' }}
-            >
-              <div className="flex gap-4 items-start">
-                {/* Avatar */}
-                <div className="shrink-0">
-                  <Image
-                    src={t.image}
-                    alt={t.imageAlt}
-                    width={52}
-                    height={52}
-                    className="rounded-xl object-cover"
-                    style={{ width: 52, height: 52 }}
-                  />
+            <div key={t.id} className="proof-chat-card">
+              {/* Sender header */}
+              <div className="proof-chat-header">
+                <div className="proof-chat-avatar" aria-hidden="true">
+                  {t.name.charAt(0)}
                 </div>
-                <div className="flex-1 min-w-0">
-                  {/* Quote */}
-                  <p
-                    className="text-[15.5px] font-semibold mb-2.5 leading-snug"
-                    style={{ color: 'var(--ink)', fontFamily: 'var(--font-heading)' }}
-                  >
-                    &ldquo;{t.pullQuote}&rdquo;
-                  </p>
-                  {/* Attribution */}
-                  <div
-                    className="flex flex-wrap items-center gap-1 text-[12.5px] mb-2"
-                    style={{ color: 'var(--ink-mute)' }}
-                  >
-                    <span className="font-semibold" style={{ color: 'var(--ink-soft)' }}>
-                      {t.name}
-                    </span>
-                    <span>·</span>
-                    <span>{t.bio}</span>
-                  </div>
-                  {/* Change point pill */}
-                  <span
-                    className="inline-block text-[12px] px-2.5 py-1 rounded-lg"
-                    style={{ background: 'var(--teal-bg)', color: 'var(--teal)' }}
-                  >
-                    ↳ {t.changePoint}
-                  </span>
+                <div>
+                  <div className="proof-chat-name">{t.name}</div>
+                  <div className="proof-chat-role">{t.role}</div>
                 </div>
               </div>
+
+              {/* Chat bubble with quote */}
+              <div className="proof-chat-bubble">
+                <p>{t.quote}</p>
+              </div>
+
+              {/* Proof screenshot */}
+              <Image
+                src={t.image}
+                alt={t.imageAlt}
+                width={736}
+                height={414}
+                className="proof-chat-image"
+                style={{ width: '100%', height: 'auto' }}
+              />
+
+              {/* Read receipt */}
+              <div className="proof-chat-timestamp">{t.ts} ✓✓</div>
             </div>
           ))}
         </div>

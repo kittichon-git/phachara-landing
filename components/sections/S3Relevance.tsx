@@ -1,87 +1,101 @@
 const pains = [
   {
-    n: '01',
-    symptom: 'ยิงแอดแพง แต่คนเลื่อนผ่านใน 1 วิ',
-    diagnosis: 'เพราะประโยคแรกยังไม่ทำให้เขารู้สึกว่า "เรื่องนี้เกี่ยวกับเขา"',
+    id: 'p1',
+    bold: 'ยิงแอดแพง แต่คนเลื่อนผ่านใน 1 วิ',
+    rest: ' — เพราะคำเปิดโพสต์ ไม่เกี่ยวอะไรกับเขา',
   },
   {
-    n: '02',
-    symptom: 'คนหยุดดู แต่พออ่านจบก็เงียบ',
-    diagnosis: 'เพราะคำที่ใช้กำลัง "อธิบายแค่ตัวสินค้า" ไม่ได้ทำให้เขา "อยากได้"',
+    id: 'p2',
+    bold: 'คนหยุดอ่าน แต่จบแล้วก็เงียบ',
+    rest: ' — เพราะคำที่คุณใช้ แค่ "อธิบาย" แต่ไม่ได้ทำให้ "อยากซื้อ"',
   },
   {
-    n: '03',
-    symptom: 'อธิบายจนหมดใจ แต่ลูกค้าตอบ "ขอดูก่อนนะ"',
-    diagnosis: 'เพราะยังไม่มีคำที่ปิดความลังเลและให้เขากล้าตัดสินใจ',
+    id: 'p3',
+    bold: <>อธิบายจนเหนื่อย แต่ลูกค้าตอบ <span className="thai-nowrap">&ldquo;ขอดูก่อน&rdquo;</span></>,
+    rest: <> — เพราะไม่มีคำที่ช่วย<span className="thai-nowrap">ตัดความลังเล</span></>,
   },
   {
-    n: '04',
-    symptom: 'ทั้งที่สินค้าดีกว่าคู่แข่ง แต่ไม่มีใครทักมาถาม',
-    diagnosis: 'เพราะคำในโพสต์ยังไม่เปิดช่องให้เขาเริ่มบทสนทนา',
+    id: 'p4',
+    bold: 'สินค้าดีกว่าคู่แข่ง แต่ไม่มีใครถาม',
+    rest: ' — เพราะคุณไม่ได้เปิดช่องให้เขาเริ่มคุย',
   },
 ]
 
 export default function S3Relevance() {
   return (
-    <section
-      className="px-5 py-20"
-      style={{ background: 'var(--bg-soft)', borderTop: '1px solid var(--rule)' }}
-    >
-      <div className="mx-auto" style={{ maxWidth: 620 }}>
-        <span className="section-label">ถ้าโพสต์ยังเงียบ</span>
-        <h2
-          style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(22px,5vw,30px)',
-            fontWeight: 800,
-            color: 'var(--ink)',
-            lineHeight: 1.3,
-            marginBottom: 12,
-          }}
-        >
-          ปัญหาอาจไม่ใช่สินค้า
-        </h2>
-        <p className="mb-8 text-[15.5px]" style={{ color: 'var(--ink-soft)', lineHeight: 1.8 }}>
-          คุณขยันโพสต์ทุกวัน และสินค้าก็ดีจริง — ไม่ใช่ว่าคุณขายไม่เก่ง แต่{' '}
-          <strong style={{ color: 'var(--ink)' }}>&ldquo;คำ&rdquo;</strong>{' '}
-          ที่ใช้ ยังไม่ได้ทำงานแทนคุณ
-        </p>
+    <section id="problem" style={{ padding: '80px 24px', background: '#F4EFEA' }}>
+      <div style={{ maxWidth: 760, margin: '0 auto' }}>
 
-        <p
-          className="mb-5 text-[11px] font-bold tracking-[0.14em] uppercase"
-          style={{ color: 'var(--amber)' }}
-        >
-          คุณกำลังเจอแบบนี้อยู่ไหม?
-        </p>
+        <div className="text-center">
+          <span className="section-label">ปัญหา</span>
+          <h2
+            style={{
+              fontSize: 'clamp(26px, 4vw, 34px)',
+              fontWeight: 800,
+              letterSpacing: '-0.5px',
+              marginBottom: 16,
+            }}
+          >
+            ถ้าโพสต์ยังเงียบ...<br />ปัญหาไม่ได้อยู่ที่สินค้า
+          </h2>
+          <p
+            className="thai-pretty"
+            style={{
+              fontSize: 17,
+              color: '#666666',
+              marginBottom: 32,
+              maxWidth: 600,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              lineHeight: 1.65,
+            }}
+          >
+            คุณขยันโพสต์ทุกวัน สินค้าก็ดีจริง แต่ยอดขายกลับลดลงเรื่อยๆ<br />
+            ไม่ใช่เพราะคุณขายไม่เก่ง แต่เพราะตลาดเปลี่ยนไป และ{' '}
+            <strong>&ldquo;คำเดิม&rdquo;</strong> ไม่ทำงานอีกแล้ว:
+          </p>
+        </div>
 
-        <div className="flex flex-col gap-4">
+        {/* Problem cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 28 }}>
           {pains.map((p) => (
             <div
-              key={p.n}
-              className="card"
-              style={{ borderLeft: '3px solid rgba(194,84,42,0.6)' }}
+              key={p.id}
+              style={{
+                background: '#FFFFFF',
+                borderRadius: 12,
+                padding: '18px 22px',
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: 14,
+                boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
+              }}
             >
-              <div className="flex items-start gap-4">
-                <span
-                  className="text-[11px] font-black shrink-0 mt-0.5 tabular-nums"
-                  style={{ color: 'var(--rust)', fontFamily: 'var(--font-heading)' }}
-                >
-                  {p.n}
-                </span>
-                <div>
-                  <p
-                    className="font-semibold text-[16px] mb-2"
-                    style={{ color: 'var(--ink)', fontFamily: 'var(--font-heading)', lineHeight: 1.4 }}
-                  >
-                    {p.symptom}
-                  </p>
-                  <p className="text-[14px]" style={{ color: 'var(--ink-soft)', lineHeight: 1.65 }}>
-                    {p.diagnosis}
-                  </p>
-                </div>
-              </div>
+              <div className="problem-icon">✕</div>
+              <p style={{ fontSize: 16, lineHeight: 1.55, margin: 0 }}>
+                <strong>{p.bold}</strong>{p.rest}
+              </p>
             </div>
           ))}
+        </div>
+
+        {/* Callout */}
+        <div
+          style={{
+            background: '#FFF0E6',
+            border: '1.5px solid #F5C9A8',
+            borderRadius: 12,
+            padding: '20px 28px',
+            textAlign: 'center',
+            fontSize: 17,
+            fontWeight: 600,
+            lineHeight: 1.6,
+          }}
+        >
+          💡 คุณคุมตลาดและคู่แข่งไม่ได้{' '}
+          <span style={{ whiteSpace: 'nowrap' }}>แต่คุณเปลี่ยน{' '}
+          <em style={{ fontStyle: 'normal', color: '#E87A3D', fontWeight: 800 }}>&ldquo;คำ&rdquo;</em></span>{' '}
+          ในโพสต์ของคุณได้ และนี่คือวิธีแก้
         </div>
       </div>
     </section>

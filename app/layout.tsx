@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Kanit, Bai_Jamjuree } from 'next/font/google'
+import { Sarabun } from 'next/font/google'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import { MetaPixel } from '@/components/analytics/MetaPixel'
 import { TikTokPixel } from '@/components/analytics/TikTokPixel'
@@ -8,17 +8,10 @@ import './globals.css'
 
 const GA_ID = process.env.NEXT_PUBLIC_GA4_ID
 
-const kanit = Kanit({
+const sarabun = Sarabun({
   subsets: ['thai', 'latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  variable: '--font-kanit',
-  display: 'swap',
-})
-
-const baiJamjuree = Bai_Jamjuree({
-  subsets: ['thai', 'latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-bai',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-sarabun',
   display: 'swap',
 })
 
@@ -41,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="th" className={`${kanit.variable} ${baiJamjuree.variable}`}>
+    <html lang="th" className={sarabun.variable}>
       <head>
         {/* GA4 stub — inline, runs before hydration so window.gtag is ready for useEffect events */}
         {GA_ID && (

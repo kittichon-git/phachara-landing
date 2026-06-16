@@ -1,94 +1,92 @@
 const steps = [
   {
     n: '01',
-    title: 'ทำให้คนหยุดอ่าน',
-    body: 'เปลี่ยนประโยคเปิดให้ชัดพอที่คนจะไม่เลื่อนผ่านทันที',
-    before: '"โปรเดือนนี้"',
-    after: '"ลูกค้าถามบ่อยสุดว่า…"',
+    icon: '👁️',
+    title: 'สะกดสายตา (Hook)',
+    desc: 'เปลี่ยนประโยคแรกให้ดึงดูด จนลูกค้าไม่อยากเลื่อนผ่าน',
   },
   {
     n: '02',
-    title: 'ทำให้คนเข้าใจและเชื่อ',
-    body: 'ใช้คำที่อธิบายสินค้าให้เห็นภาพ ลดความลังเล และเพิ่มความน่าเชื่อถือ',
-    before: '"วัตถุดิบพรีเมียม"',
-    after: '"ตัวเดียวกับที่ร้านดังใช้"',
+    icon: '🤝',
+    title: 'สร้างความเชื่อใจ (Trust)',
+    desc: <>ใช้คำอธิบายที่เห็นภาพ <span className="thai-nowrap">ตัดความลังเล</span> และทำให้ลูกค้าเชื่อมั่น</>,
   },
   {
     n: '03',
-    title: 'ทำให้คนรู้ว่าต้องทำอะไรต่อ',
-    body: 'วาง CTA / ข้อเสนอ / ประโยคปิดให้ชัด โดยไม่ต้องยัดเยียด',
-    before: '"สนใจทักแชท"',
-    after: '"พิมพ์ \'1\' เดี๋ยวส่งวิธีสั่งให้"',
+    icon: '⚡',
+    title: 'กระตุ้นการตัดสินใจ (Action)',
+    desc: 'วางประโยคปิดการขายให้เนียน จนลูกค้าโอนเงินโดยไม่ต้องยัดเยียด',
   },
 ]
 
 export default function S4Mechanism() {
   return (
-    <section
-      className="px-5 py-20"
-      style={{ background: 'var(--bg)', borderTop: '1px solid var(--rule)' }}
-    >
-      <div className="mx-auto" style={{ maxWidth: 620 }}>
-        <span className="section-label">กลไก 3 ขั้นตอน</span>
-        <h2
+    <section id="mechanism" style={{ padding: '80px 24px', background: '#FDFBF7' }}>
+      <div style={{ maxWidth: 960, margin: '0 auto' }}>
+
+        <div className="text-center">
+          <span className="section-label">วิธีใหม่</span>
+          <h2
+            style={{
+              fontSize: 'clamp(26px, 4vw, 34px)',
+              fontWeight: 800,
+              letterSpacing: '-0.5px',
+              marginBottom: 16,
+            }}
+          >
+            3 ขั้นตอนเปลี่ยน{' '}
+            <span className="thai-nowrap">&ldquo;คำธรรมดา&rdquo;</span>{' '}
+            <span className="thai-nowrap">เป็น &ldquo;คำทำเงิน&rdquo;</span>
+          </h2>
+        </div>
+
+        {/* Steps grid — 3 columns on desktop, 1 on mobile */}
+        <div
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(22px,5vw,30px)',
-            fontWeight: 800,
-            color: 'var(--ink)',
-            lineHeight: 1.3,
-            marginBottom: 12,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: 20,
+            marginTop: 40,
           }}
         >
-          นี่คือกลไก 3 ขั้นตอนที่คุณจะทำตามได้
-        </h2>
-
-        <div className="flex flex-col gap-5 mt-8">
           {steps.map((s) => (
-            <div key={s.n} className="card flex gap-5">
-              <div className="step-num">{s.n}</div>
-              <div className="flex-1 min-w-0">
-                <p
-                  className="font-bold text-[17px] mb-2"
-                  style={{ color: 'var(--teal)', fontFamily: 'var(--font-heading)' }}
-                >
-                  {s.title}
-                </p>
-                <p className="text-[15px] mb-4" style={{ color: 'var(--ink-soft)', lineHeight: 1.7 }}>
-                  {s.body}
-                </p>
-                <div
-                  className="rounded-xl overflow-hidden"
-                  style={{ border: '1px solid var(--rule)' }}
-                >
-                  <div
-                    className="flex items-center gap-2 px-4 py-2.5"
-                    style={{ borderBottom: '1px solid var(--rule)', background: 'rgba(255,255,255,0.03)' }}
-                  >
-                    <span className="text-[10px] font-bold tracking-widest uppercase" style={{ color: 'var(--rust)' }}>
-                      ❌ ก่อน
-                    </span>
-                    <span className="text-[13px]" style={{ color: 'var(--ink-mute)' }}>
-                      {s.before}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-2.5">
-                    <span className="text-[10px] font-bold tracking-widest uppercase" style={{ color: 'var(--teal)' }}>
-                      ✅ หลัง
-                    </span>
-                    <span className="text-[13px]" style={{ color: 'var(--ink-soft)' }}>
-                      {s.after}
-                    </span>
-                  </div>
-                </div>
+            <div
+              key={s.n}
+              style={{
+                background: '#FFFFFF',
+                borderRadius: 12,
+                padding: '32px 24px',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
+                position: 'relative',
+                overflow: 'hidden',
+                textAlign: 'center',
+              }}
+            >
+              {/* Large background number */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  top: -10,
+                  right: 10,
+                  fontSize: 90,
+                  fontWeight: 800,
+                  color: '#E87A3D',
+                  opacity: 0.08,
+                  lineHeight: 1,
+                  pointerEvents: 'none',
+                  fontFamily: 'Sarabun, sans-serif',
+                }}
+              >
+                {s.n}
               </div>
+              <div style={{ fontSize: 36, marginBottom: 12 }}>{s.icon}</div>
+              <div className="step-num">{s.n}</div>
+              <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 10 }}>{s.title}</div>
+              <p style={{ fontSize: 15, color: '#666666', lineHeight: 1.6, margin: 0 }}>{s.desc}</p>
             </div>
           ))}
         </div>
-
-        <p className="mt-8 text-[14.5px]" style={{ color: 'var(--ink-mute)' }}>
-          นี่คือหลักคิด — สูตรเต็มคำต่อคำอยู่ในเล่ม
-        </p>
       </div>
     </section>
   )

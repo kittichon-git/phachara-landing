@@ -1,92 +1,121 @@
 const forItems = [
-  'โพสต์ขายได้บ้าง แต่ไม่รู้ว่า "ทำไม" บางโพสต์ปังบางโพสต์เงียบ',
-  'เบื่อก็อปแคปชันคนอื่นมาใช้ แล้วมันไม่เวิร์กกับสินค้าตัวเอง',
-  'อยากให้ลูกค้า "อยากทักเอง" ไม่ใช่ต้องตามตื๊อ',
-  'เป็นเจ้าของแบรนด์หรือฟรีแลนซ์ที่ต้องเขียนขายสินค้าตัวเอง',
-  'อยากได้ทักษะ "ใช้คำ" ที่ติดตัว ใช้ได้กับทุกสินค้าในอนาคต',
+  'มีสินค้าดี แต่โพสต์ขายแล้วยอดขายไม่นิ่ง',
+  <>ขยันโพสต์ แต่รู้สึกว่าตัวเองกำลัง<br /><span className="thai-nowrap">&ldquo;อธิบายสินค้า&rdquo;</span>{' '}มากกว่า{' '}<span className="thai-nowrap">&ldquo;ทำให้อยากซื้อ&rdquo;</span></>,
+  'อยากได้สูตรและ Template ไปปรับใช้ทันที ไม่อยากเริ่มจากกระดาษเปล่า',
+  'อยากให้ลูกค้าทักมาด้วยความอยากได้ ไม่ใช่ทักมาเพราะโดนตื๊อ',
 ]
 const notForItems = [
-  'อยากได้แค่ "แคปชันสำเร็จรูป" ไปก็อปวาง',
-  'ไม่สนใจว่าทำไมลูกค้าซื้อ ขอแค่ยอด',
-  'คิดว่าโพสต์ขายดี = เขียนสวย เขียนยาว',
-  'ไม่เชื่อว่า "คำที่เลือกใช้" มีผลต่อการตัดสินใจ',
-  'ไม่อยากลงมือปรับคำเอง รออ่านเฉยๆ',
+  'แค่อยากก๊อปปี้วาง โดยไม่คิดจะปรับให้เข้ากับสินค้าของตัวเอง',
+  'หวังสูตรรวยทางลัด หรือต้องการการันตียอดขายข้ามคืนโดยไม่ลงมือทำ',
+  'ไม่สนใจว่าทำไมลูกค้าถึงซื้อ ขอแค่ตั้งหน้าตั้งตาขายอย่างเดียว',
+  'ไม่อยากลงมือแก้โพสต์ หรือไม่ชอบทดลองปรับคำ',
 ]
 
 export default function S6Fit() {
   return (
-    <section
-      className="px-5 py-20"
-      style={{ background: 'var(--bg)', borderTop: '1px solid var(--rule)' }}
-    >
-      <div className="mx-auto" style={{ maxWidth: 620 }}>
-        <span className="section-label">เช็กก่อนตัดสินใจ</span>
-        <h2
+    <section id="fit" style={{ padding: '80px 24px', background: '#F4EFEA' }}>
+      <div style={{ maxWidth: 760, margin: '0 auto' }}>
+
+        {/* No section-label — reference doesn't have one for fit */}
+        <div className="text-center">
+          <h2
+            style={{
+              fontSize: 'clamp(26px, 4vw, 34px)',
+              fontWeight: 800,
+              letterSpacing: '-0.5px',
+              marginBottom: 16,
+            }}
+          >
+            เช็คก่อนว่าบทเรียนนี้เหมาะกับคุณไหม?
+          </h2>
+        </div>
+
+        <div
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(22px,5vw,30px)',
-            fontWeight: 800,
-            color: 'var(--ink)',
-            lineHeight: 1.3,
-            marginBottom: 24,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: 24,
+            marginTop: 36,
           }}
         >
-          บทเรียนนี้เหมาะกับคุณไหม?
-        </h2>
-
-        <div className="flex flex-col gap-4">
-          {/* For */}
+          {/* Yes box */}
           <div
-            className="card"
-            style={{ borderColor: 'rgba(61,165,169,0.3)' }}
+            style={{
+              background: '#EAF7EE',
+              border: '1.5px solid #A8D8B9',
+              borderRadius: 12,
+              padding: '28px 24px',
+            }}
           >
-            <p
-              className="text-[11px] font-bold tracking-[0.14em] uppercase mb-5"
-              style={{ color: 'var(--teal)' }}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                fontSize: 16,
+                fontWeight: 800,
+                padding: '10px 16px',
+                borderRadius: 8,
+                marginBottom: 20,
+                background: '#3A9E5F',
+                color: '#fff',
+              }}
             >
-              ✅ เหมาะกับใคร
-            </p>
-            <ul className="flex flex-col gap-3">
-              {forItems.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 text-[15px]"
-                  style={{ color: 'var(--ink-soft)', lineHeight: 1.6 }}
+              ✅ เหมาะมาก ถ้าคุณ:
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {forItems.map((item, i) => (
+                <div
+                  key={i}
+                  style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15 }}
                 >
-                  <span
-                    style={{ color: 'var(--teal)', flexShrink: 0, marginTop: 3 }}
-                  >
-                    ✓
+                  <span style={{ fontSize: 16, marginTop: 2, flexShrink: 0 }}>✅</span>
+                  <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-word', lineHeight: 1.65 }}>
+                    {item}
                   </span>
-                  {item}
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
-          {/* Not for */}
+          {/* No box */}
           <div
-            className="card"
-            style={{ borderColor: 'rgba(107,122,144,0.2)' }}
+            style={{
+              background: '#FDEAEA',
+              border: '1.5px solid #F0AAAA',
+              borderRadius: 12,
+              padding: '28px 24px',
+            }}
           >
-            <p
-              className="text-[11px] font-bold tracking-[0.14em] uppercase mb-5"
-              style={{ color: 'var(--ink-mute)' }}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                fontSize: 16,
+                fontWeight: 800,
+                padding: '10px 16px',
+                borderRadius: 8,
+                marginBottom: 20,
+                background: '#D94040',
+                color: '#fff',
+              }}
             >
-              ❌ ไม่เหมาะกับใคร
-            </p>
-            <ul className="flex flex-col gap-3">
-              {notForItems.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 text-[15px]"
-                  style={{ color: 'var(--ink-mute)', lineHeight: 1.6 }}
+              ❌ ไม่เหมาะเลย ถ้าคุณ:
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {notForItems.map((item, i) => (
+                <div
+                  key={i}
+                  style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 15 }}
                 >
-                  <span style={{ flexShrink: 0, marginTop: 3 }}>✕</span>
-                  {item}
-                </li>
+                  <span style={{ fontSize: 16, marginTop: 2, flexShrink: 0 }}>❌</span>
+                  <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-word', lineHeight: 1.65 }}>
+                    {item}
+                  </span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </div>
