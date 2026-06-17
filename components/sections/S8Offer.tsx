@@ -6,7 +6,7 @@ const valueRows = [
   { label: '100+ Template ครบทุกฟอร์แมต กรอกคำได้ทันที', value: 490, bold: false },
   { label: '50+ Hook Formulas พร้อมตัวอย่างไทย', value: 390, bold: false },
   { label: 'Prompt Library 30 ชุด พร้อมตัวอย่างใช้จริง', value: 290, bold: false },
-  { label: 'เช็กลิสต์ตรวจงานก่อนปล่อย (Hook / Proof / CTA)', value: 190, bold: false },
+  { label: 'เช็คลิสต์ตรวจงานก่อนปล่อย (Hook / Proof / CTA)', value: 190, bold: false },
   { label: 'ตารางคำต้องห้าม vs คำที่ควรใช้', value: 140, bold: false },
 ]
 
