@@ -16,7 +16,7 @@ const pains = [
   },
   {
     id: 'p4',
-    bold: 'ลดราคาจนแทบไม่เหลือกำไร ก็ยังสู้ร้านอื่นไม่ได้',
+    bold: <>ลดราคาจนแทบไม่เหลือกำไร ก็ยังสู้<span style={{whiteSpace:'nowrap'}}>ร้านอื่น</span>ไม่ได้</>,
     rest: '',
   },
 ]
@@ -94,7 +94,7 @@ export default function S3Relevance() {
           สังเกตไหม — ทั้งหมดนี้ไม่ได้แปลว่าสินค้าไม่ดี หรือคุณขายไม่เก่ง<br />
           ปัญหาอาจอยู่ที่{' '}
           <em style={{ fontStyle: 'normal', color: '#E87A3D', fontWeight: 800 }}>&ldquo;คำ&rdquo;</em>
-          {' '}ในโพสต์ — ยังไม่ทำให้ลูกค้า <strong>หยุดอ่าน เข้าใจ และอยากถามต่อ</strong>
+          {' '}ในโพสต์ — ยังไม่ทำให้ลูกค้า <strong><span style={{whiteSpace:'nowrap'}}>หยุดอ่าน</span> เข้าใจ และอยากถามต่อ</strong>
         </p>
 
         {/* Callout */}
