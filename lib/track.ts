@@ -68,19 +68,20 @@ export function fireCTAEvents(position: string): void {
     event_category: 'cta_click',
     event_label: position,
   })
+  const leadEventId = `lead_${Date.now()}_${Math.random().toString(36).slice(2)}_${position}`
   window.fbq?.('trackCustom', 'LINE_ADD', {
     content_name: 'LINE OA Signup',
     content_category: 'Lead Generation',
     currency: 'THB',
     value: 0,
     cta_location: position,
-  })
+  }, { eventID: leadEventId })
   window.fbq?.('track', 'Lead', {
     content_name: 'LINE OA Signup',
     content_category: 'Lead Generation',
     currency: 'THB',
     value: 0,
     cta_location: position,
-  })
+  }, { eventID: leadEventId })
   window.ttq?.track?.('ClickButton', { content_name: 'LINE CTA', content_category: position })
 }
