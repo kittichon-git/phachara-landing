@@ -1,23 +1,23 @@
 const pains = [
   {
     id: 'p1',
-    bold: 'ยิงแอดแพง แต่คนเลื่อนผ่านใน 1 วิ',
-    rest: ' — เพราะคำเปิดโพสต์ ไม่เกี่ยวอะไรกับเขา',
+    bold: 'โพสต์ทุกวัน แต่คนเลื่อนผ่าน — ไลค์ก็แทบไม่มี',
+    rest: '',
   },
   {
     id: 'p2',
-    bold: 'คนหยุดอ่าน แต่จบแล้วก็เงียบ',
-    rest: ' — เพราะคำที่คุณใช้ แค่ "อธิบาย" แต่ไม่ได้ทำให้ "อยากซื้อ"',
+    bold: 'มีคนทักมาถามราคา... พอตอบไป ก็เงียบหาย',
+    rest: '',
   },
   {
     id: 'p3',
-    bold: <>อธิบายจนเหนื่อย แต่ลูกค้าตอบ <span className="thai-nowrap">&ldquo;ขอดูก่อน&rdquo;</span></>,
-    rest: <> — เพราะไม่มีคำที่ช่วย<span className="thai-nowrap">ตัดความลังเล</span></>,
+    bold: 'มีแต่ "ขอดูก่อนนะคะ" แล้วไม่กลับมาอีก',
+    rest: '',
   },
   {
     id: 'p4',
-    bold: 'สินค้าดีกว่าคู่แข่ง แต่ไม่มีใครถาม',
-    rest: ' — เพราะคุณไม่ได้เปิดช่องให้เขาเริ่มคุย',
+    bold: 'ลดราคาจนแทบไม่เหลือกำไร ก็ยังสู้ร้านอื่นไม่ได้',
+    rest: '',
   },
 ]
 
@@ -36,7 +36,7 @@ export default function S3Relevance() {
               marginBottom: 16,
             }}
           >
-            ถ้าโพสต์ยังเงียบ...<br />ปัญหาไม่ได้อยู่ที่สินค้า
+            ถ้าโพสต์ยังเงียบ...<br />ปัญหาอาจไม่ได้อยู่ที่สินค้า
           </h2>
           <p
             className="thai-pretty"
@@ -50,9 +50,7 @@ export default function S3Relevance() {
               lineHeight: 1.65,
             }}
           >
-            คุณขยันโพสต์ทุกวัน สินค้าก็ดีจริง แต่ยอดขายกลับลดลงเรื่อยๆ<br />
-            ไม่ใช่เพราะคุณขายไม่เก่ง แต่เพราะตลาดเปลี่ยนไป และ{' '}
-            <strong>&ldquo;คำเดิม&rdquo;</strong> ไม่ทำงานอีกแล้ว:
+            คุณขยันโพสต์ทุกวัน สินค้าคุณก็ดี แต่ยอดกลับเงียบลงเรื่อยๆ
           </p>
         </div>
 
@@ -79,6 +77,26 @@ export default function S3Relevance() {
           ))}
         </div>
 
+        {/* บรรทัดเฉลย */}
+        <p
+          className="thai-pretty"
+          style={{
+            fontSize: 16,
+            color: '#666666',
+            marginBottom: 28,
+            maxWidth: 600,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            lineHeight: 1.65,
+            textAlign: 'center',
+          }}
+        >
+          สังเกตไหม — ทั้งหมดนี้ไม่ได้แปลว่าสินค้าไม่ดี หรือคุณขายไม่เก่ง<br />
+          ปัญหาอาจอยู่ที่{' '}
+          <em style={{ fontStyle: 'normal', color: '#E87A3D', fontWeight: 800 }}>&ldquo;คำ&rdquo;</em>
+          {' '}ในโพสต์ — ยังไม่ทำให้ลูกค้า <strong>หยุดอ่าน เข้าใจ และอยากถามต่อ</strong>
+        </p>
+
         {/* Callout */}
         <div
           style={{
@@ -92,10 +110,9 @@ export default function S3Relevance() {
             lineHeight: 1.6,
           }}
         >
-          💡 คุณคุมตลาดและคู่แข่งไม่ได้{' '}
-          <span style={{ whiteSpace: 'nowrap' }}>แต่คุณเปลี่ยน{' '}
-          <em style={{ fontStyle: 'normal', color: '#E87A3D', fontWeight: 800 }}>&ldquo;คำ&rdquo;</em></span>{' '}
-          ในโพสต์ของคุณได้ และนี่คือวิธีแก้
+          คุณอาจคุมตลาดหรือร้านอื่นไม่ได้ — แต่เปลี่ยน{' '}
+          <em style={{ fontStyle: 'normal', color: '#E87A3D', fontWeight: 800 }}>&ldquo;คำ&rdquo;</em>
+          {' '}ในโพสต์ของตัวเองได้<br />และนี่คือวิธีแก้
         </div>
       </div>
     </section>
