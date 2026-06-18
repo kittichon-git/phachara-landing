@@ -1,9 +1,17 @@
 'use client'
 
+import { useRef, useEffect } from 'react'
 import { lineUrl } from '@/lib/constants'
-import { fireCTAEvents } from '@/lib/track'
+import { fireCTAEvents, observeCtaVisible } from '@/lib/track'
 
 export default function Nav() {
+  const navCtaRef = useRef<HTMLAnchorElement>(null)
+
+  useEffect(() => {
+    if (!navCtaRef.current) return
+    return observeCtaVisible(navCtaRef.current, 'nav')
+  }, [])
+
   function handleCtaClick() {
     fireCTAEvents('nav')
   }
@@ -52,9 +60,11 @@ export default function Nav() {
       </ul>
 
       <a
+        ref={navCtaRef}
         href={lineUrl('nav')}
         target="_blank"
         rel="noopener noreferrer"
+        data-cta-position="nav"
         onClick={handleCtaClick}
         className="no-underline transition-colors"
         style={{

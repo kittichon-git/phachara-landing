@@ -54,6 +54,23 @@ export function trackSpEvent(
   }
 }
 
+// ── sp_cta_visible — self-registration (module-level guard prevents duplicate per position) ──
+const _seenCtaPositions = new Set<string>()
+
+export function observeCtaVisible(el: Element, position: string): () => void {
+  const obs = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting && !_seenCtaPositions.has(position)) {
+        _seenCtaPositions.add(position)
+        trackSpEvent('sp_cta_visible', { cta_location: position })
+      }
+    },
+    { threshold: 0.5 },
+  )
+  obs.observe(el)
+  return () => obs.disconnect()
+}
+
 // ── Canonical CTA event set — single source of truth for all CTA buttons ─────
 // sp_cta_click + line_add + generate_lead (GA4)
 // LINE_ADD + Lead (Meta custom + standard)

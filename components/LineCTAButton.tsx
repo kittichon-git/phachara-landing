@@ -1,7 +1,8 @@
 'use client'
 
+import { useRef, useEffect } from 'react'
 import { lineUrl, type LinePosition } from '@/lib/constants'
-import { fireCTAEvents } from '@/lib/track'
+import { fireCTAEvents, observeCtaVisible } from '@/lib/track'
 
 interface Props {
   position: LinePosition
@@ -18,12 +19,20 @@ export default function LineCTAButton({
   size = 'lg',
   className = '',
 }: Props) {
+  const ref = useRef<HTMLAnchorElement>(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+    return observeCtaVisible(ref.current, position)
+  }, [position])
+
   function handleClick() {
     fireCTAEvents(position)
   }
 
   return (
     <a
+      ref={ref}
       href={lineUrl(position)}
       target="_blank"
       rel="noopener noreferrer"

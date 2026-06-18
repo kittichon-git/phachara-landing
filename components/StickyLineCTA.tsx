@@ -1,10 +1,11 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { lineUrl } from '@/lib/constants'
-import { fireCTAEvents } from '@/lib/track'
+import { fireCTAEvents, observeCtaVisible } from '@/lib/track'
 
 export default function StickyLineCTA() {
   const [visible, setVisible] = useState(false)
+  const ref = useRef<HTMLAnchorElement>(null)
 
   useEffect(() => {
     const sentinel = document.getElementById('hero-sentinel')
@@ -21,6 +22,12 @@ export default function StickyLineCTA() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // FIX 2: observe เมื่อ element render จริง (visible=true) — ไม่พลาดแม้ mount ทีหลัง
+  useEffect(() => {
+    if (!visible || !ref.current) return
+    return observeCtaVisible(ref.current, 'sticky')
+  }, [visible])
+
   function handleClick() {
     fireCTAEvents('sticky')
   }
@@ -30,6 +37,7 @@ export default function StickyLineCTA() {
   return (
     <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 px-4 w-full max-w-[420px]">
       <a
+        ref={ref}
         href={lineUrl('sticky')}
         target="_blank"
         rel="noopener noreferrer"
