@@ -15,24 +15,30 @@ export default function S10FinalCTA() {
             marginBottom: 16,
           }}
         >
-          พิสูจน์ด้วยโพสต์ของคุณเอง
+          เริ่มเปลี่ยนคำในโพสต์ถัดไปของคุณตั้งแต่วันนี้
         </h2>
 
-        <p className="thai-pretty" style={{ fontSize: 17, color: '#AAAAAA', lineHeight: 1.7, maxWidth: 520, margin: '0 auto 16px' }}>
-          คุณไม่ต้องเชื่อทั้งหมดในตอนนี้ เริ่มต้นจากการทดลองอ่านฟรี 2 บทแรก
-        </p>
         <p className="thai-pretty" style={{ fontSize: 17, color: '#FFFFFF', fontWeight: 600, lineHeight: 1.7, maxWidth: 520, margin: '0 auto 16px' }}>
           อย่าปล่อยให้โพสต์ต่อไปของคุณ ต้องเสียลูกค้าไปฟรีๆ อีกเลย...
         </p>
         <p className="thai-pretty" style={{ fontSize: 17, color: '#AAAAAA', lineHeight: 1.7, maxWidth: 520, margin: '0 auto 36px' }}>
-          ถ้าอ่านแล้วรู้สึกว่า &ldquo;คำ&rdquo; ของคุณทรงพลังขึ้น{' '}
-          <span className="thai-nowrap">ค่อยตัดสินใจ</span>
+          ซื้อครั้งเดียว อ่านใน LINE ได้ทันที{' '}
+          <span className="thai-nowrap">การันตีคืนเงิน 7 วัน</span>
         </p>
 
         <LineCTAButton
           position="s10"
+          label="ซื้อเลย 890฿ · อ่านใน LINE ทันที"
           className="cta-btn-green"
         />
+
+        <p style={{ fontSize: 14, color: '#666666', marginTop: 20, lineHeight: 1.6 }}>
+          🛡️ คืนเงิน 100% ภายใน 7 วัน ไม่ถามเหตุผล
+          <span style={{ margin: '0 10px', opacity: 0.4 }}>·</span>
+          เข้าถึงตลอดชีพ
+          <span style={{ margin: '0 10px', opacity: 0.4 }}>·</span>
+          เปิดอ่านบน LINE ได้ทุกที่
+        </p>
       </div>
     </section>
   )

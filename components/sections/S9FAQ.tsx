@@ -53,12 +53,12 @@ export default function S9FAQ() {
           }}
         >
           <p style={{ fontSize: 16, fontWeight: 700, color: '#3A9E5F', marginBottom: 8 }}>
-            🛡️ พิสูจน์ด้วยตัวเอง ⬇️ ทดลองอ่านฟรี ∞{' '}
-            <span className="thai-nowrap">ไม่ต้องเสี่ยงจ่ายก่อน</span>
+            🛡️ ซื้อแบบไม่ต้องเสี่ยง —{' '}
+            <span className="thai-nowrap">จ่ายครั้งเดียว อ่านได้ทันทีใน LINE</span>
           </p>
           <p className="thai-pretty" style={{ fontSize: 15, color: '#444444', lineHeight: 1.6, margin: 0 }}>
-            คุณไม่ต้องรับความเสี่ยงใดๆ เริ่มต้นอ่าน 2 บทแรกได้ฟรี
-            เพื่อพิสูจน์ว่า &ldquo;คำ&rdquo; ช่วยเพิ่มยอดขายได้จริง ก่อนตัดสินใจ
+            ถ้าภายใน 7 วันรู้สึกว่าไม่ช่วยให้คำของคุณขายดีขึ้น
+            ทักแอดมินรับเงินคืนเต็ม 100% ไม่ถามเหตุผล
           </p>
         </div>
 

@@ -14,7 +14,7 @@ interface Props {
 
 export default function LineCTAButton({
   position,
-  label = 'อ่านฟรี 2 บท ใน LINE',
+  label = 'ซื้อเลย 890฿ · อ่านใน LINE ทันที',
   sublabel,
   size = 'lg',
   className = '',
@@ -26,16 +26,18 @@ export default function LineCTAButton({
     return observeCtaVisible(ref.current, position)
   }, [position])
 
-  function handleClick() {
+  function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault()
+    const url = lineUrl(position)
     fireCTAEvents(position)
+    // fire-then-redirect: ให้ beacon queue ก่อน แล้วค่อย navigate (กัน event หลุดบน LINE in-app browser)
+    setTimeout(() => { window.location.href = url }, 300)
   }
 
   return (
     <a
       ref={ref}
       href={lineUrl(position)}
-      target="_blank"
-      rel="noopener noreferrer"
       data-cta-position={position}
       onClick={handleClick}
       className={`cta-btn ${className}`}

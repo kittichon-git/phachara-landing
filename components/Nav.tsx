@@ -12,8 +12,11 @@ export default function Nav() {
     return observeCtaVisible(navCtaRef.current, 'nav')
   }, [])
 
-  function handleCtaClick() {
+  function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault()
+    const url = lineUrl('nav')
     fireCTAEvents('nav')
+    setTimeout(() => { window.location.href = url }, 300)
   }
 
   return (
@@ -62,8 +65,6 @@ export default function Nav() {
       <a
         ref={navCtaRef}
         href={lineUrl('nav')}
-        target="_blank"
-        rel="noopener noreferrer"
         data-cta-position="nav"
         onClick={handleCtaClick}
         className="no-underline transition-colors"
@@ -76,7 +77,7 @@ export default function Nav() {
           fontSize: 15,
         }}
       >
-        เริ่มอ่านฟรี
+        ซื้อ 890฿
       </a>
     </nav>
   )

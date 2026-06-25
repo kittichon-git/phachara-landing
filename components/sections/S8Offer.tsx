@@ -65,6 +65,10 @@ export default function S8Offer() {
             position="offer"
             className="w-full"
           />
+          <p className="thai-pretty" style={{ fontSize: 14, color: '#888888', marginTop: 16, lineHeight: 1.6 }}>
+            🛡️ ถ้าภายใน 7 วันรู้สึกว่าไม่ช่วยให้คำของคุณขายดีขึ้น
+            ทักแอดมินรับเงินคืนเต็ม 100% ไม่ถามเหตุผล
+          </p>
         </div>
 
         <div className="trust-row">
