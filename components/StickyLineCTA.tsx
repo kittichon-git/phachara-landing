@@ -28,8 +28,11 @@ export default function StickyLineCTA() {
     return observeCtaVisible(ref.current, 'sticky')
   }, [visible])
 
-  function handleClick() {
+  function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault()
+    const url = lineUrl('sticky')
     fireCTAEvents('sticky')
+    setTimeout(() => { window.location.href = url }, 300)
   }
 
   if (!visible) return null
@@ -39,8 +42,6 @@ export default function StickyLineCTA() {
       <a
         ref={ref}
         href={lineUrl('sticky')}
-        target="_blank"
-        rel="noopener noreferrer"
         data-cta-position="sticky"
         onClick={handleClick}
         className="flex items-center gap-3 rounded-[16px] px-4 py-3 w-full"
@@ -67,7 +68,7 @@ export default function StickyLineCTA() {
           className="font-semibold text-[14px]"
           style={{ fontFamily: 'var(--font-body)' }}
         >
-          อ่านฟรี 2 บท ใน LINE
+          ซื้อเลย 890฿ · อ่านใน LINE ทันที
         </div>
         <span
           className="ml-auto font-semibold text-[16px]"

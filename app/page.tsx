@@ -20,10 +20,10 @@ export default function Home() {
         <Hero />
         <S3Relevance />
         <S4Mechanism />
-        <S5Outcome />
         <S6Fit />
         <S7Curriculum />
         <SLossAversion />
+        <S5Outcome />
         <S8Offer />
         <S9FAQ />
         <S10FinalCTA />

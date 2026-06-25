@@ -77,6 +77,7 @@ export function observeCtaVisible(el: Element, position: string): () => void {
 // ClickButton (TikTok)
 export function fireCTAEvents(position: string): void {
   if (typeof window === 'undefined') return
+  trackSpEvent('checkout_clicked', { cta_location: position }, true)
   trackSpEvent('sp_cta_click', { cta_location: position })
   trackSpEvent('line_add', { cta_location: position })
   window.gtag?.('event', 'generate_lead', {
