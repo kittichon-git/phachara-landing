@@ -40,8 +40,8 @@ export default function Hero() {
               flexWrap: 'wrap',
             }}
           >
-            สำหรับคนขายของออนไลน์ที่โพสต์ทุกวัน...{' '}
-            <span style={{ whiteSpace: 'nowrap' }}>แต่ยอดขายยังเงียบ</span>
+            สำหรับคนขายของออนไลน์ทุกคน — ไม่ว่าจะโพสต์ข้อความ{' '}
+            <span style={{ whiteSpace: 'nowrap' }}>ทำคลิป/รีลส์ หรือไลฟ์ขายของ</span>
           </span>
         </div>
 
@@ -72,13 +72,50 @@ export default function Hero() {
             fontSize: 18,
             color: '#666666',
             maxWidth: 520,
-            margin: '0 auto 36px',
+            margin: '0 auto 20px',
             lineHeight: 1.6,
           }}
         >
           สูตรลับการใช้ &ldquo;คำ&rdquo; ที่ช่วยให้ปิดการขายได้
           {' '}แม้<span className="thai-nowrap">ไม่เคย</span>เขียนโฆษณามาก่อน
         </p>
+
+        {/* Format strip */}
+        <div style={{ marginBottom: 20 }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              gap: 6,
+              marginBottom: 6,
+            }}
+          >
+            {['📝 โพสต์/แคปชั่น', '🎬 คลิป/รีลส์', '📺 ไลฟ์'].map((f) => (
+              <span
+                key={f}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  padding: '4px 12px',
+                  borderRadius: 999,
+                  background: '#F5EFE6',
+                  border: '1px solid #E5DDD5',
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: '#4A3728',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {f}
+              </span>
+            ))}
+          </div>
+          <p style={{ fontSize: 13, color: '#999999', margin: 0 }}>
+            หลักการเรื่อง &ldquo;คำ&rdquo; ใช้ได้กับทุกฟอร์แมต
+          </p>
+        </div>
 
         {/* Chip row */}
         <div
@@ -89,7 +126,7 @@ export default function Hero() {
             justifyContent: 'center',
             flexWrap: 'wrap',
             gap: 8,
-            marginBottom: 36,
+            marginBottom: 24,
           }}
         >
           {chips.map((c, i) => (
