@@ -18,7 +18,7 @@ export const INSTRUCTOR = {
 export const COURSE = {
   title: 'แค่เปลี่ยนคำ ก็ทำเงิน',
   subtitle: 'บทเรียนเขียนคำขายของออนไลน์ให้คนกดซื้อ',
-  price: 890,
+  price: 590,
   anchorPrice: 2490,
   currency: 'THB',
 } as const

@@ -68,7 +68,7 @@ export default function StickyLineCTA() {
           className="font-semibold text-[14px]"
           style={{ fontFamily: 'var(--font-body)' }}
         >
-          ซื้อเลย 890฿ · อ่านใน LINE ทันที
+          ซื้อเลย 590฿ · อ่านใน LINE ทันที
         </div>
         <span
           className="ml-auto font-semibold text-[16px]"

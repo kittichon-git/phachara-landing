@@ -77,7 +77,7 @@ export default function Nav() {
           fontSize: 15,
         }}
       >
-        ซื้อ 890฿
+        ซื้อ 590฿
       </a>
     </nav>
   )

@@ -47,7 +47,7 @@ export default function SLossAversion() {
           }}
         >
           <p style={{ fontSize: 18, fontWeight: 700, color: '#E87A3D', lineHeight: 1.6, margin: 0, textWrap: 'pretty' }}>
-            ความสูญเสียเหล่านี้ แพงกว่า 890 บาทที่คุณจะลงทุนเพื่อแก้ปัญหานี้อย่างถาวรหรือไม่?
+            ความสูญเสียเหล่านี้ แพงกว่า 590 บาทที่คุณจะลงทุนเพื่อแก้ปัญหานี้อย่างถาวรหรือไม่?
           </p>
         </div>
       </div>

@@ -14,7 +14,7 @@ interface Props {
 
 export default function LineCTAButton({
   position,
-  label = 'ซื้อเลย 890฿ · อ่านใน LINE ทันที',
+  label = 'ซื้อเลย 590฿ · อ่านใน LINE ทันที',
   sublabel,
   size = 'lg',
   className = '',

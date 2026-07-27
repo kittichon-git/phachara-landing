@@ -28,7 +28,7 @@ export default function S10FinalCTA() {
 
         <LineCTAButton
           position="s10"
-          label="ซื้อเลย 890฿ · อ่านใน LINE ทันที"
+          label="ซื้อเลย 590฿ · อ่านใน LINE ทันที"
           className="cta-btn-green"
         />
 
